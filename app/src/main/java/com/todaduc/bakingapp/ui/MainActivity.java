@@ -1,11 +1,13 @@
 package com.todaduc.bakingapp.ui;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.todaduc.bakingapp.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecipeListFragment.OnRecipeClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,4 +16,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onCardSelected(int position) {
+       //need to pass value of recipe
+        startActivity( new Intent(this, RecipeDetailActivity.class));
+    }
 }

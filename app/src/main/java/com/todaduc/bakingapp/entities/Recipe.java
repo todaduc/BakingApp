@@ -9,18 +9,23 @@ import android.os.Parcelable;
 
 public class Recipe implements Parcelable{
 
-    private long id;
+    private int id;
     private String name;
+    private int serving;
+    private String image;
 
-
-    public Recipe(long id, String name) {
+    public Recipe(int id, String name, int serving, String image) {
         this.id = id;
         this.name = name;
+        this.serving = serving;
+        this.image = image;
     }
 
     private Recipe(Parcel in){
-        id = in.readLong();
+        id = in.readInt();
         name = in.readString();
+        serving = in.readInt();
+        image = in.readString();
     }
 
     public static final Creator<Recipe> CREATOR = new Creator<Recipe>() {
@@ -42,15 +47,25 @@ public class Recipe implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeLong(id);
+        parcel.writeInt(id);
         parcel.writeString(name);
+        parcel.writeInt(serving);
+        parcel.writeString(image);
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
     public String getName() {
         return name;
+    }
+
+    public int getServing() {
+        return serving;
+    }
+
+    public String getImage() {
+        return image;
     }
 }

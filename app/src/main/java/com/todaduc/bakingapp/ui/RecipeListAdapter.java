@@ -24,6 +24,7 @@ public class RecipeListAdapter  extends BaseAdapter{
 
     private Context context;
     private List<Recipe> recipes;
+
     public RecipeListAdapter(Context context, List<Recipe> recipeList) {
         this.context = context;
         this.recipes = recipeList;
@@ -51,7 +52,6 @@ public class RecipeListAdapter  extends BaseAdapter{
 
            convertView = inflater.inflate(R.layout.fragment_recipe, parent, false);
         }
-
         ((TextView)convertView.findViewById(R.id.info_text)).setText(recipes.get(position).getName());
         // Set the image resource and return the newly created ImageView
         return convertView;
