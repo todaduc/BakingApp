@@ -1,4 +1,4 @@
-package com.todaduc.bakingapp.Entities;
+package com.todaduc.bakingapp.entities;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -9,8 +9,18 @@ import android.os.Parcelable;
 
 public class Recipe implements Parcelable{
 
-    private Recipe(Parcel in){
+    private long id;
+    private String name;
 
+
+    public Recipe(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    private Recipe(Parcel in){
+        id = in.readLong();
+        name = in.readString();
     }
 
     public static final Creator<Recipe> CREATOR = new Creator<Recipe>() {
@@ -32,5 +42,15 @@ public class Recipe implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeLong(id);
+        parcel.writeString(name);
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
     }
 }

@@ -1,4 +1,4 @@
-package com.todaduc.bakingapp.Utilities;
+package com.todaduc.bakingapp.utilities;
 
 import android.net.Uri;
 

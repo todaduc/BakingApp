@@ -1,7 +1,7 @@
-package com.todaduc.bakingapp.Utilities;
+package com.todaduc.bakingapp.utilities;
 
 import android.content.Context;
-import com.todaduc.bakingapp.Entities.Recipe;
+import com.todaduc.bakingapp.entities.Recipe;
 import org.json.JSONException;
 import java.util.List;
 /**
