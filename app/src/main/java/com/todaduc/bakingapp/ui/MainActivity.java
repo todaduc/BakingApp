@@ -7,6 +7,9 @@ import com.todaduc.bakingapp.R;
 
 public class MainActivity extends AppCompatActivity implements RecipeListFragment.OnRecipeClickListener {
 
+
+    boolean mTabletView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,5 +1,6 @@
 package com.todaduc.bakingapp.ui;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -40,6 +41,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
 
     @Override
     public void onStepSelected(int position) {
-        Toast.makeText(RecipeDetailActivity.this,"position clicked" + position,Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(this, StepsDetailActivity.class);
+        startActivity(intent);
     }
 }
