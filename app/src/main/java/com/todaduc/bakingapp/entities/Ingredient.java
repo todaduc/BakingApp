@@ -15,4 +15,15 @@ public class Ingredient {
         this.description = description;
     }
 
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public String getMeasure() {
+        return measure;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }

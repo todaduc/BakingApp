@@ -20,5 +20,23 @@ public class BakingStep {
         this.thumbnailURL = thumbnailURL;
     }
 
+    public int getId() {
+        return id;
+    }
 
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getVideoUrl() {
+        return videoUrl;
+    }
+
+    public String getThumbnailURL() {
+        return thumbnailURL;
+    }
 }

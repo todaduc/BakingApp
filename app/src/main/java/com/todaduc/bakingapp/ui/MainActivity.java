@@ -3,8 +3,6 @@ package com.todaduc.bakingapp.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
-
 import com.todaduc.bakingapp.R;
 
 public class MainActivity extends AppCompatActivity implements RecipeListFragment.OnRecipeClickListener {

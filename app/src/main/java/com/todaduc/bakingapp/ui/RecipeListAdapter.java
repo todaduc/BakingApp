@@ -1,19 +1,13 @@
 package com.todaduc.bakingapp.ui;
 
 import android.content.Context;
-import android.nfc.cardemulation.CardEmulation;
-import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.TextView;
-
 import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.Recipe;
-
 import java.util.List;
 
 /**
