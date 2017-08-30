@@ -5,10 +5,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <android.support.v7.widget.RecyclerView
+    <fragment
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/rv_ingredient"
+        android:name="com.todaduc.bakingapp.ui.IngredientFragment"
+        android:id="@+id/recipe_ingredients_container"
         />
 
     <fragment
