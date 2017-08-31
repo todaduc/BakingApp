@@ -35,7 +35,12 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
 
     @Override
     public void onStepSelected(int position) {
-        Intent intent = new Intent(this, StepsDetailActivity.class);
-        startActivity(intent);
+        if(!twoPaneMode){
+            Intent intent = new Intent(this, StepsDetailActivity.class);
+            startActivity(intent);
+        }else{
+            return;
+        }
+
     }
 }

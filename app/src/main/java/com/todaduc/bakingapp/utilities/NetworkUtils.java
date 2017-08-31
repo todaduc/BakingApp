@@ -46,6 +46,17 @@ public class NetworkUtils {
         return url;
     }
 
+    public static URL buildSimpleUrl (String urlRequest){
+        Uri builtUri = Uri.parse(urlRequest);
+        URL url = null;
+        try {
+            url = new URL(builtUri.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        return url;
+    }
     /**
      * This method returns the entire result from the HTTP response.
      *

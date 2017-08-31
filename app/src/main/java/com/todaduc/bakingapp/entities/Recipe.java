@@ -1,7 +1,10 @@
 package com.todaduc.bakingapp.entities;
 
+import android.app.ListFragment;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import java.util.List;
 
 /**
  * Created by Themener on 8/22/17.
@@ -13,19 +16,41 @@ public class Recipe implements Parcelable{
     private String name;
     private int serving;
     private String image;
+    private List<Ingredient> ingredientList;
+    private List<BakingStep> backingSteps;
 
-    public Recipe(int id, String name, int serving, String image) {
+    public Recipe(int id, String name, int serving, String image, List<Ingredient> ingredientList, List<BakingStep> backingSteps) {
         this.id = id;
         this.name = name;
         this.serving = serving;
         this.image = image;
+        this.ingredientList = ingredientList;
+        this.backingSteps = backingSteps;
     }
 
-    private Recipe(Parcel in){
+
+    protected Recipe(Parcel in) {
         id = in.readInt();
         name = in.readString();
         serving = in.readInt();
         image = in.readString();
+        ingredientList = in.createTypedArrayList(Ingredient.CREATOR);
+        backingSteps = in.createTypedArrayList(BakingStep.CREATOR);
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(name);
+        dest.writeInt(serving);
+        dest.writeString(image);
+        dest.writeTypedList(ingredientList);
+        dest.writeTypedList(backingSteps);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<Recipe> CREATOR = new Creator<Recipe>() {
@@ -39,19 +64,6 @@ public class Recipe implements Parcelable{
             return new Recipe[size];
         }
     };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(id);
-        parcel.writeString(name);
-        parcel.writeInt(serving);
-        parcel.writeString(image);
-    }
 
     public int getId() {
         return id;

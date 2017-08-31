@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Baking App</string>
+
+
+    <string name="webservice_Request_Url">https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/baking.json</string>
+    <string name="status_code"></string>
+
 </resources>

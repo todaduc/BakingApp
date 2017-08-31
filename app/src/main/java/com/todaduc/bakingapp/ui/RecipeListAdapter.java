@@ -39,6 +39,14 @@ public class RecipeListAdapter  extends BaseAdapter{
         return 0;
     }
 
+    public List<Recipe> getRecipes() {
+        return recipes;
+    }
+
+    public void setRecipes(List<Recipe> recipes) {
+        this.recipes = recipes;
+    }
+
     public View getView (final  int position, View convertView, ViewGroup parent){
 
         if (convertView == null) {
@@ -46,7 +54,9 @@ public class RecipeListAdapter  extends BaseAdapter{
 
            convertView = inflater.inflate(R.layout.fragment_recipe, parent, false);
         }
-        ((TextView)convertView.findViewById(R.id.info_text)).setText(recipes.get(position).getName());
+        ((TextView)convertView.findViewById(R.id.tv_recipe_name)).setText(recipes.get(position).getName());
+        ((TextView)convertView.findViewById(R.id.tv_recipe_serving)).setText(recipes.get(position).getServing());
+
         // Set the image resource and return the newly created ImageView
         return convertView;
     }

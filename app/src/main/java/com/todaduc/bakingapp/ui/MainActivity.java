@@ -22,4 +22,5 @@ public class MainActivity extends AppCompatActivity implements RecipeListFragmen
        //need to pass value of recipe
         startActivity( new Intent(this, RecipeDetailActivity.class));
     }
+
 }

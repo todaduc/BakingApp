@@ -3,6 +3,7 @@ package com.todaduc.bakingapp.ui;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,8 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.Recipe;
+import com.todaduc.bakingapp.tasks.RecipeTask;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,28 +22,16 @@ import java.util.List;
 
 public class RecipeListFragment extends Fragment {
 
-    List<Recipe> listRecipe = new ArrayList<>();
+
     private OnRecipeClickListener onRecipeClick;
+    private RecipeListAdapter recipeListAdapter;
 
     interface OnRecipeClickListener{
         void onCardSelected(int position);
     }
 
-
-    {
-        listRecipe.add(new Recipe(1,"one", 7, null));
-        listRecipe.add(new Recipe(1,"two", 10, null));
-        listRecipe.add(new Recipe(1,"three", 34, null));
-        listRecipe.add(new Recipe(1,"four", 90, null));
-        listRecipe.add(new Recipe(1,"two", 10, null));
-        listRecipe.add(new Recipe(1,"three", 34, null));
-        listRecipe.add(new Recipe(1,"four", 90, null));
-    }
-
-
     public RecipeListFragment() {
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,  Bundle savedInstanceState) {
@@ -49,7 +40,9 @@ public class RecipeListFragment extends Fragment {
 
         GridView gridView = (GridView)rootView.findViewById(R.id.recipe_grid_view);
 
-        RecipeListAdapter recipeListAdapter = new RecipeListAdapter(getContext(), listRecipe );
+        recipeListAdapter = new RecipeListAdapter(getContext(), new ArrayList<Recipe> ());
+
+        fetchRecipe();
 
         gridView.setAdapter(recipeListAdapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -60,6 +53,10 @@ public class RecipeListFragment extends Fragment {
         });
 
         return  rootView;
+    }
+
+    private void fetchRecipe(){
+        new RecipeTask((MainActivity)getActivity(), recipeListAdapter).execute();
     }
 
     @Override

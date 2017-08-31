@@ -1,10 +1,13 @@
 package com.todaduc.bakingapp.entities;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by ddjankou on 8/24/2017.
  */
 
-public class BakingStep {
+public class BakingStep implements Parcelable{
 
     private int id;
     private String shortDescription;
@@ -18,6 +21,35 @@ public class BakingStep {
         this.description = description;
         this.videoUrl = videoUrl;
         this.thumbnailURL = thumbnailURL;
+    }
+
+    protected BakingStep(Parcel in) {
+        id = in.readInt();
+        shortDescription = in.readString();
+        description = in.readString();
+        videoUrl = in.readString();
+        thumbnailURL = in.readString();
+    }
+
+    public static final Creator<BakingStep> CREATOR = new Creator<BakingStep>() {
+        @Override
+        public BakingStep createFromParcel(Parcel in) {
+            return new BakingStep(in);
+        }
+
+        @Override
+        public BakingStep[] newArray(int size) {
+            return new BakingStep[size];
+        }
+    };
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(shortDescription);
+        dest.writeString(description);
+        dest.writeString(videoUrl);
+        dest.writeString(thumbnailURL);
     }
 
     public int getId() {
@@ -38,5 +70,10 @@ public class BakingStep {
 
     public String getThumbnailURL() {
         return thumbnailURL;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 }
