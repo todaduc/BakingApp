@@ -57,8 +57,6 @@ public class RecipeTask extends AsyncTask<Void, Void, List<Recipe>>{
 
             recipes = JsonUtils.getRecipeFromJson(queryResult,appCompatActivity.getBaseContext());
 
-            Log.i("URL Value ", recipes.toString());
-            recipes = new ArrayList<>();
         } catch (IOException | JSONException e) {
 
            e.printStackTrace();
