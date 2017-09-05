@@ -36,8 +36,9 @@ public class IngredientFragment extends Fragment {
         mIngredient.setLayoutManager(ingredientLayoutManager);
         mIngredient.setHasFixedSize(true);
 
-        ingredients = this.getArguments().getParcelableArrayList("RecipeIngredient");
-
+        if( getArguments()!= null){
+            ingredients = this.getArguments().getParcelableArrayList("RecipeIngredient");
+        }
 
         IngredientAdapter ingredientAdapter = new IngredientAdapter(ingredients);
         mIngredient.setAdapter(ingredientAdapter);

@@ -46,15 +46,22 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
 
     class IngredientHolder extends RecyclerView.ViewHolder{
         final TextView mIngredientDescription;
+        final TextView mMeasure;
+        final TextView mQuantity;
 
         public IngredientHolder(View itemView) {
             super(itemView);
             mIngredientDescription = (TextView)itemView.findViewById(R.id.tv_ingredient_desc);
+            mMeasure = (TextView) itemView.findViewById(R.id.tv_measure);
+            mQuantity = (TextView) itemView.findViewById(R.id.tv_quantity);
         }
 
         public void populate(Ingredient ingredient){
             itemView.setTag(ingredient);
             mIngredientDescription.setText(ingredient.getDescription());
+            mMeasure.setText(ingredient.getMeasure());
+            mQuantity.setText(ingredient.getQuantity());
+
         }
 
     }

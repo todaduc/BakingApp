@@ -1,11 +1,13 @@
 package com.todaduc.bakingapp.ui;
 
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.Toast;
 import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.BakingStep;
@@ -24,6 +26,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_detail);
 
+
         Intent intent = getIntent();
         if(intent.hasExtra("Recipe")){
             Recipe recipe = intent.getExtras().getParcelable("Recipe");
@@ -36,8 +39,20 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
                 savedInstanceState.putParcelableArrayList("RecipeIngredient", (ArrayList<Ingredient>)recipe.getIngredientList());
             }
 
-            getFragmentManager().findFragmentById(R.layout.fragment_ingredients).setArguments(savedInstanceState);
-            getFragmentManager().findFragmentById(R.layout.fragment_step_list).setArguments(savedInstanceState);
+            FragmentManager fragmentManager1 = getSupportFragmentManager();
+            IngredientFragment ingredientFragment = new IngredientFragment();
+            ingredientFragment.setArguments(savedInstanceState);
+
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.recipe_ingredients_container, ingredientFragment)
+                    .commit();
+
+            StepListFragment stepListFragment = new StepListFragment();
+            stepListFragment.setArguments(savedInstanceState);
+
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.recipe_detail_container, stepListFragment)
+                    .commit();
         }
 
 

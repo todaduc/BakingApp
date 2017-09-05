@@ -27,15 +27,7 @@ public class StepListFragment extends Fragment {
     interface OnStepClickListener{
         void onStepSelected(int position);
     }
-    {
 
-        backingSteps.add(new BakingStep(1,"a little test ", "more test","",""));
-        backingSteps.add(new BakingStep(2,"a little test ", "more test","",""));
-        backingSteps.add(new BakingStep(3,"a little test ", "more test","",""));
-        backingSteps.add(new BakingStep(4,"a little test ", "more test","",""));
-        backingSteps.add(new BakingStep(5,"a little test ", "more test","",""));
-
-    }
 
     public StepListFragment() {
     }
@@ -47,8 +39,11 @@ public class StepListFragment extends Fragment {
 
         GridView listStepsView = (GridView)rootView.findViewById(R.id.steps_grid_view);
 
-        StepListAdapter stepListAdapter = new StepListAdapter(getContext(), backingSteps );
+        if( getArguments()!= null){
+            backingSteps = this.getArguments().getParcelableArrayList("RecipeSteps");
+        }
 
+        StepListAdapter stepListAdapter = new StepListAdapter(getContext(), backingSteps );
         listStepsView.setAdapter(stepListAdapter);
 
         listStepsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
