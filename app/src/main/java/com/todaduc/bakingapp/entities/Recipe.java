@@ -77,7 +77,17 @@ public class Recipe implements Parcelable{
         return serving;
     }
 
+    public List<Ingredient> getIngredientList() {
+        return ingredientList;
+    }
+
+    public List<BakingStep> getBackingSteps() {
+        return backingSteps;
+    }
+
     public String getImage() {
         return image;
     }
+
+
 }

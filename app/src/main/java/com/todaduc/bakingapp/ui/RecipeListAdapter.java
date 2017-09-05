@@ -55,7 +55,7 @@ public class RecipeListAdapter  extends BaseAdapter{
            convertView = inflater.inflate(R.layout.fragment_recipe, parent, false);
         }
         ((TextView)convertView.findViewById(R.id.tv_recipe_name)).setText(recipes.get(position).getName());
-        ((TextView)convertView.findViewById(R.id.tv_recipe_serving)).setText(recipes.get(position).getServing());
+        ((TextView)convertView.findViewById(R.id.tv_recipe_serving)).setText("Servings: " + recipes.get(position).getServing());
 
         // Set the image resource and return the newly created ImageView
         return convertView;

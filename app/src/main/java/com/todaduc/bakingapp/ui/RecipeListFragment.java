@@ -27,7 +27,7 @@ public class RecipeListFragment extends Fragment {
     private RecipeListAdapter recipeListAdapter;
 
     interface OnRecipeClickListener{
-        void onCardSelected(int position);
+        void onCardSelected(Recipe recipe);
     }
 
     public RecipeListFragment() {
@@ -48,7 +48,7 @@ public class RecipeListFragment extends Fragment {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                onRecipeClick.onCardSelected(position);
+                onRecipeClick.onCardSelected(recipeListAdapter.getRecipes().get(position));
             }
         });
 
@@ -69,5 +69,6 @@ public class RecipeListFragment extends Fragment {
         }
 
     }
+
 
 }

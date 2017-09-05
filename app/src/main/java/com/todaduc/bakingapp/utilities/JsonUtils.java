@@ -52,7 +52,7 @@ public final class JsonUtils {
             ingredients.add(new Ingredient(
                     ingredient.getString("quantity"),
                     ingredient.getString("measure"),
-                    ingredient.getString("description")
+                    ingredient.getString("ingredient")
             ));
         }
         return ingredients;

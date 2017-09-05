@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import com.todaduc.bakingapp.R;
+import com.todaduc.bakingapp.entities.Recipe;
 
 public class MainActivity extends AppCompatActivity implements RecipeListFragment.OnRecipeClickListener {
 
@@ -18,9 +19,11 @@ public class MainActivity extends AppCompatActivity implements RecipeListFragmen
 
 
     @Override
-    public void onCardSelected(int position) {
+    public void onCardSelected(Recipe recipe) {
        //need to pass value of recipe
-        startActivity( new Intent(this, RecipeDetailActivity.class));
+        Intent intent = new Intent(this, RecipeDetailActivity.class);
+        intent.putExtra("Recipe", recipe);
+        startActivity(intent);
     }
 
 }

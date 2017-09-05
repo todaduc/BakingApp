@@ -1,5 +1,6 @@
 package com.todaduc.bakingapp.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,15 +24,6 @@ public class IngredientFragment extends Fragment {
     private RecyclerView mIngredient;
     List<Ingredient> ingredients = new ArrayList<>();
 
-    {
-        ingredients.add( new Ingredient("500","G","Mascapone Cheese(room temperature)"));
-        ingredients.add( new Ingredient("500","G","Mascapone Cheese(room temperature)"));
-        ingredients.add( new Ingredient("500","G","Mascapone Cheese(room temperature)"));
-        ingredients.add( new Ingredient("500","G","Mascapone Cheese(room temperature)"));
-        ingredients.add( new Ingredient("500","G","Mascapone Cheese(room temperature)"));
-        ingredients.add( new Ingredient("500","G","Mascapone Cheese(room temperature)"));
-    }
-
     public IngredientFragment() {
     }
 
@@ -43,8 +35,13 @@ public class IngredientFragment extends Fragment {
         LinearLayoutManager ingredientLayoutManager = new LinearLayoutManager(getContext());
         mIngredient.setLayoutManager(ingredientLayoutManager);
         mIngredient.setHasFixedSize(true);
+
+        ingredients = this.getArguments().getParcelableArrayList("RecipeIngredient");
+
+
         IngredientAdapter ingredientAdapter = new IngredientAdapter(ingredients);
         mIngredient.setAdapter(ingredientAdapter);
+        ingredientAdapter.notifyDataSetChanged();
 
         return rootView;
     }
