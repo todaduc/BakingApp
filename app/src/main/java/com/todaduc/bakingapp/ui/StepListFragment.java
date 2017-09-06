@@ -25,7 +25,7 @@ public class StepListFragment extends Fragment {
     private OnStepClickListener onStepClick;
 
     interface OnStepClickListener{
-        void onStepSelected(int position);
+        void onStepSelected(BakingStep bakingStep);
     }
 
 
@@ -49,7 +49,7 @@ public class StepListFragment extends Fragment {
         listStepsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                onStepClick.onStepSelected(position);
+                onStepClick.onStepSelected(backingSteps.get(position));
             }
         });
         return rootView;

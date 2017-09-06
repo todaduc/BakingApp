@@ -6,10 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.Ingredient;
-
 import java.util.List;
 
 /**
@@ -46,21 +44,18 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
 
     class IngredientHolder extends RecyclerView.ViewHolder{
         final TextView mIngredientDescription;
-        final TextView mMeasure;
         final TextView mQuantity;
 
         public IngredientHolder(View itemView) {
             super(itemView);
             mIngredientDescription = (TextView)itemView.findViewById(R.id.tv_ingredient_desc);
-            mMeasure = (TextView) itemView.findViewById(R.id.tv_measure);
             mQuantity = (TextView) itemView.findViewById(R.id.tv_quantity);
         }
 
         public void populate(Ingredient ingredient){
             itemView.setTag(ingredient);
-            mIngredientDescription.setText(ingredient.getDescription());
-            mMeasure.setText(ingredient.getMeasure());
-            mQuantity.setText(ingredient.getQuantity());
+           // mIngredientDescription.setText(ingredient.getDescription());
+            mQuantity.setText(ingredient.getQuantity().concat(" "+ingredient.getMeasure().concat(" of ").concat(ingredient.getDescription())));
 
         }
 

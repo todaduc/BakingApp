@@ -1,21 +1,15 @@
 package com.todaduc.bakingapp.ui;
 
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.widget.Toast;
 import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.BakingStep;
 import com.todaduc.bakingapp.entities.Ingredient;
 import com.todaduc.bakingapp.entities.Recipe;
-
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class RecipeDetailActivity extends AppCompatActivity implements StepListFragment.OnStepClickListener{
 
@@ -30,16 +24,16 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
         Intent intent = getIntent();
         if(intent.hasExtra("Recipe")){
             Recipe recipe = intent.getExtras().getParcelable("Recipe");
-            if(savedInstanceState != null){
-                savedInstanceState.putParcelableArrayList("RecipeSteps", (ArrayList<BakingStep>)recipe.getBackingSteps());
-                savedInstanceState.putParcelableArrayList("RecipeIngredient", (ArrayList<Ingredient>)recipe.getIngredientList());
-            }else {
+
+            if(savedInstanceState == null){
                 savedInstanceState = new Bundle();
-                savedInstanceState.putParcelableArrayList("RecipeSteps", (ArrayList<BakingStep>)recipe.getBackingSteps());
-                savedInstanceState.putParcelableArrayList("RecipeIngredient", (ArrayList<Ingredient>)recipe.getIngredientList());
             }
 
-            FragmentManager fragmentManager1 = getSupportFragmentManager();
+            savedInstanceState.putParcelableArrayList("RecipeSteps", (ArrayList<BakingStep>)recipe.getBackingSteps());
+            savedInstanceState.putParcelableArrayList("RecipeIngredient", (ArrayList<Ingredient>)recipe.getIngredientList());
+
+
+
             IngredientFragment ingredientFragment = new IngredientFragment();
             ingredientFragment.setArguments(savedInstanceState);
 
@@ -70,9 +64,10 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
     }
 
     @Override
-    public void onStepSelected(int position) {
+    public void onStepSelected(BakingStep bakingStep) {
         if(!twoPaneMode){
             Intent intent = new Intent(this, StepsDetailActivity.class);
+            intent.putExtra("BakingStep",bakingStep);
             startActivity(intent);
         }else{
             return;

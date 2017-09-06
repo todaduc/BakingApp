@@ -5,8 +5,9 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/tv_step_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="just a test"
+        android:padding="8dp"
         />
 </LinearLayout>

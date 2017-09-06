@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.VideoView;
-
 import com.todaduc.bakingapp.R;
 
 /**
@@ -21,6 +20,11 @@ public class MediaPlayerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_media_player, container, false);
+        String videoUrl = null;
+
+        if( getArguments()!= null){
+            videoUrl = getArguments().getString("Video");
+        }
 
         VideoView videoView = (VideoView)rootView.findViewById(R.id.media_player_view);
 

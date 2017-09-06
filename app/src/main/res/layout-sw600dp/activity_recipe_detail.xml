@@ -10,23 +10,23 @@
     >
 
     <LinearLayout
-        android:layout_width="200dp"
+        android:layout_width="300dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
 
-        <fragment
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:name="com.todaduc.bakingapp.ui.IngredientFragment"
             android:id="@+id/recipe_ingredients_container"
+
             />
 
-        <fragment
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:name="com.todaduc.bakingapp.ui.StepListFragment"
+            android:layout_height="match_parent"
             android:id="@+id/recipe_detail_container"
+
             />
 
     </LinearLayout>
@@ -46,9 +46,10 @@
         >
 
         <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="600dp"
+            android:layout_height="300dp"
             android:id="@+id/video_player_container"
+            android:layout_gravity="center_vertical"
             />
 
         <FrameLayout
