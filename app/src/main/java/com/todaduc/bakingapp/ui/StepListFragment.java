@@ -14,6 +14,9 @@ import com.todaduc.bakingapp.entities.Ingredient;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by ddjankou on 8/24/2017.
  */
@@ -21,6 +24,9 @@ import java.util.List;
 public class StepListFragment extends Fragment {
 
     List<BakingStep> backingSteps = new ArrayList<>();
+
+    @BindView(R.id.steps_grid_view)
+    GridView listStepsView;
 
     private OnStepClickListener onStepClick;
 
@@ -37,7 +43,7 @@ public class StepListFragment extends Fragment {
 
         final View rootView = inflater.inflate(R.layout.fragment_step_list,container, false);
 
-        GridView listStepsView = (GridView)rootView.findViewById(R.id.steps_grid_view);
+        ButterKnife.bind(this,rootView);
 
         if( getArguments()!= null){
             backingSteps = this.getArguments().getParcelableArrayList("RecipeSteps");

@@ -12,13 +12,18 @@ import com.todaduc.bakingapp.entities.Ingredient;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by ddjankou on 8/30/2017.
  */
 
 public class IngredientFragment extends Fragment {
 
-    private RecyclerView mIngredient;
+    @BindView(R.id.rv_ingredient)
+    RecyclerView mIngredient;
+
     List<Ingredient> ingredients = new ArrayList<>();
 
     public IngredientFragment() {
@@ -28,7 +33,8 @@ public class IngredientFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView =  inflater.inflate(R.layout.fragment_ingredients, container, false);
 
-        mIngredient = (RecyclerView)rootView.findViewById(R.id.rv_ingredient);
+        ButterKnife.bind(this, rootView);
+
         LinearLayoutManager ingredientLayoutManager = new LinearLayoutManager(getContext());
         mIngredient.setLayoutManager(ingredientLayoutManager);
         mIngredient.setHasFixedSize(true);

@@ -53,10 +53,13 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
         if(findViewById(R.id.tablet_linear_layout)!= null){
             twoPaneMode = true;
 
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction()
-                    .add(R.id.video_player_container, new MediaPlayerFragment())
-                    .add(R.id.step_instruction_container, new StepsDetailFragment())
+            MediaPlayerFragment mediaPlayerFragment = new MediaPlayerFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.video_player_container, mediaPlayerFragment)
+                    .commit();
+            StepsDetailFragment stepsDetailFragment = new StepsDetailFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.step_instruction_container, stepsDetailFragment)
                     .commit();
         }else{
             twoPaneMode = false;
@@ -70,7 +73,26 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
             intent.putExtra("BakingStep",bakingStep);
             startActivity(intent);
         }else{
-            return;
+
+            Bundle  savedInstanceState = new Bundle();
+            savedInstanceState.putString("Video",bakingStep.getVideoUrl());
+            savedInstanceState.putString("Description",bakingStep.getDescription());
+
+
+
+            MediaPlayerFragment mediaPlayerFragment = new MediaPlayerFragment();
+            mediaPlayerFragment.setArguments(savedInstanceState);
+
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.video_player_container, mediaPlayerFragment)
+                    .commit();
+
+            StepsDetailFragment stepsDetailFragment = new StepsDetailFragment();
+            stepsDetailFragment.setArguments(savedInstanceState);
+
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.step_instruction_container, stepsDetailFragment)
+                    .commit();
         }
 
     }
@@ -78,9 +100,9 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         if(getIntent().hasExtra("Recipe")){
-           Recipe recipe = getIntent().getExtras().getParcelable("Recipe");
-        outState.putParcelableArrayList("RecipeSteps", (ArrayList<BakingStep>)recipe.getBackingSteps());
-        outState.putParcelableArrayList("RecipeIngredient", (ArrayList<Ingredient>)recipe.getIngredientList());
+            Recipe recipe = getIntent().getExtras().getParcelable("Recipe");
+            outState.putParcelableArrayList("RecipeSteps", (ArrayList<BakingStep>)recipe.getBackingSteps());
+            outState.putParcelableArrayList("RecipeIngredient", (ArrayList<Ingredient>)recipe.getIngredientList());
         }
         super.onSaveInstanceState(outState);
     }

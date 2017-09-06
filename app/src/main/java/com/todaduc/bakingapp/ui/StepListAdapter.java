@@ -19,6 +19,8 @@ public class StepListAdapter  extends BaseAdapter {
     private Context context;
     private List<BakingStep> bakingStepList;
 
+    private TextView step_description;
+
     public StepListAdapter(Context context, List<BakingStep> bakingStepList) {
         this.context = context;
         this.bakingStepList = bakingStepList;

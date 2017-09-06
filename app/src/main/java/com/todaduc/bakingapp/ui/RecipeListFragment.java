@@ -15,6 +15,9 @@ import com.todaduc.bakingapp.tasks.RecipeTask;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 /**
  * Created by Themener on 8/23/17.
@@ -25,6 +28,9 @@ public class RecipeListFragment extends Fragment {
 
     private OnRecipeClickListener onRecipeClick;
     private RecipeListAdapter recipeListAdapter;
+
+    @BindView(R.id.recipe_grid_view)
+    GridView gridView;
 
     interface OnRecipeClickListener{
         void onCardSelected(Recipe recipe);
@@ -38,7 +44,7 @@ public class RecipeListFragment extends Fragment {
 
         final View rootView = inflater.inflate(R.layout.fragment_recipe_list,container, false);
 
-        GridView gridView = (GridView)rootView.findViewById(R.id.recipe_grid_view);
+        ButterKnife.bind(this, rootView);
 
         recipeListAdapter = new RecipeListAdapter(getContext(), new ArrayList<Recipe> ());
 

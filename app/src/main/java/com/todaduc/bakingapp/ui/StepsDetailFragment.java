@@ -9,26 +9,33 @@ import android.widget.TextView;
 
 import com.todaduc.bakingapp.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by ddjankou on 8/24/2017.
  */
 
 public class StepsDetailFragment extends Fragment {
 
+    @BindView(R.id.tv_step_detail)
+    TextView stepDetail;
+
     public StepsDetailFragment() {
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_steps_detail,container, false);
+        ButterKnife.bind(this, rootView);
+
         String description = "";
 
         if( getArguments()!= null){
             description = getArguments().getString("Description");
         }
 
-        ((TextView)rootView.findViewById(R.id.tv_step_detail)).setText(description);
+        stepDetail.setText(description);
 
         return rootView;
     }

@@ -10,6 +10,9 @@ import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.Ingredient;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by ddjankou on 8/29/2017.
  */
@@ -43,18 +46,20 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
     }
 
     class IngredientHolder extends RecyclerView.ViewHolder{
-        final TextView mIngredientDescription;
-        final TextView mQuantity;
+
+        @BindView(R.id.tv_ingredient_desc)
+        TextView mIngredientDescription;
+
+        @BindView(R.id.tv_quantity)
+        TextView mQuantity;
 
         public IngredientHolder(View itemView) {
             super(itemView);
-            mIngredientDescription = (TextView)itemView.findViewById(R.id.tv_ingredient_desc);
-            mQuantity = (TextView) itemView.findViewById(R.id.tv_quantity);
+            ButterKnife.bind(this, itemView);
         }
 
         public void populate(Ingredient ingredient){
             itemView.setTag(ingredient);
-           // mIngredientDescription.setText(ingredient.getDescription());
             mQuantity.setText(ingredient.getQuantity().concat(" "+ingredient.getMeasure().concat(" of ").concat(ingredient.getDescription())));
 
         }
