@@ -16,4 +16,29 @@
         android:id="@+id/step_instruction_container"
         />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom"
+        >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_preview"
+            android:layout_alignParentLeft="true"
+            android:text="preview"
+            />
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_next"
+            android:layout_alignParentRight="true"
+            android:text="next"
+            />
+    </RelativeLayout>
+
 </LinearLayout>

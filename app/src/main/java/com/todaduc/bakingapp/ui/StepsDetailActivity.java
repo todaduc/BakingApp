@@ -2,8 +2,16 @@ package com.todaduc.bakingapp.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Button;
+
 import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.BakingStep;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+import static android.R.attr.id;
 
 /**
  * Created by ddjankou on 8/24/2017.
@@ -11,10 +19,18 @@ import com.todaduc.bakingapp.entities.BakingStep;
 
 public class StepsDetailActivity  extends AppCompatActivity {
 
+    @BindView(R.id.button_preview)
+    Button mPreview;
+    @BindView(R.id.button_next)
+    Button mNext;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_steps_detail);
+        ButterKnife.bind(this);
+
         if(getIntent().hasExtra("BakingStep")){
 
             BakingStep bakingStep = getIntent().getExtras().getParcelable("BakingStep");
@@ -54,4 +70,13 @@ public class StepsDetailActivity  extends AppCompatActivity {
         super.onSaveInstanceState(outState);
     }
 
+    @OnClick(R.id.button_preview)
+    public void previewStep(){
+
+    }
+
+    @OnClick(R.id.button_next)
+    public void nextStep(){
+
+    }
 }
