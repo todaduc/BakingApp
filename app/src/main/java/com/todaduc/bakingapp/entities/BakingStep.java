@@ -76,4 +76,17 @@ public class BakingStep implements Parcelable{
     public int describeContents() {
         return 0;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!(obj instanceof  BakingStep))return false;
+        BakingStep eltToCompare = (BakingStep)obj;
+        if(this.id == eltToCompare.id && this.shortDescription.equals(eltToCompare.shortDescription)
+            && this.description.equals(eltToCompare.description) && this.thumbnailURL.equals(eltToCompare.thumbnailURL)
+            && this.videoUrl.equals(eltToCompare.videoUrl)
+        ){
+            return true;
+        }
+        return false;
+    }
 }

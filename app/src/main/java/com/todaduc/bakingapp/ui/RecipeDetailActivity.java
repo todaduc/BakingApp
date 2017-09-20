@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class RecipeDetailActivity extends AppCompatActivity implements StepListFragment.OnStepClickListener{
 
     boolean twoPaneMode;
+    private Recipe mCurrentRecipe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +24,14 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
 
         Intent intent = getIntent();
         if(intent.hasExtra("Recipe")){
-            Recipe recipe = intent.getExtras().getParcelable("Recipe");
+             mCurrentRecipe = intent.getExtras().getParcelable("Recipe");
 
             if(savedInstanceState == null){
                 savedInstanceState = new Bundle();
             }
 
-            savedInstanceState.putParcelableArrayList("RecipeSteps", (ArrayList<BakingStep>)recipe.getBackingSteps());
-            savedInstanceState.putParcelableArrayList("RecipeIngredient", (ArrayList<Ingredient>)recipe.getIngredientList());
+            savedInstanceState.putParcelableArrayList("RecipeSteps", (ArrayList<BakingStep>)mCurrentRecipe.getBackingSteps());
+            savedInstanceState.putParcelableArrayList("RecipeIngredient", (ArrayList<Ingredient>)mCurrentRecipe.getIngredientList());
 
 
 
@@ -67,16 +68,17 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
     }
 
     @Override
-    public void onStepSelected(BakingStep bakingStep) {
+    public void onStepSelected(BakingStep currentStep) {
         if(!twoPaneMode){
             Intent intent = new Intent(this, StepsDetailActivity.class);
-            intent.putExtra("BakingStep",bakingStep);
+            intent.putExtra("CurrentStep",currentStep);
+            intent.putParcelableArrayListExtra("AllSteps", (ArrayList<BakingStep>)mCurrentRecipe.getBackingSteps() );
             startActivity(intent);
         }else{
 
             Bundle  savedInstanceState = new Bundle();
-            savedInstanceState.putString("Video",bakingStep.getVideoUrl());
-            savedInstanceState.putString("Description",bakingStep.getDescription());
+            savedInstanceState.putString("Video",currentStep.getVideoUrl());
+            savedInstanceState.putString("Description",currentStep.getDescription());
 
 
 

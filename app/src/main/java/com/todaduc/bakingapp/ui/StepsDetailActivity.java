@@ -1,11 +1,17 @@
 package com.todaduc.bakingapp.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Button;
 
 import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.BakingStep;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,7 +29,8 @@ public class StepsDetailActivity  extends AppCompatActivity {
     Button mPreview;
     @BindView(R.id.button_next)
     Button mNext;
-
+    private BakingStep bakingStep;
+    private List<BakingStep> mListOfSteps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +38,12 @@ public class StepsDetailActivity  extends AppCompatActivity {
         setContentView(R.layout.activity_steps_detail);
         ButterKnife.bind(this);
 
-        if(getIntent().hasExtra("BakingStep")){
+        if(getIntent().hasExtra("AllSteps")){
+            mListOfSteps = getIntent().getExtras().getParcelableArrayList("AllSteps");
+        }
+        if(getIntent().hasExtra("CurrentStep")){
 
-            BakingStep bakingStep = getIntent().getExtras().getParcelable("BakingStep");
+            bakingStep = getIntent().getExtras().getParcelable("CurrentStep");
             if(savedInstanceState==null){
                 savedInstanceState = new Bundle();
 
@@ -61,22 +71,58 @@ public class StepsDetailActivity  extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
 
-        if(getIntent().hasExtra("BakingStep")){
-            BakingStep bakingStep = getIntent().getExtras().getParcelable("BakingStep");
+        if(getIntent().hasExtra("CurrentStep")){
+            bakingStep = getIntent().getExtras().getParcelable("CurrentStep");
             outState.putString("Video",bakingStep.getVideoUrl());
             outState.putString("Description",bakingStep.getDescription());
 
+        }
+        if(getIntent().hasExtra("AllSteps")){
+            mListOfSteps = getIntent().getExtras().getParcelableArrayList("AllSteps");
+            outState.putParcelableArrayList("AllSteps", (ArrayList<BakingStep>) mListOfSteps);
         }
         super.onSaveInstanceState(outState);
     }
 
     @OnClick(R.id.button_preview)
     public void previewStep(){
+        int currentStepIndex = 0;
 
+        if(mListOfSteps !=null){
+            currentStepIndex = mListOfSteps.indexOf(bakingStep);
+            if(currentStepIndex>0){
+                BakingStep previewStep = mListOfSteps.get(--currentStepIndex);
+
+                Intent intent = new Intent(this, StepsDetailActivity.class);
+                intent.putExtra("CurrentStep",previewStep);
+                intent.putParcelableArrayListExtra("AllSteps", (ArrayList<BakingStep>) mListOfSteps);
+                finish();
+                overridePendingTransition(0, 0);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+            }
+        }
+        return;
     }
 
     @OnClick(R.id.button_next)
     public void nextStep(){
+        int currentStepIndex = 0;
 
+        if(mListOfSteps !=null){
+            currentStepIndex = mListOfSteps.indexOf(bakingStep);
+            if(currentStepIndex>0 && currentStepIndex<mListOfSteps.size()-1){
+                BakingStep nextStep = mListOfSteps.get(++currentStepIndex);
+                Intent intent = new Intent(this, StepsDetailActivity.class);
+                intent.putExtra("CurrentStep",nextStep);
+                intent.putParcelableArrayListExtra("AllSteps", (ArrayList<BakingStep>) mListOfSteps);
+                finish();
+                overridePendingTransition(0, 0);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+            }
+        }
+        return;
     }
+
 }
