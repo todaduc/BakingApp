@@ -30,7 +30,7 @@ public class StepsDetailActivity  extends AppCompatActivity {
     @BindView(R.id.button_next)
     Button mNext;
     private BakingStep bakingStep;
-    private List<BakingStep> mListOfSteps;
+    private static List<BakingStep> mListOfSteps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
