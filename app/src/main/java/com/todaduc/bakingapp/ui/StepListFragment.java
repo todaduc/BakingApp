@@ -26,7 +26,7 @@ public class StepListFragment extends Fragment {
     List<BakingStep> backingSteps = new ArrayList<>();
 
     @BindView(R.id.steps_grid_view)
-    GridView listStepsView;
+    StepGridView listStepsView;
 
     private OnStepClickListener onStepClick;
 
@@ -50,6 +50,7 @@ public class StepListFragment extends Fragment {
         }
 
         StepListAdapter stepListAdapter = new StepListAdapter(getContext(), backingSteps );
+        listStepsView.setExpanded(true);
         listStepsView.setAdapter(stepListAdapter);
 
         listStepsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

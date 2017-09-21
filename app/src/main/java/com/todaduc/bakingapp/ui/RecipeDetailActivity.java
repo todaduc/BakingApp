@@ -1,6 +1,7 @@
 package com.todaduc.bakingapp.ui;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -54,6 +55,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
         if(findViewById(R.id.tablet_linear_layout)!= null){
             twoPaneMode = true;
 
+            this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
             MediaPlayerFragment mediaPlayerFragment = new MediaPlayerFragment();
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.video_player_container, mediaPlayerFragment)
