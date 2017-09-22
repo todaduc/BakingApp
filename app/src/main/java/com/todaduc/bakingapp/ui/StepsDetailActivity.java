@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.BakingStep;
+import com.todaduc.bakingapp.entities.Ingredient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,7 @@ public class StepsDetailActivity  extends AppCompatActivity {
     Button mNext;
     private BakingStep bakingStep;
     private static List<BakingStep> mListOfSteps;
+    private static String recipeName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,10 @@ public class StepsDetailActivity  extends AppCompatActivity {
         setContentView(R.layout.activity_steps_detail);
         ButterKnife.bind(this);
 
+        if(getIntent().hasExtra("RecipeName")){
+            setTitle(getIntent().getExtras().get("RecipeName").toString());
+
+        }
         if(getIntent().hasExtra("AllSteps")){
             mListOfSteps = getIntent().getExtras().getParcelableArrayList("AllSteps");
         }
@@ -92,14 +98,7 @@ public class StepsDetailActivity  extends AppCompatActivity {
             currentStepIndex = mListOfSteps.indexOf(bakingStep);
             if(currentStepIndex>0){
                 BakingStep previewStep = mListOfSteps.get(--currentStepIndex);
-
-                Intent intent = new Intent(this, StepsDetailActivity.class);
-                intent.putExtra("CurrentStep",previewStep);
-                intent.putParcelableArrayListExtra("AllSteps", (ArrayList<BakingStep>) mListOfSteps);
-                finish();
-                overridePendingTransition(0, 0);
-                startActivity(intent);
-                overridePendingTransition(0, 0);
+                refreshActivity( previewStep);
             }
         }
         return;
@@ -113,16 +112,24 @@ public class StepsDetailActivity  extends AppCompatActivity {
             currentStepIndex = mListOfSteps.indexOf(bakingStep);
             if(currentStepIndex>0 && currentStepIndex<mListOfSteps.size()-1){
                 BakingStep nextStep = mListOfSteps.get(++currentStepIndex);
-                Intent intent = new Intent(this, StepsDetailActivity.class);
-                intent.putExtra("CurrentStep",nextStep);
-                intent.putParcelableArrayListExtra("AllSteps", (ArrayList<BakingStep>) mListOfSteps);
-                finish();
-                overridePendingTransition(0, 0);
-                startActivity(intent);
-                overridePendingTransition(0, 0);
+                refreshActivity(nextStep);
             }
         }
         return;
     }
 
+    private void refreshActivity(BakingStep bakingStep){
+
+        String recipeName = getIntent().getExtras().get("RecipeName").toString();
+
+        Intent intent = new Intent(this, StepsDetailActivity.class);
+        intent.putExtra("RecipeName", recipeName);
+
+        intent.putExtra("CurrentStep",bakingStep);
+        intent.putParcelableArrayListExtra("AllSteps", (ArrayList<BakingStep>) mListOfSteps);
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(intent);
+        overridePendingTransition(0, 0);
+    }
 }

@@ -20,12 +20,14 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_recipe_detail);
 
 
         Intent intent = getIntent();
         if(intent.hasExtra("Recipe")){
              mCurrentRecipe = intent.getExtras().getParcelable("Recipe");
+             setTitle(mCurrentRecipe.getName());
 
             if(savedInstanceState == null){
                 savedInstanceState = new Bundle();
@@ -73,6 +75,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
     public void onStepSelected(BakingStep currentStep) {
         if(!twoPaneMode){
             Intent intent = new Intent(this, StepsDetailActivity.class);
+            intent.putExtra("RecipeName", mCurrentRecipe.getName());
             intent.putExtra("CurrentStep",currentStep);
             intent.putParcelableArrayListExtra("AllSteps", (ArrayList<BakingStep>)mCurrentRecipe.getBackingSteps() );
             startActivity(intent);
