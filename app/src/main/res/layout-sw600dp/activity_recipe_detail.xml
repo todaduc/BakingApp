@@ -9,36 +9,48 @@
     android:baselineAligned="false"
     >
 
-    <LinearLayout
-        android:layout_width="300dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
-
         <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/recipe_ingredients_container"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content">
 
-            />
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/recipe_detail_container"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                >
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/recipe_ingredients_container"
 
-            />
+                    />
 
-    </LinearLayout>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/recipe_detail_container"
+
+                    />
+
+                </LinearLayout>
+
+            </ScrollView>
+        </FrameLayout>
+
 
     <View
         android:layout_width="1dp"
         android:layout_height="match_parent"
         android:background="@android:color/darker_gray"/>
 
+
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
         android:background="@android:color/white"
         android:id="@+id/tablet_linear_layout"
@@ -46,8 +58,8 @@
         >
 
         <FrameLayout
-            android:layout_width="600dp"
-            android:layout_height="300dp"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
             android:id="@+id/video_player_container"
             android:layout_gravity="center_vertical"
             />
