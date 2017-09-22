@@ -1,4 +1,4 @@
-package com.todaduc.bakingapp.ui;
+package com.todaduc.bakingapp.ui.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

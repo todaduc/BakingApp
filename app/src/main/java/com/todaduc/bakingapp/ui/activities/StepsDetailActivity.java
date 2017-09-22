@@ -1,15 +1,14 @@
-package com.todaduc.bakingapp.ui;
+package com.todaduc.bakingapp.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.Button;
 
 import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.BakingStep;
-import com.todaduc.bakingapp.entities.Ingredient;
+import com.todaduc.bakingapp.ui.fragments.MediaPlayerFragment;
+import com.todaduc.bakingapp.ui.fragments.StepsDetailFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +16,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
-import static android.R.attr.id;
 
 /**
  * Created by ddjankou on 8/24/2017.

@@ -1,4 +1,4 @@
-package com.todaduc.bakingapp.ui;
+package com.todaduc.bakingapp.ui.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;

@@ -1,4 +1,4 @@
-package com.todaduc.bakingapp.ui;
+package com.todaduc.bakingapp.ui.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,10 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.GridView;
+
 import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.BakingStep;
-import com.todaduc.bakingapp.entities.Ingredient;
+import com.todaduc.bakingapp.ui.costumizedUI.StepGridView;
+import com.todaduc.bakingapp.ui.adapters.StepListAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +32,7 @@ public class StepListFragment extends Fragment {
 
     private OnStepClickListener onStepClick;
 
-    interface OnStepClickListener{
+    public interface OnStepClickListener{
         void onStepSelected(BakingStep bakingStep);
     }
 

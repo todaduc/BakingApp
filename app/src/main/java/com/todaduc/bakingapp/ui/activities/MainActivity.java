@@ -1,10 +1,11 @@
-package com.todaduc.bakingapp.ui;
+package com.todaduc.bakingapp.ui.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.Recipe;
+import com.todaduc.bakingapp.ui.fragments.RecipeListFragment;
 
 public class MainActivity extends AppCompatActivity implements RecipeListFragment.OnRecipeClickListener {
 

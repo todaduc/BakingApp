@@ -1,9 +1,8 @@
-package com.todaduc.bakingapp.ui;
+package com.todaduc.bakingapp.ui.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +11,8 @@ import android.widget.GridView;
 import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.Recipe;
 import com.todaduc.bakingapp.tasks.RecipeTask;
+import com.todaduc.bakingapp.ui.activities.MainActivity;
+import com.todaduc.bakingapp.ui.adapters.RecipeListAdapter;
 
 import java.util.ArrayList;
 
@@ -32,7 +33,7 @@ public class RecipeListFragment extends Fragment {
     @BindView(R.id.recipe_grid_view)
     GridView gridView;
 
-    interface OnRecipeClickListener{
+    public interface OnRecipeClickListener{
         void onCardSelected(Recipe recipe);
     }
 

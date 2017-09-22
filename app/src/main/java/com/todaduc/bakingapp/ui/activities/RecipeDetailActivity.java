@@ -1,18 +1,22 @@
-package com.todaduc.bakingapp.ui;
+package com.todaduc.bakingapp.ui.activities;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.BakingStep;
 import com.todaduc.bakingapp.entities.Ingredient;
 import com.todaduc.bakingapp.entities.Recipe;
+import com.todaduc.bakingapp.ui.fragments.IngredientFragment;
+import com.todaduc.bakingapp.ui.fragments.MediaPlayerFragment;
+import com.todaduc.bakingapp.ui.fragments.StepListFragment;
+import com.todaduc.bakingapp.ui.fragments.StepsDetailFragment;
+
 import java.util.ArrayList;
 
 
-public class RecipeDetailActivity extends AppCompatActivity implements StepListFragment.OnStepClickListener{
+public class RecipeDetailActivity extends AppCompatActivity implements StepListFragment.OnStepClickListener {
 
     boolean twoPaneMode;
     private Recipe mCurrentRecipe;

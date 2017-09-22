@@ -1,4 +1,4 @@
-package com.todaduc.bakingapp.ui;
+package com.todaduc.bakingapp.ui.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.Ingredient;
+import com.todaduc.bakingapp.ui.adapters.IngredientAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 

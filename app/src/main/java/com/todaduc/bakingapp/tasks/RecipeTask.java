@@ -5,11 +5,10 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.Recipe;
-import com.todaduc.bakingapp.ui.RecipeListAdapter;
+import com.todaduc.bakingapp.ui.adapters.RecipeListAdapter;
 import com.todaduc.bakingapp.utilities.JsonUtils;
 import com.todaduc.bakingapp.utilities.NetworkUtils;
 

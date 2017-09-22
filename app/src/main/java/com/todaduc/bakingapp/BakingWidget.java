@@ -7,7 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
 
-import com.todaduc.bakingapp.ui.MainActivity;
+import com.todaduc.bakingapp.ui.activities.MainActivity;
 
 /**
  * Implementation of App Widget functionality.
