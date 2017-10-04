@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.BakingStep;
@@ -96,6 +97,8 @@ public class StepsDetailActivity  extends AppCompatActivity {
             if(currentStepIndex>0){
                 BakingStep previewStep = mListOfSteps.get(--currentStepIndex);
                 refreshActivity( previewStep);
+            }else {
+                Toast.makeText(this, "No more Steps", Toast.LENGTH_LONG).show();
             }
         }
         return;
@@ -107,9 +110,11 @@ public class StepsDetailActivity  extends AppCompatActivity {
 
         if(mListOfSteps !=null){
             currentStepIndex = mListOfSteps.indexOf(bakingStep);
-            if(currentStepIndex>0 && currentStepIndex<mListOfSteps.size()-1){
+            if(currentStepIndex<mListOfSteps.size()-1){
                 BakingStep nextStep = mListOfSteps.get(++currentStepIndex);
                 refreshActivity(nextStep);
+            }else{
+                Toast.makeText(this, "No more Steps", Toast.LENGTH_LONG).show();
             }
         }
         return;
