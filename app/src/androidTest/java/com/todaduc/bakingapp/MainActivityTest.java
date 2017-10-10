@@ -1,9 +1,13 @@
 package com.todaduc.bakingapp;
 
+import android.support.test.espresso.Espresso;
+import android.support.test.espresso.IdlingResource;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import com.todaduc.bakingapp.ui.activities.MainActivity;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,9 +28,17 @@ import static org.hamcrest.Matchers.anything;
 public class MainActivityTest {
 
     public static final String RECIPE_NAME = "Brownies";
+    private IdlingResource mIdlingResource;
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
+
+    @Before
+    public void registerIdlingResource(){
+        //mIdlingResource = mActivityTestRule.getActivity().getIdlingResource();
+         Espresso.registerIdlingResources(mIdlingResource);
+
+    }
 
 
     @Test
@@ -38,5 +50,12 @@ public class MainActivityTest {
 
         // Checks that the OrderActivity opens with the correct tea name displayed
        onView(withId(R.string.activity_label)).check(matches(withText(RECIPE_NAME)));
+    }
+
+    @After
+    public void unregisterIdlingResource(){
+        if(mIdlingResource != null){
+            Espresso.unregisterIdlingResources(mIdlingResource);
+        }
     }
 }

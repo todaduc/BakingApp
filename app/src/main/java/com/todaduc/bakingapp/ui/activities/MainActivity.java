@@ -6,12 +6,12 @@ import android.os.Bundle;
 import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.Recipe;
 import com.todaduc.bakingapp.ui.fragments.RecipeListFragment;
+import com.todaduc.bakingapp.utilities.SimpleIdlingResource;
 
 public class MainActivity extends AppCompatActivity implements RecipeListFragment.OnRecipeClickListener {
 
 
     boolean mTabletView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
