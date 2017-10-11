@@ -65,7 +65,7 @@ public class RecipeTask extends AsyncTask<Void, Void, List<Recipe>>{
         return recipes;
     }
 
-    @Override
+    /*@Override
     protected void onPostExecute(List<Recipe> recipes) {
 
         if(recipes!= null && !recipes.isEmpty()){
@@ -77,6 +77,9 @@ public class RecipeTask extends AsyncTask<Void, Void, List<Recipe>>{
         }
 
         recipeListAdapter.notifyDataSetChanged();
-    }
+    }*/
 
+    public List<Recipe> getRecipes(){
+        return recipes;
+    }
 }
