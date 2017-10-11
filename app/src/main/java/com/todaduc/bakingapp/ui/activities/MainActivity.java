@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements RecipeListAdapter
     boolean mTabletView;
     private RecipeListAdapter.OnRecipeClickListener onRecipeClick;
     private RecipeListAdapter recipeListAdapter;
+    private SimpleIdlingResource simpleIdlingResource;
 
     @BindView(R.id.recipe_grid_view)
     GridView gridView;
@@ -52,11 +53,14 @@ public class MainActivity extends AppCompatActivity implements RecipeListAdapter
     }
 
     private void fetchRecipe(){
-        new RecipeTask(this, recipeListAdapter).execute();
+
+        RecipeRequestDelayer.processMessage(new RecipeTask(this, recipeListAdapter),this, simpleIdlingResource);
+
     }
 
     @Override
-    public void onDone(String request) {
+    public void onDone(RecipeTask request) {
+        return;
     }
 
     @Override
@@ -65,4 +69,9 @@ public class MainActivity extends AppCompatActivity implements RecipeListAdapter
         intent.putExtra("Recipe", recipe);
         startActivity(intent);
     }
+
+    public SimpleIdlingResource getSimpleIdlingResource(){
+        return simpleIdlingResource;
+    }
+
 }

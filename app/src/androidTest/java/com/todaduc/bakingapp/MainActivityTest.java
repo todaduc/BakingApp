@@ -35,7 +35,7 @@ public class MainActivityTest {
 
     @Before
     public void registerIdlingResource(){
-        //mIdlingResource = mActivityTestRule.getActivity().getIdlingResource();
+         mIdlingResource = mActivityTestRule.getActivity().getSimpleIdlingResource();
          Espresso.registerIdlingResources(mIdlingResource);
 
     }

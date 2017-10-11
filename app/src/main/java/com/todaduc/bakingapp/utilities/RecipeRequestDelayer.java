@@ -2,6 +2,8 @@ package com.todaduc.bakingapp.utilities;
 
 import android.os.Handler;
 
+import com.todaduc.bakingapp.tasks.RecipeTask;
+
 /**
  * Created by ddjankou on 10/10/2017.
  */
@@ -11,12 +13,12 @@ public class RecipeRequestDelayer {
     private static final int DELAY_MILLIS = 3000;
 
     public interface DelayerCallBack{
-        void onDone(String request);
+        void onDone(RecipeTask request);
     }
 
 
-    static void processMessage(final String message, final DelayerCallBack callback,
-                                final SimpleIdlingResource idlingResource) {
+    public static void processMessage(final RecipeTask recipeTask, final DelayerCallBack callback,
+                                      final SimpleIdlingResource idlingResource) {
         // The IdlingResource is null in production.
         if (idlingResource != null) {
             idlingResource.setIdleState(false);
@@ -28,7 +30,8 @@ public class RecipeRequestDelayer {
             @Override
             public void run() {
                 if (callback != null) {
-                    callback.onDone(message);
+                    recipeTask.execute();
+                    callback.onDone(recipeTask);
                     if (idlingResource != null) {
                         idlingResource.setIdleState(true);
                     }
