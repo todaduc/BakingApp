@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.Recipe;
+import com.todaduc.bakingapp.ui.fragments.RecipeListFragment;
+
 import java.util.List;
 
 /**
@@ -18,10 +20,16 @@ public class RecipeListAdapter  extends BaseAdapter{
 
     private Context context;
     private List<Recipe> recipes;
+    private final OnRecipeClickListener mOnClickListener;
 
-    public RecipeListAdapter(Context context, List<Recipe> recipeList) {
+    public interface OnRecipeClickListener{
+        void onCardSelected(Recipe recipe);
+    }
+
+    public RecipeListAdapter(Context context, List<Recipe> recipeList, OnRecipeClickListener mOnClickListener) {
         this.context = context;
         this.recipes = recipeList;
+        this.mOnClickListener = mOnClickListener;
     }
 
     @Override

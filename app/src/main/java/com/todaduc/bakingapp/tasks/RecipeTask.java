@@ -5,6 +5,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.Recipe;
@@ -51,11 +52,11 @@ public class RecipeTask extends AsyncTask<Void, Void, List<Recipe>>{
     @Override
     protected List<Recipe> doInBackground(Void... params) {
         try {
+            Log.i("doInBackground", "doInBackground");
             URL url = NetworkUtils.buildSimpleUrl(appCompatActivity.getBaseContext().getString(R.string.webservice_Request_Url));
             String queryResult =NetworkUtils.getResponseFromHttpUrl(url);
 
             recipes = JsonUtils.getRecipeFromJson(queryResult,appCompatActivity.getBaseContext());
-
         } catch (IOException | JSONException e) {
 
            e.printStackTrace();
@@ -69,9 +70,12 @@ public class RecipeTask extends AsyncTask<Void, Void, List<Recipe>>{
 
         if(recipes!= null && !recipes.isEmpty()){
             recipeListAdapter.setRecipes(recipes);
+
         }else {
             recipeListAdapter.setRecipes(new ArrayList<Recipe>());
+
         }
+
         recipeListAdapter.notifyDataSetChanged();
     }
 

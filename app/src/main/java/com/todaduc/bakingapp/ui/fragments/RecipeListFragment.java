@@ -13,8 +13,6 @@ import com.todaduc.bakingapp.entities.Recipe;
 import com.todaduc.bakingapp.tasks.RecipeTask;
 import com.todaduc.bakingapp.ui.activities.MainActivity;
 import com.todaduc.bakingapp.ui.adapters.RecipeListAdapter;
-import com.todaduc.bakingapp.utilities.RecipeRequestDelayer;
-import com.todaduc.bakingapp.utilities.SimpleIdlingResource;
 
 import java.util.ArrayList;
 
@@ -26,21 +24,14 @@ import butterknife.ButterKnife;
  * Created by Themener on 8/23/17.
  */
 
-public class RecipeListFragment extends Fragment implements RecipeRequestDelayer.DelayerCallBack {
+public class RecipeListFragment extends Fragment {
 
 
     private OnRecipeClickListener onRecipeClick;
     private RecipeListAdapter recipeListAdapter;
 
-    private SimpleIdlingResource mIdlingResource;
-
     @BindView(R.id.recipe_grid_view)
     GridView gridView;
-
-    @Override
-    public void onDone(String request) {
-
-    }
 
     public interface OnRecipeClickListener{
         void onCardSelected(Recipe recipe);
@@ -56,7 +47,7 @@ public class RecipeListFragment extends Fragment implements RecipeRequestDelayer
 
         ButterKnife.bind(this, rootView);
 
-        recipeListAdapter = new RecipeListAdapter(getContext(), new ArrayList<Recipe> ());
+        //recipeListAdapter = new RecipeListAdapter(getContext(), new ArrayList<Recipe> (), mOnClickListener);
 
         fetchRecipe();
 
