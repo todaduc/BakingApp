@@ -52,11 +52,12 @@ public class RecipeTask extends AsyncTask<Void, Void, List<Recipe>>{
     @Override
     protected List<Recipe> doInBackground(Void... params) {
         try {
-            Log.i("doInBackground", "doInBackground");
+
             URL url = NetworkUtils.buildSimpleUrl(appCompatActivity.getBaseContext().getString(R.string.webservice_Request_Url));
             String queryResult =NetworkUtils.getResponseFromHttpUrl(url);
 
-            recipes = JsonUtils.getRecipeFromJson(queryResult,appCompatActivity.getBaseContext());
+            this.recipes = JsonUtils.getRecipeFromJson(queryResult,appCompatActivity.getBaseContext());
+
         } catch (IOException | JSONException e) {
 
            e.printStackTrace();
@@ -65,7 +66,7 @@ public class RecipeTask extends AsyncTask<Void, Void, List<Recipe>>{
         return recipes;
     }
 
-    /*@Override
+    @Override
     protected void onPostExecute(List<Recipe> recipes) {
 
         if(recipes!= null && !recipes.isEmpty()){
@@ -77,7 +78,7 @@ public class RecipeTask extends AsyncTask<Void, Void, List<Recipe>>{
         }
 
         recipeListAdapter.notifyDataSetChanged();
-    }*/
+    }
 
     public List<Recipe> getRecipes(){
         return recipes;

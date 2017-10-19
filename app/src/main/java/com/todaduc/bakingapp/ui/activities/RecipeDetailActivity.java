@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+
 import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.BakingStep;
 import com.todaduc.bakingapp.entities.Ingredient;

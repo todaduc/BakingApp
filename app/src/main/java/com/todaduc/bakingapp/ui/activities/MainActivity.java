@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity implements RecipeListAdapter
         ButterKnife.bind(this);
         setTitle(R.string.activity_label);
 
-        recipeListAdapter = new RecipeListAdapter(this, new ArrayList<Recipe>(), onRecipeClick);
         getIdlingResource();
 
     }
@@ -60,28 +59,22 @@ public class MainActivity extends AppCompatActivity implements RecipeListAdapter
     @Override
     protected void onStart() {
         super.onStart();
+        recipeListAdapter = new RecipeListAdapter(this, new ArrayList<Recipe>(), onRecipeClick);
         RecipeRequestDelayer.processMessage(new RecipeTask(this, recipeListAdapter),this, simpleIdlingResource);
     }
 
 
     @Override
-    public void onDone(List<Recipe> recipeList) {
+    public void onDone() {
 
-        if(recipeList!= null && !recipeList.isEmpty()){
-            recipeListAdapter.setRecipes(recipeList);
 
-        }else {
-            recipeListAdapter.setRecipes(new ArrayList<Recipe>());
-
-        }
-        recipeListAdapter.notifyDataSetChanged();
         gridView.setAdapter(recipeListAdapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //onRecipeClick.onCardSelected(recipeListAdapter.getRecipes().get(position));
 
-                Recipe recipe = (Recipe)parent.getItemAtPosition(position);
+                Recipe recipe = recipeListAdapter.getRecipes().get(position);
                 Intent intent = new Intent(MainActivity.this, RecipeDetailActivity.class);
                 intent.putExtra("Recipe", recipe);
                 startActivity(intent);

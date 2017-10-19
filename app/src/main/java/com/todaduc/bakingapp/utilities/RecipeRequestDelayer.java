@@ -16,7 +16,7 @@ public class RecipeRequestDelayer {
     private static final int DELAY_MILLIS = 3000;
 
     public interface DelayerCallBack{
-        void onDone(List<Recipe> recipeList);
+        void onDone();
     }
 
 
@@ -34,7 +34,7 @@ public class RecipeRequestDelayer {
             public void run() {
                 if (callback != null) {
                     recipeTask.execute();
-                    callback.onDone(recipeTask.getRecipes());
+                    callback.onDone();
                     if (idlingResource != null) {
                         idlingResource.setIdleState(true);
                     }
