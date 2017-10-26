@@ -53,14 +53,14 @@ public class MainActivity extends AppCompatActivity implements RecipeListAdapter
         setTitle(R.string.activity_label);
 
         getIdlingResource();
-
+        recipeListAdapter = new RecipeListAdapter(this, new ArrayList<Recipe>(), onRecipeClick);
+        RecipeRequestDelayer.processMessage(new RecipeTask(this, recipeListAdapter),this, simpleIdlingResource);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        recipeListAdapter = new RecipeListAdapter(this, new ArrayList<Recipe>(), onRecipeClick);
-        RecipeRequestDelayer.processMessage(new RecipeTask(this, recipeListAdapter),this, simpleIdlingResource);
+
     }
 
 

@@ -11,20 +11,35 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ListView;
 import com.todaduc.bakingapp.BakingWidget;
 import com.todaduc.bakingapp.R;
+import com.todaduc.bakingapp.entities.Recipe;
+import com.todaduc.bakingapp.tasks.RecipeTask;
+import com.todaduc.bakingapp.ui.adapters.RecipeListAdapter;
+
+import java.util.ArrayList;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by ddjankou on 10/20/2017.
  */
 
-public class WidgetConfigurationActivity extends Activity {
+public class WidgetConfigurationActivity extends Activity  {
 
     int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
     EditText mAppWidgetText;
+    private RecipeListAdapter.OnRecipeClickListener onRecipeClick;
     private static final String PREFS_NAME = "AppWidget";
     private static final String PREF_PREFIX_KEY = "appwidget";
+    private RecipeListAdapter recipeListAdapter;
+
+
+    @BindView(R.id.recipe_grid_view)
+    GridView gridView;
 
     public WidgetConfigurationActivity() {
         super();
@@ -39,11 +54,12 @@ public class WidgetConfigurationActivity extends Activity {
         setResult(RESULT_CANCELED);
 
         setContentView(R.layout.activity_widget_configuration);
+        ButterKnife.bind(this);
         // Set layout size of activity
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        mAppWidgetText = (EditText) findViewById(R.id.appwidget_text);
+        //mAppWidgetText = (EditText) findViewById(R.id.appwidget_text);
         findViewById(R.id.add_button).setOnClickListener(mOnClickListener);
-        final ListView listView = (ListView) findViewById(R.id.list);
+        //final ListView listView = (ListView) findViewById(R.id.list_recipe);
 
         // Defined array values to show in ListView
         String[] values = new String[] { "Don't forget the milk!",
@@ -52,20 +68,18 @@ public class WidgetConfigurationActivity extends Activity {
                 "Marise number 0123456789"
         };
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, android.R.id.text1, values);
+        recipeListAdapter = new RecipeListAdapter(this, new ArrayList<Recipe>(), onRecipeClick);
+        new RecipeTask(this, recipeListAdapter).execute();
 
-        listView.setAdapter(adapter);
-
-        // ListView Item Click Listener
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        gridView.setAdapter(recipeListAdapter);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // Take ListView clicked item value
-                String  widgetText    = (String) listView.getItemAtPosition(position);
-                createWidget(getApplicationContext(), widgetText);
+                Recipe recipe = recipeListAdapter.getRecipes().get(position);
+                createWidget(getApplicationContext(), recipe.getName());
             }
         });
+
 
         // Find the widget id from the intent.
         Intent intent = getIntent();
@@ -81,7 +95,7 @@ public class WidgetConfigurationActivity extends Activity {
             return;
         }
 
-        mAppWidgetText.setText(loadTitlePref(WidgetConfigurationActivity.this, mAppWidgetId));
+        //mAppWidgetText.setText(loadTitlePref(WidgetConfigurationActivity.this, mAppWidgetId));
     }
 
     View.OnClickListener mOnClickListener = new View.OnClickListener() {
@@ -133,5 +147,7 @@ public class WidgetConfigurationActivity extends Activity {
         prefs.remove(PREF_PREFIX_KEY + appWidgetId);
         prefs.apply();
     }
+
+
 }
 
