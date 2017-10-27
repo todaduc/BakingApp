@@ -60,4 +60,9 @@ public class Ingredient  implements Parcelable{
     public int describeContents() {
         return 0;
     }
+
+    @Override
+    public String toString(){
+        return this.quantity.concat(" "+this.measure.concat(" of ").concat(this.description));
+    }
 }

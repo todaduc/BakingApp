@@ -2,9 +2,13 @@ package com.todaduc.bakingapp.ui.activities;
 
 import android.app.Activity;
 import android.appwidget.AppWidgetManager;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +19,15 @@ import android.widget.GridView;
 import android.widget.ListView;
 import com.todaduc.bakingapp.BakingWidget;
 import com.todaduc.bakingapp.R;
+import com.todaduc.bakingapp.data.RecipeIngredientContract;
+import com.todaduc.bakingapp.entities.BakingStep;
+import com.todaduc.bakingapp.entities.Ingredient;
 import com.todaduc.bakingapp.entities.Recipe;
 import com.todaduc.bakingapp.tasks.RecipeTask;
 import com.todaduc.bakingapp.ui.adapters.RecipeListAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -57,16 +65,7 @@ public class WidgetConfigurationActivity extends Activity  {
         ButterKnife.bind(this);
         // Set layout size of activity
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        //mAppWidgetText = (EditText) findViewById(R.id.appwidget_text);
-        findViewById(R.id.add_button).setOnClickListener(mOnClickListener);
-        //final ListView listView = (ListView) findViewById(R.id.list_recipe);
 
-        // Defined array values to show in ListView
-        String[] values = new String[] { "Don't forget the milk!",
-                "Do not forget to go get the mother-in-law",
-                "Go to the laundry",
-                "Marise number 0123456789"
-        };
 
         recipeListAdapter = new RecipeListAdapter(this, new ArrayList<Recipe>(), onRecipeClick);
         new RecipeTask(this, recipeListAdapter).execute();
@@ -76,7 +75,7 @@ public class WidgetConfigurationActivity extends Activity  {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Recipe recipe = recipeListAdapter.getRecipes().get(position);
-                createWidget(getApplicationContext(), recipe.getName());
+                createWidget(getApplicationContext(), recipe);
             }
         });
 
@@ -95,10 +94,10 @@ public class WidgetConfigurationActivity extends Activity  {
             return;
         }
 
-        //mAppWidgetText.setText(loadTitlePref(WidgetConfigurationActivity.this, mAppWidgetId));
+
     }
 
-    View.OnClickListener mOnClickListener = new View.OnClickListener() {
+    /*View.OnClickListener mOnClickListener = new View.OnClickListener() {
         public void onClick(View v) {
             final Context context = WidgetConfigurationActivity.this;
 
@@ -106,11 +105,11 @@ public class WidgetConfigurationActivity extends Activity  {
             String widgetText = mAppWidgetText.getText().toString();
             createWidget(context, widgetText);
         }
-    };
+    };*/
 
-    private void createWidget(Context context, String widgetText) {
+    private void createWidget(Context context, Recipe prefRecipe) {
         // Store the string locally
-        saveTitlePref(context, mAppWidgetId, widgetText);
+        savePreferredRecipe(context, mAppWidgetId, prefRecipe);
 
         // It is the responsibility of the configuration activity to update the app widget
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
@@ -124,28 +123,88 @@ public class WidgetConfigurationActivity extends Activity  {
     }
 
     // Write the prefix to the SharedPreferences object for this widget
-    public static void saveTitlePref(Context context, int appWidgetId, String text) {
-        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_NAME, 0).edit();
-        prefs.putString(PREF_PREFIX_KEY + appWidgetId, text);
-        prefs.apply();
+    public  void savePreferredRecipe(Context context, int appWidgetId, Recipe prefRecipe) {
+        //SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_NAME, 0).edit();
+        //prefs.putString(PREF_PREFIX_KEY + appWidgetId, text);
+        //prefs.apply();
+
+        //DB call to save the preRecipe with Id
+        for (Ingredient ingredient: prefRecipe.getIngredientList() ){
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(RecipeIngredientContract.FavoritesRecipeEntry.COLUMN_WIDGET_ID, appWidgetId);
+            contentValues.put(RecipeIngredientContract.FavoritesRecipeEntry.COLUMN_INGREDIENT_DESC, ingredient.getDescription());
+            contentValues.put(RecipeIngredientContract.FavoritesRecipeEntry.COLUMN_MEASURE, ingredient.getMeasure());
+            contentValues.put(RecipeIngredientContract.FavoritesRecipeEntry.COLUMN_QUANTITY, ingredient.getQuantity());
+            contentValues.put(RecipeIngredientContract.FavoritesRecipeEntry.COLUMN_RECIPE_NAME, prefRecipe.getName());
+
+            context.getContentResolver().insert(RecipeIngredientContract.FavoritesRecipeEntry.CONTENT_URI, contentValues);
+        }
+
     }
 
-    // Read the prefix from the SharedPreferences object for this widget.
+      // Read the prefix from the SharedPreferences object for this widget.
     // If there is no preference saved, get the default from a resource
-    public static String loadTitlePref(Context context, int appWidgetId) {
-        SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, 0);
+    public static Recipe loadTitlePref(Context context, int appWidgetId) {
+       /* SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, 0);
         String titleValue = prefs.getString(PREF_PREFIX_KEY + appWidgetId, null);
         if (titleValue != null) {
             return titleValue;
         } else {
             return context.getString(R.string.appwidget_text);
+        }*/
+       //
+        Recipe foundRecipe = null;
+        Cursor cursor = null;
+        try{
+            cursor = context.getContentResolver().query(RecipeIngredientContract.FavoritesRecipeEntry.CONTENT_URI,
+                    null,
+                    RecipeIngredientContract.FavoritesRecipeEntry.COLUMN_WIDGET_ID + " =?",
+                    new String[]{Integer.toString(appWidgetId)},
+                    null
+                    );
+
+
+
+        List<Ingredient> ingredientList = new ArrayList<>();
+
+        if(cursor!= null){
+            int nameIndex = cursor.getColumnIndex(RecipeIngredientContract.FavoritesRecipeEntry.COLUMN_RECIPE_NAME);
+            int quantityIndex = cursor.getColumnIndex(RecipeIngredientContract.FavoritesRecipeEntry.COLUMN_QUANTITY);
+            int measureIndex = cursor.getColumnIndex(RecipeIngredientContract.FavoritesRecipeEntry.COLUMN_MEASURE);
+            int descriptionIndex = cursor.getColumnIndex(RecipeIngredientContract.FavoritesRecipeEntry.COLUMN_INGREDIENT_DESC);
+
+            while (cursor.moveToNext()){
+
+                ingredientList.add(new Ingredient(
+                        cursor.getString(quantityIndex),
+                        cursor.getString(measureIndex),
+                        cursor.getString(descriptionIndex)));
+
+                if(cursor.isLast()){
+                    foundRecipe = new Recipe(0, cursor.getString(nameIndex), 0, null, ingredientList, null);
+
+                }
+
+            }
         }
+
+        }finally {
+            if(cursor != null)
+                cursor.close();
+        }
+       return  foundRecipe;
     }
 
     public static void deleteTitlePref(Context context, int appWidgetId) {
-        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_NAME, 0).edit();
+        /*SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_NAME, 0).edit();
         prefs.remove(PREF_PREFIX_KEY + appWidgetId);
-        prefs.apply();
+        prefs.apply();*/
+
+        context.getContentResolver().delete(RecipeIngredientContract.FavoritesRecipeEntry.CONTENT_URI
+                ,RecipeIngredientContract.FavoritesRecipeEntry.COLUMN_WIDGET_ID + " =?"
+                ,new String[]{Integer.toString(appWidgetId)}
+        );
     }
 
 

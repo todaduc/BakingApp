@@ -28,5 +28,7 @@ public class RecipeIngredientContract {
         public static  final String COLUMN_MEASURE = "measure";
 
         public static  final String COLUMN_INGREDIENT_DESC = "description";
+
+        public static  final String COLUMN_WIDGET_ID = "widgetId";
     }
 }

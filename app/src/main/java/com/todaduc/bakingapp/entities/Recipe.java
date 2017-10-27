@@ -28,6 +28,7 @@ public class Recipe implements Parcelable{
         this.backingSteps = backingSteps;
     }
 
+    public Recipe(){}
 
     protected Recipe(Parcel in) {
         id = in.readInt();

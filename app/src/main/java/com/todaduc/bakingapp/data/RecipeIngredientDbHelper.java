@@ -20,16 +20,17 @@ public class RecipeIngredientDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        final String SQL_CREATE_FAVORITE_MOVIE_TABLE = "CREATE TABLE "+
+        final String SQL_CREATE_PREFERRED_RECIPE_TABLE = "CREATE TABLE "+
                 RecipeIngredientContract.FavoritesRecipeEntry.TABLE_NAME + " ("+
                 RecipeIngredientContract.FavoritesRecipeEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                RecipeIngredientContract.FavoritesRecipeEntry.COLUMN_WIDGET_ID + " INTEGER NOT NULL," +
                 RecipeIngredientContract.FavoritesRecipeEntry.COLUMN_RECIPE_NAME + " TEXT NOT NULL," +
                 RecipeIngredientContract.FavoritesRecipeEntry.COLUMN_QUANTITY + " TEXT NOT NULL," +
                 RecipeIngredientContract.FavoritesRecipeEntry.COLUMN_MEASURE + " TEXT NOT NULL," +
                 RecipeIngredientContract.FavoritesRecipeEntry.COLUMN_INGREDIENT_DESC + " TEXT NOT NULL" +
                 ")";
 
-        db.execSQL(SQL_CREATE_FAVORITE_MOVIE_TABLE);
+        db.execSQL(SQL_CREATE_PREFERRED_RECIPE_TABLE);
     }
 
     @Override
