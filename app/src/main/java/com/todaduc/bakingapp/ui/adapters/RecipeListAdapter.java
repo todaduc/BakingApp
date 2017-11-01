@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.Recipe;
-import com.todaduc.bakingapp.ui.fragments.RecipeListFragment;
+
 
 import java.util.List;
 
@@ -20,16 +20,11 @@ public class RecipeListAdapter  extends BaseAdapter{
 
     private Context context;
     private List<Recipe> recipes;
-    private final OnRecipeClickListener mOnClickListener;
 
-    public interface OnRecipeClickListener{
-        void onCardSelected(Recipe recipe);
-    }
-
-    public RecipeListAdapter(Context context, List<Recipe> recipeList, OnRecipeClickListener mOnClickListener) {
+    public RecipeListAdapter(Context context, List<Recipe> recipeList) {
         this.context = context;
         this.recipes = recipeList;
-        this.mOnClickListener = mOnClickListener;
+
     }
 
     @Override
@@ -59,7 +54,7 @@ public class RecipeListAdapter  extends BaseAdapter{
 
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(context);
-            convertView = inflater.inflate(R.layout.fragment_recipe, parent, false);
+            convertView = inflater.inflate(R.layout.recipe_card_item, parent, false);
         }
         ((TextView)convertView.findViewById(R.id.tv_recipe_name)).setText(recipes.get(position).getName());
         ((TextView)convertView.findViewById(R.id.tv_recipe_serving)).setText("Servings: " + recipes.get(position).getServing());

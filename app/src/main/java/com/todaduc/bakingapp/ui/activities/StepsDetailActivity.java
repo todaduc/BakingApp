@@ -30,7 +30,7 @@ public class StepsDetailActivity  extends AppCompatActivity {
     Button mNext;
     private BakingStep bakingStep;
     private static List<BakingStep> mListOfSteps;
-    private static String recipeName;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

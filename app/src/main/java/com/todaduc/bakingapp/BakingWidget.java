@@ -5,8 +5,10 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.RemoteViews;
 
+import com.todaduc.bakingapp.entities.Ingredient;
 import com.todaduc.bakingapp.entities.Recipe;
 import com.todaduc.bakingapp.ui.activities.MainActivity;
 import com.todaduc.bakingapp.ui.activities.WidgetConfigurationActivity;
@@ -24,15 +26,16 @@ public class BakingWidget extends AppWidgetProvider {
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.baking_widget);
         // set ingredients string
-        if(preferredRecipe != null)
-        views.setTextViewText(R.id.appwidget_text, preferredRecipe.getIngredientList().toString());
+        if(preferredRecipe != null){
+            String listOfIngredients = "";
+            for(Ingredient ingredient : preferredRecipe.getIngredientList()){
+                listOfIngredients += ingredient.toString() + "\n";
 
-        //pass the recipe to the intent and call the detailactivity.
-        // Todo test the back button on the detailactiviy
-       // PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, new Intent(context, MainActivity.class), 0);
+            }
+            views.setTextViewText(R.id.appwidget_text,listOfIngredients);
 
-      //  views.setOnClickPendingIntent(R.id.appwidget_text, pendingIntent);
-        // Instruct the widget manager to update the widget
+        }
+
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 

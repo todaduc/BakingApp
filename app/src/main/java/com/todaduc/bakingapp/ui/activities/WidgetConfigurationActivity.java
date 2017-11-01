@@ -39,8 +39,6 @@ import butterknife.ButterKnife;
 public class WidgetConfigurationActivity extends Activity  {
 
     int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
-    EditText mAppWidgetText;
-    private RecipeListAdapter.OnRecipeClickListener onRecipeClick;
     private static final String PREFS_NAME = "AppWidget";
     private static final String PREF_PREFIX_KEY = "appwidget";
     private RecipeListAdapter recipeListAdapter;
@@ -67,7 +65,7 @@ public class WidgetConfigurationActivity extends Activity  {
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
 
-        recipeListAdapter = new RecipeListAdapter(this, new ArrayList<Recipe>(), onRecipeClick);
+        recipeListAdapter = new RecipeListAdapter(this, new ArrayList<Recipe>());
         new RecipeTask(this, recipeListAdapter).execute();
 
         gridView.setAdapter(recipeListAdapter);
@@ -97,16 +95,6 @@ public class WidgetConfigurationActivity extends Activity  {
 
     }
 
-    /*View.OnClickListener mOnClickListener = new View.OnClickListener() {
-        public void onClick(View v) {
-            final Context context = WidgetConfigurationActivity.this;
-
-            // When the button is clicked, get text
-            String widgetText = mAppWidgetText.getText().toString();
-            createWidget(context, widgetText);
-        }
-    };*/
-
     private void createWidget(Context context, Recipe prefRecipe) {
         // Store the string locally
         savePreferredRecipe(context, mAppWidgetId, prefRecipe);
@@ -124,9 +112,7 @@ public class WidgetConfigurationActivity extends Activity  {
 
     // Write the prefix to the SharedPreferences object for this widget
     public  void savePreferredRecipe(Context context, int appWidgetId, Recipe prefRecipe) {
-        //SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_NAME, 0).edit();
-        //prefs.putString(PREF_PREFIX_KEY + appWidgetId, text);
-        //prefs.apply();
+
 
         //DB call to save the preRecipe with Id
         for (Ingredient ingredient: prefRecipe.getIngredientList() ){
@@ -143,17 +129,9 @@ public class WidgetConfigurationActivity extends Activity  {
 
     }
 
-      // Read the prefix from the SharedPreferences object for this widget.
-    // If there is no preference saved, get the default from a resource
+      // Read the prefix from the preferred recipe database for this widget.
     public static Recipe loadTitlePref(Context context, int appWidgetId) {
-       /* SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, 0);
-        String titleValue = prefs.getString(PREF_PREFIX_KEY + appWidgetId, null);
-        if (titleValue != null) {
-            return titleValue;
-        } else {
-            return context.getString(R.string.appwidget_text);
-        }*/
-       //
+
         Recipe foundRecipe = null;
         Cursor cursor = null;
         try{
@@ -197,9 +175,6 @@ public class WidgetConfigurationActivity extends Activity  {
     }
 
     public static void deleteTitlePref(Context context, int appWidgetId) {
-        /*SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_NAME, 0).edit();
-        prefs.remove(PREF_PREFIX_KEY + appWidgetId);
-        prefs.apply();*/
 
         context.getContentResolver().delete(RecipeIngredientContract.FavoritesRecipeEntry.CONTENT_URI
                 ,RecipeIngredientContract.FavoritesRecipeEntry.COLUMN_WIDGET_ID + " =?"
