@@ -7,6 +7,7 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.widget.Toast;
 
 /**
  * Created by ddjankou on 9/14/2017.
@@ -87,7 +88,19 @@ public class RecipeIngredientContentProvider extends ContentProvider{
 
     @Override
     public int delete(Uri uri, String s, String[] strings) {
-        return 0;
+        final SQLiteDatabase database = recipeIngredientDbHelper.getWritableDatabase();
+        int match = buildUriMatcher().match(uri);
+        int id = 0;
+
+        switch (match){
+            case FAVORITE_RECIPE:
+                id = database.delete(RecipeIngredientContract.FavoritesRecipeEntry.TABLE_NAME,s,strings);
+                break;
+            default:
+                throw new UnsupportedOperationException(" Unknown uri: " + uri);
+        }
+
+       return id;
     }
 
     @Override

@@ -17,6 +17,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import com.todaduc.bakingapp.BakingWidget;
 import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.data.RecipeIngredientContract;
@@ -176,10 +178,12 @@ public class WidgetConfigurationActivity extends Activity  {
 
     public static void deleteTitlePref(Context context, int appWidgetId) {
 
-        context.getContentResolver().delete(RecipeIngredientContract.FavoritesRecipeEntry.CONTENT_URI
+      int id =   context.getContentResolver().delete(RecipeIngredientContract.FavoritesRecipeEntry.CONTENT_URI
                 ,RecipeIngredientContract.FavoritesRecipeEntry.COLUMN_WIDGET_ID + " =?"
                 ,new String[]{Integer.toString(appWidgetId)}
         );
+
+        Toast.makeText(context, "deleted id "+ id,Toast.LENGTH_LONG).show();
     }
 
 
