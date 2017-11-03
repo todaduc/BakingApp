@@ -35,7 +35,6 @@ public class BakingWidget extends AppWidgetProvider {
             views.setTextViewText(R.id.appwidget_text,listOfIngredients);
 
         }
-
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 

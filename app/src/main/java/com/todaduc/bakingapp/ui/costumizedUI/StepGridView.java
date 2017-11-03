@@ -1,9 +1,12 @@
 package com.todaduc.bakingapp.ui.costumizedUI;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.GridView;
+
+import static java.lang.Integer.MAX_VALUE;
 
 /**
  * Created by ddjankou on 9/21/2017.
@@ -28,11 +31,12 @@ public class StepGridView extends GridView {
     }
 
     boolean expanded = false;
+    @SuppressLint("Range")
     @Override
     public void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
     {
         // HACK! TAKE THAT ANDROID!
-        if (isExpanded())
+       /* if (isExpanded())
         {
             // Calculate entire height by providing a very large height hint.
             // View.MEASURED_SIZE_MASK represents the largest height possible.
@@ -46,7 +50,20 @@ public class StepGridView extends GridView {
         else
         {
             super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        }*/
+        int heightSpec;
+
+        if (getLayoutParams().height == LayoutParams.WRAP_CONTENT) {
+
+            heightSpec = MeasureSpec.makeMeasureSpec(
+                    Integer.MAX_VALUE >> 2, MeasureSpec.AT_MOST);
         }
+        else {
+            // Any other height should be respected as is.
+            heightSpec = heightMeasureSpec;
+        }
+
+        super.onMeasure(widthMeasureSpec, heightSpec);
     }
 
     public void setExpanded(boolean expanded)

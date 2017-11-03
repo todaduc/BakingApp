@@ -3,10 +3,16 @@ package com.todaduc.bakingapp.ui.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.BakingStep;
@@ -27,8 +33,8 @@ public class StepListFragment extends Fragment {
 
     List<BakingStep> backingSteps = new ArrayList<>();
 
-    @BindView(R.id.steps_grid_view)
-    StepGridView listStepsView;
+    @BindView(R.id.listView)
+    RecyclerView listStepsView;
 
     private OnStepClickListener onStepClick;
 
@@ -44,23 +50,25 @@ public class StepListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         final View rootView = inflater.inflate(R.layout.fragment_step_list,container, false);
-
-        ButterKnife.bind(this,rootView);
+         ButterKnife.bind(this,rootView);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this.getActivity());
 
         if( getArguments()!= null){
             backingSteps = this.getArguments().getParcelableArrayList("RecipeSteps");
         }
 
-        StepListAdapter stepListAdapter = new StepListAdapter(getContext(), backingSteps );
-        listStepsView.setExpanded(true);
+        listStepsView.setLayoutManager(mLayoutManager);
+        StepListAdapter stepListAdapter = new StepListAdapter(backingSteps );
         listStepsView.setAdapter(stepListAdapter);
 
-        listStepsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        //listStepsView.(new AdapterView<>());
+        /*listStepsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 onStepClick.onStepSelected(backingSteps.get(position));
             }
-        });
+        });*/
+
         return rootView;
     }
 
