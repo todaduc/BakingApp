@@ -26,12 +26,13 @@ public class StepListAdapter  extends RecyclerView.Adapter<StepListAdapter.StepH
    private List<BakingStep> bakingSteps;
 
    private OnBakingStepClickListener onBakingStepClickListener;
-   interface OnBakingStepClickListener{
+   public interface OnBakingStepClickListener{
       void onBakingStepClick(BakingStep bakingStep);
    }
 
-   public StepListAdapter(List<BakingStep> bakingSteps){
+   public StepListAdapter(List<BakingStep> bakingSteps, OnBakingStepClickListener onBakingStepClickListener){
        this.bakingSteps = bakingSteps;
+       this.onBakingStepClickListener = onBakingStepClickListener;
    }
 
     @Override

@@ -29,7 +29,7 @@ import butterknife.ButterKnife;
  * Created by ddjankou on 8/24/2017.
  */
 
-public class StepListFragment extends Fragment {
+public class StepListFragment extends Fragment implements StepListAdapter.OnBakingStepClickListener{
 
     List<BakingStep> backingSteps = new ArrayList<>();
 
@@ -38,10 +38,14 @@ public class StepListFragment extends Fragment {
 
     private OnStepClickListener onStepClick;
 
+    @Override
+    public void onBakingStepClick(BakingStep bakingStep) {
+        onStepClick.onStepSelected(bakingStep);
+    }
+
     public interface OnStepClickListener{
         void onStepSelected(BakingStep bakingStep);
     }
-
 
     public StepListFragment() {
     }
@@ -50,7 +54,7 @@ public class StepListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         final View rootView = inflater.inflate(R.layout.fragment_step_list,container, false);
-         ButterKnife.bind(this,rootView);
+        ButterKnife.bind(this,rootView);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this.getActivity());
 
         if( getArguments()!= null){
@@ -58,16 +62,8 @@ public class StepListFragment extends Fragment {
         }
 
         listStepsView.setLayoutManager(mLayoutManager);
-        StepListAdapter stepListAdapter = new StepListAdapter(backingSteps );
+        StepListAdapter stepListAdapter = new StepListAdapter(backingSteps, this);
         listStepsView.setAdapter(stepListAdapter);
-
-        //listStepsView.(new AdapterView<>());
-        /*listStepsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                onStepClick.onStepSelected(backingSteps.get(position));
-            }
-        });*/
 
         return rootView;
     }
