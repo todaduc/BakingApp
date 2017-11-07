@@ -50,7 +50,6 @@ public class MediaPlayerFragment extends Fragment {
 
         if( getArguments()!= null){
             videoUrl = getArguments().getString("Video");
-            Log.i("videoUrl ", videoUrl);
             initializePlayer(Uri.parse(videoUrl));
         }
 
