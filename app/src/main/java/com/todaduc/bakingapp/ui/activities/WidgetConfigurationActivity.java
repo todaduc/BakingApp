@@ -29,7 +29,7 @@ import butterknife.ButterKnife;
 
 public class WidgetConfigurationActivity extends Activity  {
 
-    int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
+    private int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
     private static final String PREFS_NAME = "AppWidget";
     private static final String PREF_PREFIX_KEY = "appwidget";
     private RecipeListAdapter recipeListAdapter;

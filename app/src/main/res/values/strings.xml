@@ -6,5 +6,18 @@
     <string name="status_code"></string>
     <string name="appwidget_text">Baking Widget</string>
     <string name="activity_label">Baking Time</string>
+    <string name="activity_selected_recipe">Recipe</string>
+    <string name="activity_selected_recipe_ingredient">RecipeIngredient</string>
+    <string name="activity_selected_recipe_steps">RecipeSteps</string>
+    <string name="activity_selected_recipe_name">RecipeName</string>
+    <string name="activity_recipe_selected_step">CurrentStep</string>
+    <string name="activity_recipe_all_steps">AllSteps</string>
+    <string name="activity_selected_recipe_video">Video</string>
+    <string name="activity_selected_recipe_desc">Description</string>
+    <string name="activity_no_more_step_message">No more Steps</string>
+   <!-- <string name="activity_selected_recipe_steps">RecipeSteps</string>
+    <string name="activity_selected_recipe_steps">RecipeSteps</string>
+    <string name="activity_selected_recipe_steps">RecipeSteps</string>-->
+
 
 </resources>

@@ -28,16 +28,16 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
 
 
         Intent intent = getIntent();
-        if(intent.hasExtra("Recipe")){
-             mCurrentRecipe = intent.getExtras().getParcelable("Recipe");
+        if(intent.hasExtra(String.valueOf(R.string.activity_selected_recipe))){
+             mCurrentRecipe = intent.getExtras().getParcelable(String.valueOf(R.string.activity_selected_recipe));
              setTitle(mCurrentRecipe.getName());
 
             if(savedInstanceState == null){
                 savedInstanceState = new Bundle();
             }
 
-            savedInstanceState.putParcelableArrayList("RecipeSteps", (ArrayList<BakingStep>)mCurrentRecipe.getBackingSteps());
-            savedInstanceState.putParcelableArrayList("RecipeIngredient", (ArrayList<Ingredient>)mCurrentRecipe.getIngredientList());
+            savedInstanceState.putParcelableArrayList(String.valueOf(R.string.activity_selected_recipe_steps), (ArrayList<BakingStep>)mCurrentRecipe.getBackingSteps());
+            savedInstanceState.putParcelableArrayList(String.valueOf(R.string.activity_selected_recipe_ingredient), (ArrayList<Ingredient>)mCurrentRecipe.getIngredientList());
 
 
 
@@ -78,15 +78,15 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
     public void onStepSelected(BakingStep currentStep) {
         if(!twoPaneMode){
             Intent intent = new Intent(this, StepsDetailActivity.class);
-            intent.putExtra("RecipeName", mCurrentRecipe.getName());
-            intent.putExtra("CurrentStep",currentStep);
-            intent.putParcelableArrayListExtra("AllSteps", (ArrayList<BakingStep>)mCurrentRecipe.getBackingSteps() );
+            intent.putExtra(String.valueOf(R.string.activity_selected_recipe_name), mCurrentRecipe.getName());
+            intent.putExtra(String.valueOf(R.string.activity_recipe_selected_step),currentStep);
+            intent.putParcelableArrayListExtra(String.valueOf(R.string.activity_recipe_all_steps), (ArrayList<BakingStep>)mCurrentRecipe.getBackingSteps() );
             startActivity(intent);
         }else{
 
             Bundle  savedInstanceState = new Bundle();
-            savedInstanceState.putString("Video",currentStep.getVideoUrl().isEmpty()?currentStep.getThumbnailURL():currentStep.getVideoUrl());
-            savedInstanceState.putString("Description",currentStep.getDescription());
+            savedInstanceState.putString(String.valueOf(R.string.activity_selected_recipe_video),currentStep.getVideoUrl().isEmpty()?currentStep.getThumbnailURL():currentStep.getVideoUrl());
+            savedInstanceState.putString(String.valueOf(R.string.activity_selected_recipe_desc),currentStep.getDescription());
 
 
 
@@ -109,10 +109,10 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        if(getIntent().hasExtra("Recipe")){
-            Recipe recipe = getIntent().getExtras().getParcelable("Recipe");
-            outState.putParcelableArrayList("RecipeSteps", (ArrayList<BakingStep>)recipe.getBackingSteps());
-            outState.putParcelableArrayList("RecipeIngredient", (ArrayList<Ingredient>)recipe.getIngredientList());
+        if(getIntent().hasExtra(String.valueOf(R.string.activity_selected_recipe))){
+            Recipe recipe = getIntent().getExtras().getParcelable(String.valueOf(R.string.activity_selected_recipe));
+            outState.putParcelableArrayList(String.valueOf(R.string.activity_selected_recipe_steps), (ArrayList<BakingStep>)recipe.getBackingSteps());
+            outState.putParcelableArrayList(String.valueOf(R.string.activity_selected_recipe_ingredient), (ArrayList<Ingredient>)recipe.getIngredientList());
         }
         super.onSaveInstanceState(outState);
     }
