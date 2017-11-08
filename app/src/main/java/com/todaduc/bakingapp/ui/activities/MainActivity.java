@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements RecipeRequestDela
 
                 Recipe recipe = recipeListAdapter.getRecipes().get(position);
                 Intent intent = new Intent(MainActivity.this, RecipeDetailActivity.class);
-                intent.putExtra(String.valueOf(R.string.activity_selected_recipe), recipe);
+                intent.putExtra(getString(R.string.activity_selected_recipe), recipe);
                 startActivity(intent);
             }
         });

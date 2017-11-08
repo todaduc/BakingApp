@@ -35,23 +35,23 @@ public class StepsDetailActivity  extends AppCompatActivity {
         setContentView(R.layout.activity_steps_detail);
         ButterKnife.bind(this);
 
-        if(getIntent().hasExtra(String.valueOf(R.string.activity_selected_recipe_name))){
-            setTitle(getIntent().getExtras().get(String.valueOf(R.string.activity_selected_recipe_name)).toString());
+        if(getIntent().hasExtra(getString(R.string.activity_selected_recipe_name))){
+            setTitle(getIntent().getExtras().get(getString(R.string.activity_selected_recipe_name)).toString());
 
         }
-        if(getIntent().hasExtra(String.valueOf(R.string.activity_recipe_all_steps))){
-            mListOfSteps = getIntent().getExtras().getParcelableArrayList(String.valueOf(R.string.activity_recipe_all_steps));
+        if(getIntent().hasExtra(getString(R.string.activity_recipe_all_steps))){
+            mListOfSteps = getIntent().getExtras().getParcelableArrayList(getString(R.string.activity_recipe_all_steps));
         }
-        if(getIntent().hasExtra(String.valueOf(R.string.activity_recipe_selected_step))){
+        if(getIntent().hasExtra(getString(R.string.activity_recipe_selected_step))){
 
-            bakingStep = getIntent().getExtras().getParcelable(String.valueOf(R.string.activity_recipe_selected_step));
+            bakingStep = getIntent().getExtras().getParcelable(getString(R.string.activity_recipe_selected_step));
             if(savedInstanceState==null){
                 savedInstanceState = new Bundle();
 
             }
 
-            savedInstanceState.putString(String.valueOf(R.string.activity_selected_recipe_video),bakingStep.getVideoUrl().isEmpty()?bakingStep.getThumbnailURL():bakingStep.getVideoUrl());
-            savedInstanceState.putString(String.valueOf(R.string.activity_selected_recipe_desc),bakingStep.getDescription());
+            savedInstanceState.putString(getString(R.string.activity_selected_recipe_video),bakingStep.getVideoUrl().isEmpty()?bakingStep.getThumbnailURL():bakingStep.getVideoUrl());
+            savedInstanceState.putString(getString(R.string.activity_selected_recipe_desc),bakingStep.getDescription());
 
         }
 
@@ -73,15 +73,15 @@ public class StepsDetailActivity  extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
 
-        if(getIntent().hasExtra(String.valueOf(R.string.activity_recipe_selected_step))){
-            bakingStep = getIntent().getExtras().getParcelable(String.valueOf(R.string.activity_recipe_selected_step));
-            outState.putString(String.valueOf(R.string.activity_selected_recipe_video),bakingStep.getVideoUrl().isEmpty()?bakingStep.getThumbnailURL():bakingStep.getVideoUrl());
-            outState.putString(String.valueOf(R.string.activity_selected_recipe_desc),bakingStep.getDescription());
+        if(getIntent().hasExtra(getString(R.string.activity_recipe_selected_step))){
+            bakingStep = getIntent().getExtras().getParcelable(getString(R.string.activity_recipe_selected_step));
+            outState.putString(getString(R.string.activity_selected_recipe_video),bakingStep.getVideoUrl().isEmpty()?bakingStep.getThumbnailURL():bakingStep.getVideoUrl());
+            outState.putString(getString(R.string.activity_selected_recipe_desc),bakingStep.getDescription());
 
         }
-        if(getIntent().hasExtra(String.valueOf(R.string.activity_recipe_all_steps))){
-            mListOfSteps = getIntent().getExtras().getParcelableArrayList(String.valueOf(R.string.activity_recipe_all_steps));
-            outState.putParcelableArrayList(String.valueOf(R.string.activity_recipe_all_steps), (ArrayList<BakingStep>) mListOfSteps);
+        if(getIntent().hasExtra(getString(R.string.activity_recipe_all_steps))){
+            mListOfSteps = getIntent().getExtras().getParcelableArrayList(getString(R.string.activity_recipe_all_steps));
+            outState.putParcelableArrayList(getString(R.string.activity_recipe_all_steps), (ArrayList<BakingStep>) mListOfSteps);
         }
         super.onSaveInstanceState(outState);
     }
@@ -120,12 +120,12 @@ public class StepsDetailActivity  extends AppCompatActivity {
 
     private void refreshActivity(BakingStep bakingStep){
 
-        String recipeName = getIntent().getExtras().get(String.valueOf(R.string.activity_selected_recipe_name)).toString();
+        String recipeName = getIntent().getExtras().get(getString(R.string.activity_selected_recipe_name)).toString();
 
         Intent intent = new Intent(this, StepsDetailActivity.class);
-        intent.putExtra(String.valueOf(R.string.activity_selected_recipe_name), recipeName);
+        intent.putExtra(getString(R.string.activity_selected_recipe_name), recipeName);
 
-        intent.putExtra(String.valueOf(R.string.activity_recipe_selected_step),bakingStep);
+        intent.putExtra(getString(R.string.activity_recipe_selected_step),bakingStep);
         intent.putParcelableArrayListExtra("AllSteps", (ArrayList<BakingStep>) mListOfSteps);
         finish();
         overridePendingTransition(0, 0);
