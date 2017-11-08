@@ -1,11 +1,7 @@
 package com.todaduc.bakingapp.utilities;
 
 import android.os.Handler;
-
-import com.todaduc.bakingapp.entities.Recipe;
 import com.todaduc.bakingapp.tasks.RecipeTask;
-
-import java.util.List;
 
 /**
  * Created by ddjankou on 10/10/2017.

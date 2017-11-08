@@ -1,16 +1,12 @@
 package com.todaduc.bakingapp.utilities;
 
 import android.content.Context;
-
-import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.BakingStep;
 import com.todaduc.bakingapp.entities.Ingredient;
 import com.todaduc.bakingapp.entities.Recipe;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 /**

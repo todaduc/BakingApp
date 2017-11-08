@@ -1,7 +1,6 @@
 package com.todaduc.bakingapp.utilities;
 
 import android.support.test.espresso.IdlingResource;
-
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**

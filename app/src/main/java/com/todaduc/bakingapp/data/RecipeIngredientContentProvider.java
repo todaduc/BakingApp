@@ -7,7 +7,6 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
-import android.widget.Toast;
 
 /**
  * Created by ddjankou on 9/14/2017.

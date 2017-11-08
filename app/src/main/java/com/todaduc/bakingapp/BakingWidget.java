@@ -1,16 +1,11 @@
 package com.todaduc.bakingapp;
 
-import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 import android.widget.RemoteViews;
-
 import com.todaduc.bakingapp.entities.Ingredient;
 import com.todaduc.bakingapp.entities.Recipe;
-import com.todaduc.bakingapp.ui.activities.MainActivity;
 import com.todaduc.bakingapp.ui.activities.WidgetConfigurationActivity;
 
 /**
