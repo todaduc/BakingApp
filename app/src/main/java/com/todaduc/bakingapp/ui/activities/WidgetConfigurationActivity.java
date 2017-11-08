@@ -2,35 +2,24 @@ package com.todaduc.bakingapp.ui.activities;
 
 import android.app.Activity;
 import android.appwidget.AppWidgetManager;
-import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.ListView;
-import android.widget.Toast;
-
 import com.todaduc.bakingapp.BakingWidget;
 import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.data.RecipeIngredientContract;
-import com.todaduc.bakingapp.entities.BakingStep;
 import com.todaduc.bakingapp.entities.Ingredient;
 import com.todaduc.bakingapp.entities.Recipe;
 import com.todaduc.bakingapp.tasks.RecipeTask;
 import com.todaduc.bakingapp.ui.adapters.RecipeListAdapter;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

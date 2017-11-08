@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-
 import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.BakingStep;
 import com.todaduc.bakingapp.entities.Ingredient;
@@ -14,7 +12,6 @@ import com.todaduc.bakingapp.ui.fragments.IngredientFragment;
 import com.todaduc.bakingapp.ui.fragments.MediaPlayerFragment;
 import com.todaduc.bakingapp.ui.fragments.StepListFragment;
 import com.todaduc.bakingapp.ui.fragments.StepsDetailFragment;
-
 import java.util.ArrayList;
 
 

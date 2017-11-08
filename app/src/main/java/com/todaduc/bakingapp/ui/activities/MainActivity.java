@@ -22,7 +22,6 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity implements RecipeRequestDelayer.DelayerCallBack  {
 
 
-    boolean mTabletView;
     private RecipeListAdapter recipeListAdapter;
     private SimpleIdlingResource simpleIdlingResource;
 

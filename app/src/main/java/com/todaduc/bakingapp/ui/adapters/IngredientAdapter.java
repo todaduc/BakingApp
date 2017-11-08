@@ -9,7 +9,6 @@ import android.widget.TextView;
 import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.Ingredient;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

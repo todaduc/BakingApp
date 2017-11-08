@@ -1,9 +1,7 @@
 package com.todaduc.bakingapp.entities;
 
-import android.app.ListFragment;
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import java.util.List;
 
 /**

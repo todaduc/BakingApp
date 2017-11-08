@@ -8,8 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.Recipe;
-
-
 import java.util.List;
 
 /**

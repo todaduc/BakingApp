@@ -6,9 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.todaduc.bakingapp.R;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

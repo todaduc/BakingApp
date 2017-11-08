@@ -10,10 +10,8 @@ import android.view.ViewGroup;
 import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.Ingredient;
 import com.todaduc.bakingapp.ui.adapters.IngredientAdapter;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
