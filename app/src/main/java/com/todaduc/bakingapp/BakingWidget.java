@@ -32,7 +32,8 @@ public class BakingWidget extends AppWidgetProvider {
                 listOfIngredients += ingredient.toString() + "\n";
 
             }
-            views.setTextViewText(R.id.appwidget_text,listOfIngredients);
+            views.setTextViewText(R.id.preferred_recipe_name, preferredRecipe.getName());
+            views.setTextViewText(R.id.preferred_recipe_ingredients,listOfIngredients);
 
         }
         appWidgetManager.updateAppWidget(appWidgetId, views);

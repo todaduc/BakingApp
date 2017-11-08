@@ -11,15 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="configuration" />
-
-    <!--<ListView-->
-        <!--android:id="@+id/list_recipe"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_below="@+id/appwidget_text"-->
-        <!--android:layout_above="@+id/add_button">-->
-    <!--</ListView>-->
+        android:text="Recipe to choose" />
 
     <GridView
         android:id="@+id/recipe_grid_view"

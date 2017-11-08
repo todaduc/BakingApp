@@ -183,7 +183,6 @@ public class WidgetConfigurationActivity extends Activity  {
                 ,new String[]{Integer.toString(appWidgetId)}
         );
 
-        Toast.makeText(context, "deleted id "+ id,Toast.LENGTH_LONG).show();
     }
 
 
