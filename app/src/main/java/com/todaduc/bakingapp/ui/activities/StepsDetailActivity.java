@@ -52,7 +52,8 @@ public class StepsDetailActivity  extends AppCompatActivity {
                 savedInstanceState = new Bundle();
 
             }
-            savedInstanceState.putString("Video",bakingStep.getVideoUrl());
+
+            savedInstanceState.putString("Video",bakingStep.getVideoUrl().isEmpty()?bakingStep.getThumbnailURL():bakingStep.getVideoUrl());
             savedInstanceState.putString("Description",bakingStep.getDescription());
 
         }
@@ -77,7 +78,7 @@ public class StepsDetailActivity  extends AppCompatActivity {
 
         if(getIntent().hasExtra("CurrentStep")){
             bakingStep = getIntent().getExtras().getParcelable("CurrentStep");
-            outState.putString("Video",bakingStep.getVideoUrl());
+            outState.putString("Video",bakingStep.getVideoUrl().isEmpty()?bakingStep.getThumbnailURL():bakingStep.getVideoUrl());
             outState.putString("Description",bakingStep.getDescription());
 
         }

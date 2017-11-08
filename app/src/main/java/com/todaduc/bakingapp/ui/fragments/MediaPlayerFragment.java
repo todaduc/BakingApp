@@ -50,7 +50,10 @@ public class MediaPlayerFragment extends Fragment {
 
         if( getArguments()!= null){
             videoUrl = getArguments().getString("Video");
-            initializePlayer(Uri.parse(videoUrl));
+
+            if(videoUrl!= null && !videoUrl.isEmpty()){
+                initializePlayer(Uri.parse(videoUrl));
+            }
         }
 
         return rootView;
@@ -66,7 +69,7 @@ public class MediaPlayerFragment extends Fragment {
             // Prepare the MediaSource.
             String userAgent = Util.getUserAgent(getContext(), "BakingApp");
             MediaSource mediaSource = new ExtractorMediaSource(mediaUri, new DefaultDataSourceFactory(
-                    getContext(), userAgent), new DefaultExtractorsFactory(), null, null);
+                        getContext(), userAgent), new DefaultExtractorsFactory(), null, null);
             mExoPlayer.prepare(mediaSource);
             mExoPlayer.setPlayWhenReady(true);
         }
