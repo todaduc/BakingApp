@@ -6,28 +6,20 @@
     android:id="@+id/recipe_steps_list"
     >
 
-    <!--<com.todaduc.bakingapp.ui.costumizedUI.StepGridView
-        android:id="@+id/steps_grid_view"
+     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:gravity="center"
-        android:horizontalSpacing="4dp"
-        android:numColumns="1"
-        android:padding="16dp"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="4dp"
-        android:isScrollContainer="false"
-        />-->
-
-   <!-- <ListView
-        android:id = "@+id/listView"
+        android:textSize="18sp"
+        android:text="Baking Steps"
+        android:textStyle="bold"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        />
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        >
-
-    </ListView>-->
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/listView"
         android:layout_width="match_parent"

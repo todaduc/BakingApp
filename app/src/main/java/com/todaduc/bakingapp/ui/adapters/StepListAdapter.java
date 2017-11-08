@@ -1,17 +1,14 @@
 package com.todaduc.bakingapp.ui.adapters;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
 import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.BakingStep;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -38,7 +35,7 @@ public class StepListAdapter  extends RecyclerView.Adapter<StepListAdapter.StepH
     @Override
     public StepHolder onCreateViewHolder(ViewGroup parent, int viewType) {
        Context context = parent.getContext();
-       int layoutId = R.layout.fragment_step;
+       int layoutId = R.layout.recipe_step_item;
        LayoutInflater inflater = LayoutInflater.from(context);
 
        View view = inflater.inflate(layoutId, parent, false);
