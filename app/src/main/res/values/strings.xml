@@ -6,4 +6,5 @@
     <string name="status_code"></string>
     <string name="appwidget_text">Baking Widget</string>
     <string name="activity_label">Baking Time</string>
+
 </resources>

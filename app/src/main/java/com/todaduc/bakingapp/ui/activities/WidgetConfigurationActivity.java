@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import com.todaduc.bakingapp.BakingWidget;
+import com.todaduc.bakingapp.ui.widget.BakingWidget;
 import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.data.RecipeIngredientContract;
 import com.todaduc.bakingapp.entities.Ingredient;
