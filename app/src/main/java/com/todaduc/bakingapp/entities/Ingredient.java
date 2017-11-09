@@ -4,7 +4,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 
-
+/**
+ * This class describes and sets the fields of a parcelable Ingredient Object.
+ */
 public class Ingredient  implements Parcelable{
 
     private String quantity;

@@ -4,7 +4,9 @@ import android.net.Uri;
 import android.provider.BaseColumns;
 
 
-
+/**
+ * This class represents the contract to the database.
+ */
 public class RecipeIngredientContract {
 
     public static final String AUTHORITY = "com.todaduc.bakingapp";

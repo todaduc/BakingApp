@@ -4,7 +4,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 
-
+/**
+ * This class describes and sets the fields of a parcelable BakingStep Object.
+ */
 public class BakingStep implements Parcelable{
 
     private int id;

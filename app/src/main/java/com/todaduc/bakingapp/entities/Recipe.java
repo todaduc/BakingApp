@@ -4,6 +4,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import java.util.List;
 
+/**
+ * This class describes and sets the fields of a parcelable Recipe Object.
+ */
 public class Recipe implements Parcelable{
 
     private int id;

@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * Task that retrieves recipes.
+ */
 public class RecipeTask extends AsyncTask<Void, Void, List<Recipe>>{
 
     private final Activity appCompatActivity;

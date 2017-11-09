@@ -5,7 +5,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 
-
+/**
+ * Database helper class.
+ */
 public class RecipeIngredientDbHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "FavoriteRecipe.db";

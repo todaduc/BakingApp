@@ -9,7 +9,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 
 
-
+/**
+ * Content provider for the favorite recipe.
+ */
 public class RecipeIngredientContentProvider extends ContentProvider{
 
     public static  final int FAVORITE_RECIPE =100;
