@@ -49,9 +49,6 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
         @BindView(R.id.tv_ingredient_desc)
         TextView mIngredientDescription;
 
-       // @BindView(R.id.tv_quantity)
-       // TextView mQuantity;
-
         public IngredientHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
@@ -59,8 +56,7 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
 
         public void populate(Ingredient ingredient){
             itemView.setTag(ingredient);
-           // mQuantity.setText(ingredient.getQuantity().concat(" "+ingredient.getMeasure().concat(" of ").concat(ingredient.getDescription())));
-            mIngredientDescription.setText(ingredient.getQuantity().concat(" "+ingredient.getMeasure().concat(" of ").concat(ingredient.getDescription())));
+            mIngredientDescription.setText(ingredient.toString());
 
         }
 
