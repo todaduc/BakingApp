@@ -10,9 +10,6 @@ import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.Recipe;
 import java.util.List;
 
-/**
- * Created by Themener on 8/23/17.
- */
 
 public class RecipeListAdapter  extends BaseAdapter{
 

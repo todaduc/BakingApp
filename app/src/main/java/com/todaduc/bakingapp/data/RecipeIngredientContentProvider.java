@@ -8,9 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 
-/**
- * Created by ddjankou on 9/14/2017.
- */
+
 
 public class RecipeIngredientContentProvider extends ContentProvider{
 

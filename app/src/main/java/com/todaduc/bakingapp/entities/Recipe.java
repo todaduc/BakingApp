@@ -4,10 +4,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import java.util.List;
 
-/**
- * Created by Themener on 8/22/17.
- */
-
 public class Recipe implements Parcelable{
 
     private int id;

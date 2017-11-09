@@ -8,9 +8,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
 
-/**
- * Created by Themener on 8/22/17.
- */
+
 
 public class NetworkUtils {
 

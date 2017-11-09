@@ -4,9 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * Created by ddjankou on 9/14/2017.
- */
+
 
 public class RecipeIngredientDbHelper extends SQLiteOpenHelper {
 

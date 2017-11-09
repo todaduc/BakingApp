@@ -15,9 +15,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/**
- * Created by ddjankou on 8/24/2017.
- */
+
 
 public class StepsDetailActivity  extends AppCompatActivity {
 

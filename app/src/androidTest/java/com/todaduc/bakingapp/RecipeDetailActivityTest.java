@@ -14,9 +14,7 @@ import org.junit.runner.RunWith;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
-/**
- * Created by Themener on 10/3/17.
- */
+
 
 @RunWith(AndroidJUnit4.class)
 public class RecipeDetailActivityTest {

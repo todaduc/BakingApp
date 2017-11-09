@@ -23,9 +23,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by ddjankou on 10/20/2017.
- */
+
 
 public class WidgetConfigurationActivity extends Activity  {
 

@@ -11,9 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
-/**
- * Created by Themener on 8/22/17.
- */
+
 
 public final class JsonUtils {
 

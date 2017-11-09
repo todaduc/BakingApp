@@ -12,9 +12,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by ddjankou on 8/29/2017.
- */
+
 
 public class StepListAdapter  extends RecyclerView.Adapter<StepListAdapter.StepHolder> {
 

@@ -16,9 +16,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by ddjankou on 8/24/2017.
- */
+
 
 public class StepListFragment extends Fragment implements StepListAdapter.OnBakingStepClickListener{
 

@@ -3,9 +3,7 @@ package com.todaduc.bakingapp.entities;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * Created by ddjankou on 8/24/2017.
- */
+
 
 public class Ingredient  implements Parcelable{
 

@@ -14,9 +14,6 @@ import com.todaduc.bakingapp.ui.adapters.RecipeListAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by ddjankou on 8/31/2017.
- */
 
 public class RecipeTask extends AsyncTask<Void, Void, List<Recipe>>{
 

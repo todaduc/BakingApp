@@ -3,9 +3,7 @@ package com.todaduc.bakingapp.data;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
-/**
- * Created by ddjankou on 9/14/2017.
- */
+
 
 public class RecipeIngredientContract {
 

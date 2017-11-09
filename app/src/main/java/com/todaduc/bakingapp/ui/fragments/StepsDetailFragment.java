@@ -10,9 +10,7 @@ import com.todaduc.bakingapp.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by ddjankou on 8/24/2017.
- */
+
 
 public class StepsDetailFragment extends Fragment {
 

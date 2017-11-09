@@ -15,9 +15,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by ddjankou on 8/30/2017.
- */
 
 public class IngredientFragment extends Fragment {
 
