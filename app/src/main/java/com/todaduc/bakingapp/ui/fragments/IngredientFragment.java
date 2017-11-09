@@ -24,8 +24,6 @@ public class IngredientFragment extends Fragment {
     @BindView(R.id.rv_ingredient)
     RecyclerView mIngredient;
 
-    List<Ingredient> ingredients = new ArrayList<>();
-
     public IngredientFragment() {
     }
 
@@ -38,9 +36,10 @@ public class IngredientFragment extends Fragment {
         LinearLayoutManager ingredientLayoutManager = new LinearLayoutManager(getContext());
         mIngredient.setLayoutManager(ingredientLayoutManager);
         mIngredient.setHasFixedSize(true);
+        List<Ingredient> ingredients = new ArrayList<>();
 
         if( getArguments()!= null){
-            ingredients = this.getArguments().getParcelableArrayList("RecipeIngredient");
+            ingredients = this.getArguments().getParcelableArrayList(getString(R.string.activity_selected_recipe_ingredient));
         }
 
         IngredientAdapter ingredientAdapter = new IngredientAdapter(ingredients);

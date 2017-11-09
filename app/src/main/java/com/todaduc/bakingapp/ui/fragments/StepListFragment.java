@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
 
 public class StepListFragment extends Fragment implements StepListAdapter.OnBakingStepClickListener{
 
-    List<BakingStep> backingSteps = new ArrayList<>();
+
 
     @BindView(R.id.listView)
     RecyclerView listStepsView;
@@ -47,9 +47,10 @@ public class StepListFragment extends Fragment implements StepListAdapter.OnBaki
         final View rootView = inflater.inflate(R.layout.fragment_step_list,container, false);
         ButterKnife.bind(this,rootView);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this.getActivity());
+        List<BakingStep> backingSteps = new ArrayList<>();
 
         if( getArguments()!= null){
-            backingSteps = this.getArguments().getParcelableArrayList("RecipeSteps");
+            backingSteps = this.getArguments().getParcelableArrayList(getString(R.string.activity_selected_recipe_steps));
         }
 
         listStepsView.setLayoutManager(mLayoutManager);

@@ -30,7 +30,7 @@ public class StepsDetailFragment extends Fragment {
         String description = "";
 
         if( getArguments()!= null){
-            description = getArguments().getString("Description");
+            description = getArguments().getString(getString(R.string.activity_selected_recipe_desc));
         }
 
         stepDetail.setText(description);

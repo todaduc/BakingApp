@@ -5,10 +5,19 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+
+import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.BakingStep;
 import com.todaduc.bakingapp.entities.Ingredient;
 import com.todaduc.bakingapp.entities.Recipe;
 import com.todaduc.bakingapp.ui.adapters.RecipeListAdapter;
+import com.todaduc.bakingapp.utilities.JsonUtils;
+import com.todaduc.bakingapp.utilities.NetworkUtils;
+
+import org.json.JSONException;
+
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,10 +52,10 @@ public class RecipeTask extends AsyncTask<Void, Void, List<Recipe>>{
 
     @Override
     protected List<Recipe> doInBackground(Void... params) {
-       /* try {
+       try {
 
             URL url = NetworkUtils.buildSimpleUrl(appCompatActivity.getBaseContext().getString(R.string.webservice_Request_Url));
-            String queryResult =NetworkUtils.getResponseFromHttpUrl(url);
+            String queryResult = NetworkUtils.getResponseFromHttpUrl(url);
 
             this.recipes = JsonUtils.getRecipeFromJson(queryResult,appCompatActivity.getBaseContext());
 
@@ -54,7 +63,7 @@ public class RecipeTask extends AsyncTask<Void, Void, List<Recipe>>{
 
            e.printStackTrace();
         }
-        */
+
         return recipes;
     }
 
@@ -76,7 +85,7 @@ public class RecipeTask extends AsyncTask<Void, Void, List<Recipe>>{
         return recipes;
     }
 
-    List< Ingredient > ingredientList;
+   /* List< Ingredient > ingredientList;
     List< BakingStep > backingSteps;
     {
         ingredientList = new ArrayList<>();
@@ -126,5 +135,5 @@ public class RecipeTask extends AsyncTask<Void, Void, List<Recipe>>{
         recipes.add(new Recipe(2, "Brownies", 3, "", ingredientList, backingSteps) );
         recipes.add(new Recipe(3, "Yellow Cake", 4, "", ingredientList, backingSteps) );
         recipes.add(new Recipe(4, "Cheesecake", 5, "",  ingredientList, backingSteps) );
-    }
+    }*/
 }
