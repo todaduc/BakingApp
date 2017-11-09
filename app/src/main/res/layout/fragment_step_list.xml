@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        android:text="Baking Steps"
+        android:text="@string/bakingSteps"
         android:textStyle="bold"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="8dp"
@@ -21,7 +21,7 @@
         android:background="@android:color/darker_gray"
         />
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/listView"
+        android:id="@+id/listStepView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </android.support.v7.widget.RecyclerView>

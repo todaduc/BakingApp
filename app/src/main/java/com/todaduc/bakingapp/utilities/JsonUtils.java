@@ -1,6 +1,8 @@
 package com.todaduc.bakingapp.utilities;
 
 import android.content.Context;
+
+import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.BakingStep;
 import com.todaduc.bakingapp.entities.Ingredient;
 import com.todaduc.bakingapp.entities.Recipe;
@@ -26,12 +28,12 @@ public final class JsonUtils {
 
             JSONObject recipe = recipeJsonArray.getJSONObject(i);
             recipeList.add(new Recipe(
-                    recipe.getInt("id"),
-                    recipe.getString("name"),
-                    recipe.getInt("servings"),
-                    recipe.getString("image"),
-                    getIngredientsFromJson(recipe.getJSONArray("ingredients"), context),
-                    getStepsFromJson(recipe.getJSONArray("steps"), context)
+                    recipe.getInt(context.getString(R.string.id)),
+                    recipe.getString(context.getString(R.string.recipe_name)),
+                    recipe.getInt(context.getString(R.string.recipe_serving)),
+                    recipe.getString(context.getString(R.string.image)),
+                    getIngredientsFromJson(recipe.getJSONArray(context.getString(R.string.recipe_ingredients)), context),
+                    getStepsFromJson(recipe.getJSONArray(context.getString(R.string.recipe_steps)), context)
 
             ));
         }
@@ -46,9 +48,9 @@ public final class JsonUtils {
             JSONObject ingredient = ingredientArray.getJSONObject(i);
 
             ingredients.add(new Ingredient(
-                    ingredient.getString("quantity"),
-                    ingredient.getString("measure"),
-                    ingredient.getString("ingredient")
+                    ingredient.getString(context.getString(R.string.quantity)),
+                    ingredient.getString(context.getString(R.string.measure)),
+                    ingredient.getString(context.getString(R.string.ingredient))
             ));
         }
         return ingredients;
@@ -61,11 +63,11 @@ public final class JsonUtils {
 
             JSONObject bakingStep = stepsArray.getJSONObject(i);
             bakingSteps.add(new BakingStep(
-                    bakingStep.getInt("id"),
-                    bakingStep.getString("shortDescription"),
-                    bakingStep.getString("description"),
-                    bakingStep.getString("videoURL"),
-                    bakingStep.getString("thumbnailURL")
+                    bakingStep.getInt(context.getString(R.string.id)),
+                    bakingStep.getString(context.getString(R.string.shortDescription)),
+                    bakingStep.getString(context.getString(R.string.description)),
+                    bakingStep.getString(context.getString(R.string.video_url)),
+                    bakingStep.getString(context.getString(R.string.thumbnail_url))
             ));
         }
         return bakingSteps;

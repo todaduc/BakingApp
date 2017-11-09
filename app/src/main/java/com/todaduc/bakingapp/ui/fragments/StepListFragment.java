@@ -24,7 +24,7 @@ public class StepListFragment extends Fragment implements StepListAdapter.OnBaki
 
 
 
-    @BindView(R.id.listView)
+    @BindView(R.id.listStepView)
     RecyclerView listStepsView;
 
     private OnStepClickListener onStepClick;

@@ -2,8 +2,6 @@
     <string name="app_name">Baking App</string>
     <string name="app_name_user_agent">BakingApp</string>
 
-    <string name="webservice_Request_Url">https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/baking.json</string>
-    <string name="status_code"></string>
     <string name="appwidget_text">Baking Widget</string>
     <string name="activity_label">Baking Time</string>
     <string name="activity_selected_recipe">Recipe</string>
@@ -15,9 +13,26 @@
     <string name="activity_selected_recipe_video">Video</string>
     <string name="activity_selected_recipe_desc">Description</string>
     <string name="activity_no_more_step_message">No more Steps</string>
-   <!-- <string name="activity_selected_recipe_steps">RecipeSteps</string>
-    <string name="activity_selected_recipe_steps">RecipeSteps</string>
-    <string name="activity_selected_recipe_steps">RecipeSteps</string>-->
 
+    <!--  Json  Strings definition  -->
+    <string name="webservice_Request_Url">https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/baking.json</string>
+    <string name="format_response_results">results</string>
+    <string name="id">id</string>
+    <string name="recipe_name">name</string>
+    <string name="recipe_serving">servings</string>
+    <string name="image">image</string>
+    <string name="recipe_ingredients">ingredients</string>
+    <string name="recipe_steps">steps</string>
+    <string name="quantity">quantity</string>
+    <string name="measure">measure</string>
+    <string name="ingredient">ingredient</string>
+    <string name="shortDescription">shortDescription</string>
+    <string name="description">description</string>
+    <string name="video_url">videoURL</string>
+    <string name="thumbnail_url">thumbnailURL</string>
+
+    <string name="ingredients">Ingredients</string>
+    <string name="bakingSteps">Baking Steps</string>
+    <string name="recipeToChoose">Recipe to choose</string>
 
 </resources>
