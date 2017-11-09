@@ -24,13 +24,13 @@ public class BakingWidget extends AppWidgetProvider {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.baking_widget);
         // set ingredients string
         if(preferredRecipe != null){
-            String listOfIngredients = "";
+            StringBuilder listOfIngredients = new StringBuilder();
             for(Ingredient ingredient : preferredRecipe.getIngredientList()){
-                listOfIngredients += ingredient.toString() + "\n";
+                listOfIngredients.append(ingredient.toString()).append("\n");
 
             }
             views.setTextViewText(R.id.preferred_recipe_name, preferredRecipe.getName());
-            views.setTextViewText(R.id.preferred_recipe_ingredients,listOfIngredients);
+            views.setTextViewText(R.id.preferred_recipe_ingredients, listOfIngredients.toString());
 
         }
         appWidgetManager.updateAppWidget(appWidgetId, views);

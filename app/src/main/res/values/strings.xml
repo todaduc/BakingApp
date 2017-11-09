@@ -34,5 +34,7 @@
     <string name="ingredients">Ingredients</string>
     <string name="bakingSteps">Baking Steps</string>
     <string name="recipeToChoose">Recipe to choose</string>
+    <string name="button_preview">Preview</string>
+    <string name="button_next">Next</string>
 
 </resources>

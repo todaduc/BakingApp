@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/button_preview"
             android:layout_alignParentLeft="true"
-            android:text="preview"
+            android:text="@string/button_preview"
             />
 
 
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/button_next"
             android:layout_alignParentRight="true"
-            android:text="next"
+            android:text="@string/button_next"
             />
     </RelativeLayout>
 
