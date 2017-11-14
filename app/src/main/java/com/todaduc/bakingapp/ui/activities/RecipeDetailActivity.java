@@ -14,7 +14,9 @@ import com.todaduc.bakingapp.ui.fragments.StepListFragment;
 import com.todaduc.bakingapp.ui.fragments.StepsDetailFragment;
 import java.util.ArrayList;
 
-
+/*
+ * This is the activity Class in charge of displaying recipe details.
+ */
 public class RecipeDetailActivity extends AppCompatActivity implements StepListFragment.OnStepClickListener {
 
     private boolean twoPaneMode;

@@ -16,7 +16,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-
+/*
+ * This is the activity Class in charge of displaying details steps of a recipe.
+ */
 public class StepsDetailActivity  extends AppCompatActivity {
 
     @BindView(R.id.button_preview)

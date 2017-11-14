@@ -9,7 +9,9 @@ import java.net.URL;
 import java.util.Scanner;
 
 
-
+/**
+ * This utility class will be used to interact with the recipe servers.
+ */
 public class NetworkUtils {
 
 

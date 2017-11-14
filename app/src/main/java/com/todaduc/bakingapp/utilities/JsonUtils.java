@@ -12,7 +12,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * This is an utility class to handle the recipe JSON data.
+ */
 public final class JsonUtils {
 
     public static List<Recipe> getRecipeFromJson(String recipeJsonStr, Context context)
