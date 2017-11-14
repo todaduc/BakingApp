@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class RecipeDetailActivity extends AppCompatActivity implements StepListFragment.OnStepClickListener {
 
-    boolean twoPaneMode;
+    private boolean twoPaneMode;
     private Recipe mCurrentRecipe;
 
     @Override

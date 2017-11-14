@@ -25,7 +25,7 @@ import static org.hamcrest.Matchers.anything;
 @RunWith(AndroidJUnit4.class)
 public class MainActivityTest {
 
-    public static final String RECIPE_NAME = "Brownies";
+    private static final String RECIPE_NAME = "Brownies";
     private IdlingResource mIdlingResource;
 
     @Rule

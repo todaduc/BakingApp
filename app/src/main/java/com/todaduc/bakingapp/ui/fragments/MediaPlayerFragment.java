@@ -40,7 +40,7 @@ public class MediaPlayerFragment extends Fragment {
         ButterKnife.bind(this,rootView);
 
 
-        String videoUrl = null;
+        String videoUrl;
 
         if( getArguments()!= null){
             videoUrl = getArguments().getString(getString(R.string.activity_selected_recipe_video));

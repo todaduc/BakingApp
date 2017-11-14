@@ -86,7 +86,7 @@ public class StepsDetailActivity  extends AppCompatActivity {
 
     @OnClick(R.id.button_preview)
     public void previewStep(){
-        int currentStepIndex = 0;
+        int currentStepIndex;
 
         if(mListOfSteps !=null){
             currentStepIndex = mListOfSteps.indexOf(bakingStep);
@@ -97,12 +97,11 @@ public class StepsDetailActivity  extends AppCompatActivity {
                 Toast.makeText(this, R.string.activity_no_more_step_message, Toast.LENGTH_LONG).show();
             }
         }
-        return;
     }
 
     @OnClick(R.id.button_next)
     public void nextStep(){
-        int currentStepIndex = 0;
+        int currentStepIndex;
 
         if(mListOfSteps !=null){
             currentStepIndex = mListOfSteps.indexOf(bakingStep);
@@ -113,7 +112,6 @@ public class StepsDetailActivity  extends AppCompatActivity {
                 Toast.makeText(this, R.string.activity_no_more_step_message, Toast.LENGTH_LONG).show();
             }
         }
-        return;
     }
 
     private void refreshActivity(BakingStep bakingStep){

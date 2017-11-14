@@ -16,7 +16,6 @@
 
     <!--  Json  Strings definition  -->
     <string name="webservice_Request_Url">https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/baking.json</string>
-    <string name="format_response_results">results</string>
     <string name="id">id</string>
     <string name="recipe_name">name</string>
     <string name="recipe_serving">servings</string>
@@ -31,7 +30,8 @@
     <string name="video_url">videoURL</string>
     <string name="thumbnail_url">thumbnailURL</string>
 
-    <string name="ingredients">Ingredients</string>
+
+    <string name="Ingredients">Ingredients</string>
     <string name="bakingSteps">Baking Steps</string>
     <string name="recipeToChoose">Recipe to choose</string>
     <string name="button_preview">Preview</string>

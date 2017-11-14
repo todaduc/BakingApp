@@ -89,7 +89,7 @@ public class RecipeIngredientContentProvider extends ContentProvider{
     public int delete(Uri uri, String s, String[] strings) {
         final SQLiteDatabase database = recipeIngredientDbHelper.getWritableDatabase();
         int match = buildUriMatcher().match(uri);
-        int id = 0;
+        int id;
 
         switch (match){
             case FAVORITE_RECIPE:

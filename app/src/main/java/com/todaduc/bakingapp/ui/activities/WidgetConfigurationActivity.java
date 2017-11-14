@@ -78,7 +78,6 @@ public class WidgetConfigurationActivity extends Activity  {
         // If this activity was started with an intent without an app widget ID, finish with an error.
         if (mAppWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {
             finish();
-            return;
         }
 
 
@@ -165,7 +164,7 @@ public class WidgetConfigurationActivity extends Activity  {
 
     public static void deleteTitlePref(Context context, int appWidgetId) {
 
-      int id =   context.getContentResolver().delete(RecipeIngredientContract.FavoritesRecipeEntry.CONTENT_URI
+        context.getContentResolver().delete(RecipeIngredientContract.FavoritesRecipeEntry.CONTENT_URI
                 ,RecipeIngredientContract.FavoritesRecipeEntry.COLUMN_WIDGET_ID + " =?"
                 ,new String[]{Integer.toString(appWidgetId)}
         );
