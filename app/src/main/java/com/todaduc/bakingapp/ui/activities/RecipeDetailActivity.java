@@ -15,7 +15,7 @@ import com.todaduc.bakingapp.ui.fragments.StepsDetailFragment;
 import java.util.ArrayList;
 
 /*
- * This is the activity Class in charge of displaying recipe details.
+ * This activity Class in charge of displaying recipe details.
  */
 public class RecipeDetailActivity extends AppCompatActivity implements StepListFragment.OnStepClickListener {
 
@@ -58,7 +58,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
                     .commit();
         }
 
-
+        //If the used device is a tablet.
         if(findViewById(R.id.tablet_linear_layout)!= null){
             twoPaneMode = true;
 
@@ -76,6 +76,10 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
         }
     }
 
+    /**
+     * The method handles the click on a baking step. Sets appropriate fragments if the users device is a tablet.
+     * @param currentStep
+     */
     @Override
     public void onStepSelected(BakingStep currentStep) {
         if(!twoPaneMode){

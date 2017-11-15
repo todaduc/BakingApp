@@ -4,7 +4,9 @@ import android.support.test.espresso.IdlingResource;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 
-
+/**
+ * Implementation of the idle resource.
+ */
 public class SimpleIdlingResource implements IdlingResource {
 
     private volatile ResourceCallback mCallback;

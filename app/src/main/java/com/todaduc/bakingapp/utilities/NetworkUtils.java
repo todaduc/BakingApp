@@ -45,6 +45,11 @@ public class NetworkUtils {
         return url;
     }
 
+    /**
+     * builds a simple URL out of a string object
+     * @param urlRequest the given string
+     * @return the URL object
+     */
     public static URL buildSimpleUrl (String urlRequest){
         Uri builtUri = Uri.parse(urlRequest);
         URL url = null;

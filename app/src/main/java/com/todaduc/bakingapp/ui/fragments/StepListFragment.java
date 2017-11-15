@@ -17,10 +17,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-
+/**
+ * This class populates the list of baking steps on a fragment element.
+ */
 public class StepListFragment extends Fragment implements StepListAdapter.OnBakingStepClickListener{
-
-
 
     @BindView(R.id.listStepView)
     RecyclerView listStepsView;

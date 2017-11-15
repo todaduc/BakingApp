@@ -17,7 +17,7 @@ import butterknife.OnClick;
 
 
 /*
- * This is the activity Class in charge of displaying details steps of a recipe.
+ * This activity Class in charge of displaying details steps of a recipe.
  */
 public class StepsDetailActivity  extends AppCompatActivity {
 
@@ -86,6 +86,9 @@ public class StepsDetailActivity  extends AppCompatActivity {
         super.onSaveInstanceState(outState);
     }
 
+    /**
+     * This Method handles the browsing to the preview baking step when the user's device is a phone.
+     */
     @OnClick(R.id.button_preview)
     public void previewStep(){
         int currentStepIndex;
@@ -101,6 +104,9 @@ public class StepsDetailActivity  extends AppCompatActivity {
         }
     }
 
+    /**
+     * This Method handles the browsing to the next baking step when the user's device is a phone.
+     */
     @OnClick(R.id.button_next)
     public void nextStep(){
         int currentStepIndex;
@@ -116,6 +122,10 @@ public class StepsDetailActivity  extends AppCompatActivity {
         }
     }
 
+    /**
+     * Help method to refresh the current baking step on the activity.
+     * @param bakingStep
+     */
     private void refreshActivity(BakingStep bakingStep){
 
         String recipeName = getIntent().getExtras().get(getString(R.string.activity_selected_recipe_name)).toString();

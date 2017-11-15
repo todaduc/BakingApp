@@ -23,7 +23,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-
+/**
+ * This class hosts the application media player on a fragment element.
+ */
 public class MediaPlayerFragment extends Fragment {
 
     @BindView(R.id.media_player_view)
@@ -53,14 +55,18 @@ public class MediaPlayerFragment extends Fragment {
         return rootView;
     }
 
+    /**
+     * Creates an instance of the ExoPlayer.
+     * @param mediaUri the media url
+     */
     private void initializePlayer(Uri mediaUri) {
         if (mExoPlayer == null) {
-            // Create an instance of the ExoPlayer.
+
             TrackSelector trackSelector = new DefaultTrackSelector();
             LoadControl loadControl = new DefaultLoadControl();
             mExoPlayer = ExoPlayerFactory.newSimpleInstance(getContext(), trackSelector, loadControl);
             mPlayerView.setPlayer(mExoPlayer);
-            // Prepare the MediaSource.
+
             String userAgent = Util.getUserAgent(getContext(), getString(R.string.app_name_user_agent));
             MediaSource mediaSource = new ExtractorMediaSource(mediaUri, new DefaultDataSourceFactory(
                         getContext(), userAgent), new DefaultExtractorsFactory(), null, null);

@@ -13,12 +13,18 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-
+/**
+ * This Adapter populates a list of backing steps to a RecyclerView.
+ */
 public class StepListAdapter  extends RecyclerView.Adapter<StepListAdapter.StepHolder> {
 
    private List<BakingStep> bakingSteps;
-
    private OnBakingStepClickListener onBakingStepClickListener;
+
+
+    /*
+     * Interface that receives onBakingStepClick messages.
+     */
    public interface OnBakingStepClickListener{
       void onBakingStepClick(BakingStep bakingStep);
    }
@@ -48,9 +54,9 @@ public class StepListAdapter  extends RecyclerView.Adapter<StepListAdapter.StepH
         return bakingSteps.size();
     }
 
-
-
-
+    /**
+     * View holder definition for the backing step adapter.
+     */
    class StepHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
        @BindView(R.id.tv_step_description)
        TextView mStepDescription;
@@ -61,11 +67,20 @@ public class StepListAdapter  extends RecyclerView.Adapter<StepListAdapter.StepH
            itemView.setOnClickListener(this);
        }
 
+        /**
+         * This method populates the baking step description on the view holder.
+         * @param bakingStep The baking step object
+         */
        public void populate(BakingStep bakingStep){
            itemView.setTag(bakingStep);
            mStepDescription.setText(bakingStep.getDescription());
        }
 
+        /**
+         * This gets called by the child views during a click.
+         *
+         * @param v The View that was clicked
+         */
        @Override
        public void onClick(View v) {
            if(v.getTag() instanceof  BakingStep){

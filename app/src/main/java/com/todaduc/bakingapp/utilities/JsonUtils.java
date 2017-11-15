@@ -17,6 +17,14 @@ import java.util.List;
  */
 public final class JsonUtils {
 
+
+    /**
+     * This method parses JSON from a web response and returns an array of recipe object.
+     * @param recipeJsonStr JSON response from the server
+     * @param context application context
+     * @return List of recipe objects
+     * @throws JSONException if JSON data cannot be properly parsed.
+     */
     public static List<Recipe> getRecipeFromJson(String recipeJsonStr, Context context)
             throws JSONException {
 
@@ -40,6 +48,13 @@ public final class JsonUtils {
         return recipeList;
     }
 
+    /**
+     * Help method to parse an ingredient list from a JSONArray object.
+     * @param ingredientArray the JSONArray object
+     * @param context the application context
+     * @return list of ingredient objects
+     * @throws JSONException if JSON data cannot be properly parsed.
+     */
     private static List<Ingredient> getIngredientsFromJson(JSONArray ingredientArray, Context context)throws JSONException{
 
         List<Ingredient> ingredients = new ArrayList<>();
@@ -55,6 +70,14 @@ public final class JsonUtils {
         }
         return ingredients;
     }
+
+    /**
+     * Help method to parse a baking step list from a JSONArray object.
+     * @param stepsArray the JSONArray object
+     * @param context the application context
+     * @return list of baking step objects
+     * @throws JSONException if JSON data cannot be properly parsed.
+     */
 
     private static List<BakingStep> getStepsFromJson(JSONArray stepsArray, Context context)throws JSONException{
 

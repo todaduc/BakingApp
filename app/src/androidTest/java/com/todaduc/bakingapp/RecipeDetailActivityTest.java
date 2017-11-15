@@ -15,14 +15,18 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 
-
+/**
+ * Instrumentation test on the recipe detail activity.
+ */
 @RunWith(AndroidJUnit4.class)
 public class RecipeDetailActivityTest {
 
     @Rule
     public ActivityTestRule<RecipeDetailActivity> mActivityTestRule = new ActivityTestRule<>(RecipeDetailActivity.class);
 
-
+    /**
+     * The click on a backing step at the position 3 is being tested
+     */
     @Test
     public void clickGridViewItem_OpensStepsDetailActivity(){
         onView(ViewMatchers.withId(R.id.tv_recipe_serving))

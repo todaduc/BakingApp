@@ -18,11 +18,11 @@ public class BakingWidget extends AppWidgetProvider {
     public static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
-        //load pref recipe
-        Recipe preferredRecipe = WidgetConfigurationActivity.loadTitlePref(context, appWidgetId);
+        //load preferred recipe
+        Recipe preferredRecipe = WidgetConfigurationActivity.loadPreferredRecipe(context, appWidgetId);
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.baking_widget);
-        // set ingredients string
+
         if(preferredRecipe != null){
             StringBuilder listOfIngredients = new StringBuilder();
             for(Ingredient ingredient : preferredRecipe.getIngredientList()){

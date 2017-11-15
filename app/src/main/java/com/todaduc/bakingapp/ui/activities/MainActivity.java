@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
 
 
 /*
-    This class represents the main activity of the application
+ *   This class represents the main activity of the application.
  */
 public class MainActivity extends AppCompatActivity implements RecipeRequestDelayer.DelayerCallBack  {
 
@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements RecipeRequestDela
         }
         return simpleIdlingResource;
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,12 +77,6 @@ public class MainActivity extends AppCompatActivity implements RecipeRequestDela
             }
         });
 
-    }
-
-
-
-    public SimpleIdlingResource getSimpleIdlingResource(){
-        return simpleIdlingResource;
     }
 
 }

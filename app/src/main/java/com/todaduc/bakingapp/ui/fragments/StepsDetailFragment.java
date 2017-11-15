@@ -11,7 +11,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-
+/**
+ * This class hosts the baking step description on a fragment element.
+ */
 public class StepsDetailFragment extends Fragment {
 
     @BindView(R.id.tv_step_detail)

@@ -14,9 +14,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
+/**
+ * This Adapter populates a list of recipe.
+ */
 public class RecipeListAdapter  extends BaseAdapter{
-
-
 
     private Context context;
     private List<Recipe> recipes;
@@ -27,7 +28,6 @@ public class RecipeListAdapter  extends BaseAdapter{
         this.recipes = recipeList;
 
     }
-
 
     @Override
     public int getCount() {
@@ -62,8 +62,6 @@ public class RecipeListAdapter  extends BaseAdapter{
             convertView.setTag(holder);
         }
 
-        //((TextView)convertView.findViewById(R.id.tv_recipe_serving)).setText("Servings: " + recipes.get(position).getServing());
-
          holder = (ViewHolder)convertView.getTag();
          holder.recipeName.setText(recipes.get(position).getName());
          holder.servings.setText(String.format(context.getString(R.string.servings_text), recipes.get(position).getServing()));
@@ -71,6 +69,9 @@ public class RecipeListAdapter  extends BaseAdapter{
         return convertView;
     }
 
+    /**
+     * View holder definition.
+     */
     static class ViewHolder{
         @BindView(R.id.tv_recipe_name)
         TextView recipeName;

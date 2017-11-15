@@ -4,19 +4,29 @@ import android.os.Handler;
 import com.todaduc.bakingapp.tasks.RecipeTask;
 
 
-
+/**
+ * Request delayer implementation that loads recipe list from the server,
+ * when the main thread is put on hold.
+ */
 public class RecipeRequestDelayer {
 
     private static final int DELAY_MILLIS = 3000;
 
+    /**
+     * The onDone method will be call as callback method.
+     */
     public interface DelayerCallBack{
         void onDone();
     }
 
-
+    /**
+     * This method process the recipe loading task while the UI thread is put on hold.
+     * @param recipeTask the recipe task
+     * @param callback the callback
+     * @param idlingResource the idle resource
+     */
     public static void processMessage(final RecipeTask recipeTask, final DelayerCallBack callback,
                                       final SimpleIdlingResource idlingResource) {
-        // The IdlingResource is null in production.
         if (idlingResource != null) {
             idlingResource.setIdleState(false);
         }

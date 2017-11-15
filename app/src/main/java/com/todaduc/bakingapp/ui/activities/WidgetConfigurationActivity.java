@@ -24,7 +24,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-
+/*
+ * This activity helps users to pick the favorite recipe ingredients,
+ * that should be displayed by the widget.
+ */
 public class WidgetConfigurationActivity extends Activity  {
 
     private int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
@@ -50,7 +53,7 @@ public class WidgetConfigurationActivity extends Activity  {
 
         setContentView(R.layout.activity_widget_configuration);
         ButterKnife.bind(this);
-        // Set layout size of activity
+
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
 
@@ -84,7 +87,7 @@ public class WidgetConfigurationActivity extends Activity  {
     }
 
     private void createWidget(Context context, Recipe prefRecipe) {
-        // Store the string locally
+        // Store the recipe locally
         savePreferredRecipe(context, mAppWidgetId, prefRecipe);
 
         // It is the responsibility of the configuration activity to update the app widget
@@ -98,11 +101,15 @@ public class WidgetConfigurationActivity extends Activity  {
         finish();
     }
 
-    // Write the prefix to the SharedPreferences object for this widget
+    /**
+     * Saves the preferred recipe in the local database for this widget.
+     * @param context application context
+     * @param appWidgetId widget identification number
+     * @param prefRecipe preferred recipe object
+     */
     public  void savePreferredRecipe(Context context, int appWidgetId, Recipe prefRecipe) {
 
 
-        //DB call to save the preRecipe with Id
         for (Ingredient ingredient: prefRecipe.getIngredientList() ){
 
             ContentValues contentValues = new ContentValues();
@@ -117,8 +124,13 @@ public class WidgetConfigurationActivity extends Activity  {
 
     }
 
-      // Read the prefix from the preferred recipe database for this widget.
-    public static Recipe loadTitlePref(Context context, int appWidgetId) {
+    /**
+     *  Read the preferred recipe from local database for this widget.
+     * @param context application context
+     * @param appWidgetId widget identification number
+     * @return
+     */
+    public static Recipe loadPreferredRecipe(Context context, int appWidgetId) {
 
         Recipe foundRecipe = null;
         Cursor cursor = null;
@@ -162,6 +174,12 @@ public class WidgetConfigurationActivity extends Activity  {
        return  foundRecipe;
     }
 
+    /**
+     * Method that delete the widget recipe from the database,
+     * when this widget get remove from the application.
+     * @param context application context
+     * @param appWidgetId widget identification number
+     */
     public static void deleteTitlePref(Context context, int appWidgetId) {
 
         context.getContentResolver().delete(RecipeIngredientContract.FavoritesRecipeEntry.CONTENT_URI

@@ -13,12 +13,16 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-
+/**
+ * This Adapter populates a list of recipe ingredients to a RecyclerView.
+ */
 public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.IngredientHolder>{
 
     private List<Ingredient> mlistIngredient;
+    private Context context;
 
-    public IngredientAdapter(List<Ingredient> mlistIngredient) {
+    public IngredientAdapter(Context context, List<Ingredient> mlistIngredient) {
+        this.context = context;
         this.mlistIngredient = mlistIngredient;
     }
 
@@ -42,6 +46,9 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
         return mlistIngredient.size();
     }
 
+    /**
+     * View holder definition of the ingredient adapter.
+     */
     class IngredientHolder extends RecyclerView.ViewHolder{
 
         @BindView(R.id.tv_ingredient_desc)
@@ -54,7 +61,8 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
 
         public void populate(Ingredient ingredient){
             itemView.setTag(ingredient);
-            mIngredientDescription.setText(ingredient.toString());
+
+            mIngredientDescription.setText(String.format(context.getString(R.string.ingredient_text_format), ingredient.getQuantity(), ingredient.getMeasure(), ingredient.getDescription()));
 
         }
 
