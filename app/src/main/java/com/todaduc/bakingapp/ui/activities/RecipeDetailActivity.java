@@ -78,7 +78,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
 
     /**
      * The method handles the click on a baking step. Sets appropriate fragments if the users device is a tablet.
-     * @param currentStep
+     * @param currentStep current baking step
      */
     @Override
     public void onStepSelected(BakingStep currentStep) {

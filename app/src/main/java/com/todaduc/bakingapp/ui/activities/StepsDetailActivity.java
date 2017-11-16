@@ -124,7 +124,7 @@ public class StepsDetailActivity  extends AppCompatActivity {
 
     /**
      * Help method to refresh the current baking step on the activity.
-     * @param bakingStep
+     * @param bakingStep baking step
      */
     private void refreshActivity(BakingStep bakingStep){
 

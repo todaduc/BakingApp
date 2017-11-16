@@ -29,7 +29,7 @@
             android:id="@+id/button_preview"
             android:layout_alignParentLeft="true"
             android:text="@string/button_preview"
-            />
+            android:layout_alignParentStart="true" />
 
 
         <Button
@@ -38,7 +38,7 @@
             android:id="@+id/button_next"
             android:layout_alignParentRight="true"
             android:text="@string/button_next"
-            />
+            android:layout_alignParentEnd="true" />
     </RelativeLayout>
 
 </LinearLayout>

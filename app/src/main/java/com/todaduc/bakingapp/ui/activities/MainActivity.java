@@ -54,12 +54,6 @@ public class MainActivity extends AppCompatActivity implements RecipeRequestDela
         RecipeRequestDelayer.processMessage(new RecipeTask(this, recipeListAdapter),this, simpleIdlingResource);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-    }
-
 
     @Override
     public void onDone() {

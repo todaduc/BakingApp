@@ -36,8 +36,8 @@
     <string name="recipeToChoose">Recipe to choose</string>
     <string name="button_preview">Preview</string>
     <string name="button_next">Next</string>
-    <string name="servings_text" formatted="false">Servings: %1$d</string>
-    <string name="ingredient_text_format" formatted="false"> %1$s  %2$s of %3$s</string>
+    <string name="servings_text">Servings: %1$d</string>
+    <string name="ingredient_text_format"> %1$s  %2$s of %3$s</string>
 
 
 </resources>

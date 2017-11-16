@@ -128,7 +128,7 @@ public class WidgetConfigurationActivity extends Activity  {
      *  Read the preferred recipe from local database for this widget.
      * @param context application context
      * @param appWidgetId widget identification number
-     * @return
+     * @return the found recipe or a null object
      */
     public static Recipe loadPreferredRecipe(Context context, int appWidgetId) {
 
