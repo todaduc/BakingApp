@@ -52,7 +52,7 @@ public class RecipeTask extends AsyncTask<Void, Void, List<Recipe>>{
 
     @Override
     protected List<Recipe> doInBackground(Void... params) {
-     /* try {
+      try {
 
             URL url = NetworkUtils.buildSimpleUrl(appCompatActivity.getBaseContext().getString(R.string.webservice_Request_Url));
             String queryResult = NetworkUtils.getResponseFromHttpUrl(url);
@@ -63,7 +63,7 @@ public class RecipeTask extends AsyncTask<Void, Void, List<Recipe>>{
 
            e.printStackTrace();
         }
-    */
+
         return recipes;
     }
 
@@ -85,55 +85,5 @@ public class RecipeTask extends AsyncTask<Void, Void, List<Recipe>>{
         return recipes;
     }
 
-    List< Ingredient > ingredientList;
-    List< BakingStep > backingSteps;
-    {
-        ingredientList = new ArrayList<>();
-        backingSteps = new ArrayList<>();
-        recipes = new ArrayList<>();
 
-        ingredientList.add(new Ingredient("2", "Cup", "Graham Cracker crumbs"));
-        ingredientList.add(new Ingredient("2", "Cup", "Graham Cracker crumbs"));
-        ingredientList.add(new Ingredient("2", "Cup", "Graham Cracker crumbs"));
-
-
-        backingSteps.add(new BakingStep(0,"Recipe Introduction" ,"Recipe Introduction adfasdfasdfasdfasdfasdfasd",
-                "", ""));
-        backingSteps.add(new BakingStep(0,"Recipe Introduction" ,"Recipe Introduction",
-                "https://d17h27t6h515a5.cloudfront.net/topher/2017/April/58ffd974_-intro-creampie/-intro-creampie.mp4", ""));
-        backingSteps.add(new BakingStep(0,"Recipe Introduction" ,"Recipe Introduction",
-                "https://d17h27t6h515a5.cloudfront.net/topher/2017/April/58ffd974_-intro-creampie/-intro-creampie.mp4", ""));
-        backingSteps.add(new BakingStep(0,"Recipe Introduction" ,"Recipe Introduction adfasdfasdfasdfasdfasdfasd",
-                "https://d17h27t6h515a5.cloudfront.net/topher/2017/April/58ffd974_-intro-creampie/-intro-creampie.mp4", ""));
-        backingSteps.add(new BakingStep(0,"Recipe Introduction" ,"Recipe Introduction adfasdfasdfasdfasdfasdfasd",
-                "https://d17h27t6h515a5.cloudfront.net/topher/2017/April/58ffd974_-intro-creampie/-intro-creampie.mp4", ""));
-        backingSteps.add(new BakingStep(0,"Recipe Introduction" ,"Recipe Introduction adfasdfasdfasdfasdfasdfasd",
-                "https://d17h27t6h515a5.cloudfront.net/topher/2017/April/58ffd974_-intro-creampie/-intro-creampie.mp4", ""));
-        backingSteps.add(new BakingStep(0,"Recipe Introduction" ,"Recipe Introduction adfasdfasdfasdfasdfasdfasd",
-                "https://d17h27t6h515a5.cloudfront.net/topher/2017/April/58ffd974_-intro-creampie/-intro-creampie.mp4", ""));
-        backingSteps.add(new BakingStep(0,"Recipe Introduction" ,"Recipe Introduction  with diefferent size " +
-                " of description text just to fixe recycler view bug adfasdfasdfasdfasdfasdfasd",
-                "https://d17h27t6h515a5.cloudfront.net/topher/2017/April/58ffd974_-intro-creampie/-intro-creampie.mp4", ""));
-        backingSteps.add(new BakingStep(0,"Recipe Introduction" ,"Recipe Introduction adfasdfasdfasdfasdfasdfasd",
-                "https://d17h27t6h515a5.cloudfront.net/topher/2017/April/58ffd974_-intro-creampie/-intro-creampie.mp4", ""));
-        backingSteps.add(new BakingStep(0,"Recipe Introduction" ,"Recipe Introduction adfasdfasdfasdfasdfasdfasd",
-                "https://d17h27t6h515a5.cloudfront.net/topher/2017/April/58ffd974_-intro-creampie/-intro-creampie.mp4", ""));
-        backingSteps.add(new BakingStep(0,"Recipe Introduction" ,"Recipe Introduction  with diefferent size " +
-                " of description text just to fixe recycler view bug adfasdfasdfasdfasdfasdfasd",
-                "https://d17h27t6h515a5.cloudfront.net/topher/2017/April/58ffd974_-intro-creampie/-intro-creampie.mp4", ""));
-        backingSteps.add(new BakingStep(0,"Recipe Introduction" ,"Recipe Introduction adfasdfasdfasdfasdfasdfasd",
-                "https://d17h27t6h515a5.cloudfront.net/topher/2017/April/58ffd974_-intro-creampie/-intro-creampie.mp4", ""));
-        backingSteps.add(new BakingStep(0,"Recipe Introduction" ,"Recipe Introduction adfasdfasdfasdfasdfasdfasd",
-                "https://d17h27t6h515a5.cloudfront.net/topher/2017/April/58ffd974_-intro-creampie/-intro-creampie.mp4", ""));
-        backingSteps.add(new BakingStep(0,"Recipe Introduction" ,"Recipe Introduction  with diefferent size " +
-                " of description text just to fixe recycler view bug adfasdfasdfasdfasdfasdfasd",
-                "https://d17h27t6h515a5.cloudfront.net/topher/2017/April/58ffd974_-intro-creampie/-intro-creampie.mp4", ""));
-        backingSteps.add(new BakingStep(0,"Recipe Introduction" ,"Recipe Introduction adfasdfasdfasdfasdfasdfasd",
-                "https://d17h27t6h515a5.cloudfront.net/topher/2017/April/58ffd974_-intro-creampie/-intro-creampie.mp4", ""));
-
-        recipes.add(new Recipe(1, "Nutella Pie", 2, "", ingredientList, backingSteps));
-        recipes.add(new Recipe(2, "Brownies", 3, "", ingredientList, backingSteps) );
-        recipes.add(new Recipe(3, "Yellow Cake", 4, "", ingredientList, backingSteps) );
-        recipes.add(new Recipe(4, "Cheesecake", 5, "",  ingredientList, backingSteps) );
-    }
 }
