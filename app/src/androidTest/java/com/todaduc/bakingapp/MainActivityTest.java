@@ -119,7 +119,7 @@ public class MainActivityTest {
                         childAtPosition(
                                 withId(R.id.recipe_steps_list),
                                 2)));
-        recyclerView2.perform(actionOnItemAtPosition(3, click()));
+        recyclerView2.perform(actionOnItemAtPosition(0, click()));
 
 
         try {
