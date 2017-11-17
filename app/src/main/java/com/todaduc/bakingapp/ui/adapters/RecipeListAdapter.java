@@ -5,7 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.Recipe;
 import java.util.List;
@@ -63,8 +66,14 @@ public class RecipeListAdapter  extends BaseAdapter{
         }
 
          holder = (ViewHolder)convertView.getTag();
-         holder.recipeName.setText(recipes.get(position).getName());
-         holder.servings.setText(String.format(context.getString(R.string.servings_text), recipes.get(position).getServing()));
+
+        Recipe recipe = recipes.get(position);
+        if(recipe.getImage()!= null && !recipe.getImage().isEmpty()){
+            Picasso.with(context).load(context.getString(R.string.image_base_url).concat(recipe.getImage())).into(holder.recipeImage);
+        }
+
+        holder.recipeName.setText(recipe.getName());
+        holder.servings.setText(String.format(context.getString(R.string.servings_text), recipe.getServing()));
 
         return convertView;
     }
@@ -73,10 +82,15 @@ public class RecipeListAdapter  extends BaseAdapter{
      * View holder definition.
      */
     static class ViewHolder{
+
         @BindView(R.id.tv_recipe_name)
         TextView recipeName;
+
         @BindView(R.id.tv_recipe_serving)
         TextView servings;
+
+        @BindView(R.id.recipe_image)
+        ImageView recipeImage;
 
         public ViewHolder(View view){
             ButterKnife.bind(this, view);

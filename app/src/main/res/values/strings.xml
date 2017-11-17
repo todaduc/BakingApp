@@ -16,6 +16,7 @@
 
     <!--  Json  Strings definition  -->
     <string name="webservice_Request_Url">https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/baking.json</string>
+    <string name="image_base_url">https://image.tmdb.org/t/p/w500</string>
     <string name="id">id</string>
     <string name="recipe_name">name</string>
     <string name="recipe_serving">servings</string>

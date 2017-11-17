@@ -3,6 +3,7 @@ package com.todaduc.bakingapp.ui.fragments;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,13 +42,16 @@ public class MediaPlayerFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_media_player, container, false);
         ButterKnife.bind(this,rootView);
 
+        if (savedInstanceState == null){
+            savedInstanceState = new Bundle();
+        }
 
         String videoUrl;
 
         if( getArguments()!= null){
             videoUrl = getArguments().getString(getString(R.string.activity_selected_recipe_video));
 
-            if(videoUrl!= null && !videoUrl.isEmpty()){
+            if(TextUtils.isEmpty(videoUrl)){
                 initializePlayer(Uri.parse(videoUrl));
             }
         }
@@ -87,5 +91,24 @@ public class MediaPlayerFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         releasePlayer();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        releasePlayer();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        releasePlayer();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+
+        super.onSaveInstanceState(outState);
+
     }
 }

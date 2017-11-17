@@ -62,7 +62,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
         if(findViewById(R.id.tablet_linear_layout)!= null){
             twoPaneMode = true;
 
-            this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+           // this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
             MediaPlayerFragment mediaPlayerFragment = new MediaPlayerFragment();
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.video_player_container, mediaPlayerFragment)
