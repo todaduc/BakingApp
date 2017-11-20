@@ -107,8 +107,6 @@ public class MediaPlayerFragment extends Fragment {
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-
         super.onSaveInstanceState(outState);
-
     }
 }
