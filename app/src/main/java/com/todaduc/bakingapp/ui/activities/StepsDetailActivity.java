@@ -47,11 +47,9 @@ public class StepsDetailActivity  extends AppCompatActivity {
             bakingStep = getIntent().getExtras().getParcelable(getString(R.string.activity_recipe_selected_step));
             if(savedInstanceState==null){
                 savedInstanceState = new Bundle();
-
+                savedInstanceState.putString(getString(R.string.activity_selected_recipe_video),bakingStep.getVideoUrl().isEmpty()?bakingStep.getThumbnailURL():bakingStep.getVideoUrl());
+                savedInstanceState.putString(getString(R.string.activity_selected_recipe_desc),bakingStep.getDescription());
             }
-
-            savedInstanceState.putString(getString(R.string.activity_selected_recipe_video),bakingStep.getVideoUrl().isEmpty()?bakingStep.getThumbnailURL():bakingStep.getVideoUrl());
-            savedInstanceState.putString(getString(R.string.activity_selected_recipe_desc),bakingStep.getDescription());
 
         }
 

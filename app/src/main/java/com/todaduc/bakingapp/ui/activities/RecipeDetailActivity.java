@@ -36,11 +36,9 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
 
             if(savedInstanceState == null){
                 savedInstanceState = new Bundle();
+                savedInstanceState.putParcelableArrayList(getString(R.string.activity_selected_recipe_steps), (ArrayList<BakingStep>)mCurrentRecipe.getBackingSteps());
+                savedInstanceState.putParcelableArrayList(getString(R.string.activity_selected_recipe_ingredient), (ArrayList<Ingredient>)mCurrentRecipe.getIngredientList());
             }
-
-            savedInstanceState.putParcelableArrayList(getString(R.string.activity_selected_recipe_steps), (ArrayList<BakingStep>)mCurrentRecipe.getBackingSteps());
-            savedInstanceState.putParcelableArrayList(getString(R.string.activity_selected_recipe_ingredient), (ArrayList<Ingredient>)mCurrentRecipe.getIngredientList());
-
 
 
             IngredientFragment ingredientFragment = new IngredientFragment();
