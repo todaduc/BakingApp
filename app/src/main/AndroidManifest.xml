@@ -19,8 +19,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activities.RecipeDetailActivity" />
-        <activity android:name=".ui.activities.StepsDetailActivity" />
+        <activity android:name=".ui.activities.RecipeDetailActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.activities.MainActivity"
+                />
+        </activity>
+        <activity android:name=".ui.activities.StepsDetailActivity" >
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.activities.RecipeDetailActivity"
+                />
+        </activity>
 
         <receiver android:name=".ui.widget.BakingWidget">
             <intent-filter>

@@ -2,8 +2,11 @@ package com.todaduc.bakingapp.ui.activities;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
+
 import com.todaduc.bakingapp.R;
 import com.todaduc.bakingapp.entities.BakingStep;
 import com.todaduc.bakingapp.entities.Ingredient;
@@ -25,7 +28,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_recipe_detail);
 
 
@@ -119,5 +122,16 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
             outState.putParcelableArrayList(getString(R.string.activity_selected_recipe_ingredient), (ArrayList<Ingredient>)recipe.getIngredientList());
         }
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
