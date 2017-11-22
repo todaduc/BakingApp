@@ -53,7 +53,7 @@ public class MediaPlayerFragment extends Fragment {
             if( getArguments()!= null){
                 videoUrl = getArguments().getString(getString(R.string.activity_selected_recipe_video));
 
-                if(TextUtils.isEmpty(videoUrl)){
+                if(!TextUtils.isEmpty(videoUrl)){
                     initializePlayer(Uri.parse(videoUrl));
                 }
             }
