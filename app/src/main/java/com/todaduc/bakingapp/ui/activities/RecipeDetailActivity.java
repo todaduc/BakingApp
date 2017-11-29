@@ -22,7 +22,6 @@ import java.util.ArrayList;
  */
 public class RecipeDetailActivity extends AppCompatActivity implements StepListFragment.OnStepClickListener {
 
-    private boolean twoPaneMode;
     private Recipe mCurrentRecipe;
 
     @Override
@@ -60,10 +59,8 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
         }
 
         //If the used device is a tablet.
-        if(findViewById(R.id.tablet_linear_layout)!= null){
-            twoPaneMode = true;
+        if(getResources().getBoolean(R.bool.isTablet)){
 
-           // this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
             MediaPlayerFragment mediaPlayerFragment = new MediaPlayerFragment();
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.video_player_container, mediaPlayerFragment)
@@ -72,8 +69,6 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.step_instruction_container, stepsDetailFragment)
                     .commit();
-        }else{
-            twoPaneMode = false;
         }
     }
 
@@ -83,7 +78,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
      */
     @Override
     public void onStepSelected(BakingStep currentStep) {
-        if(!twoPaneMode){
+        if(!getResources().getBoolean(R.bool.isTablet)){
             Intent intent = new Intent(this, StepsDetailActivity.class);
             intent.putExtra(getString(R.string.activity_selected_recipe_name), mCurrentRecipe.getName());
             intent.putExtra(getString(R.string.activity_recipe_selected_step),currentStep);
