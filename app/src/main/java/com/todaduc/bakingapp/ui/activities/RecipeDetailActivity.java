@@ -16,6 +16,7 @@ import com.todaduc.bakingapp.ui.fragments.MediaPlayerFragment;
 import com.todaduc.bakingapp.ui.fragments.StepListFragment;
 import com.todaduc.bakingapp.ui.fragments.StepsDetailFragment;
 import java.util.ArrayList;
+import java.util.List;
 
 /*
  * This activity Class in charge of displaying recipe details.
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 public class RecipeDetailActivity extends AppCompatActivity implements StepListFragment.OnStepClickListener {
 
     private Recipe mCurrentRecipe;
+    private List<BakingStep> listOfSteps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,16 +34,17 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
 
 
         Intent intent = getIntent();
-        if(intent.hasExtra(getString(R.string.activity_selected_recipe))){
-             mCurrentRecipe = intent.getExtras().getParcelable(getString(R.string.activity_selected_recipe));
-             setTitle(mCurrentRecipe.getName());
+        if(intent.hasExtra(getString(R.string.activity_selected_recipe))) {
+            mCurrentRecipe = intent.getExtras().getParcelable(getString(R.string.activity_selected_recipe));
+            setTitle(mCurrentRecipe.getName());
+            listOfSteps = mCurrentRecipe.getBackingSteps();
 
             if(savedInstanceState == null){
                 savedInstanceState = new Bundle();
-                savedInstanceState.putParcelableArrayList(getString(R.string.activity_selected_recipe_steps), (ArrayList<BakingStep>)mCurrentRecipe.getBackingSteps());
+                savedInstanceState.putParcelableArrayList(getString(R.string.activity_selected_recipe_steps), (ArrayList<BakingStep>)listOfSteps);
                 savedInstanceState.putParcelableArrayList(getString(R.string.activity_selected_recipe_ingredient), (ArrayList<Ingredient>)mCurrentRecipe.getIngredientList());
             }
-
+        }
 
             IngredientFragment ingredientFragment = new IngredientFragment();
             ingredientFragment.setArguments(savedInstanceState);
@@ -56,7 +59,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.recipe_detail_container, stepListFragment)
                     .commit();
-        }
+
 
         //If the used device is a tablet.
         if(getResources().getBoolean(R.bool.isTablet)){
@@ -111,6 +114,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
+       //shouldn't depend on the intent state, but actual list adapter state.
         if(getIntent().hasExtra(getString(R.string.activity_selected_recipe))){
             Recipe recipe = getIntent().getExtras().getParcelable(getString(R.string.activity_selected_recipe));
             outState.putParcelableArrayList(getString(R.string.activity_selected_recipe_steps), (ArrayList<BakingStep>)recipe.getBackingSteps());
@@ -129,4 +133,11 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        listOfSteps = savedInstanceState.getParcelableArrayList("RecipeSteps");
+    }
+
 }

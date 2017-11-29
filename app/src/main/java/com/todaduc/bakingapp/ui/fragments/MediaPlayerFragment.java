@@ -44,10 +44,6 @@ public class MediaPlayerFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_media_player, container, false);
         ButterKnife.bind(this,rootView);
 
-        if (savedInstanceState != null){
-            playerPosition  = savedInstanceState.getLong("playerPosition");
-
-        }
             String videoUrl;
 
             if( getArguments()!= null){
@@ -99,7 +95,6 @@ public class MediaPlayerFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-       // playerPosition = mExoPlayer.getCurrentPosition();
         releasePlayer();
     }
 
@@ -116,5 +111,12 @@ public class MediaPlayerFragment extends Fragment {
         }
 
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if(savedInstanceState!=null)
+        playerPosition  = savedInstanceState.getLong("playerPosition");
     }
 }
