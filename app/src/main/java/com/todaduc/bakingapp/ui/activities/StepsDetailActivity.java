@@ -30,6 +30,7 @@ public class StepsDetailActivity  extends AppCompatActivity {
     Button mNext;
     private BakingStep bakingStep;
     private static List<BakingStep> mListOfSteps;
+    private String videoUri;
 
 
     @Override
@@ -44,50 +45,54 @@ public class StepsDetailActivity  extends AppCompatActivity {
             setTitle(getIntent().getExtras().get(getString(R.string.activity_selected_recipe_name)).toString());
 
         }
-        if(getIntent().hasExtra(getString(R.string.activity_recipe_all_steps))){
-            mListOfSteps = getIntent().getExtras().getParcelableArrayList(getString(R.string.activity_recipe_all_steps));
-        }
-        if(getIntent().hasExtra(getString(R.string.activity_recipe_selected_step))){
 
-            bakingStep = getIntent().getExtras().getParcelable(getString(R.string.activity_recipe_selected_step));
-            if(savedInstanceState==null){
-                savedInstanceState = new Bundle();
-                savedInstanceState.putString(getString(R.string.activity_selected_recipe_video),bakingStep.getVideoUrl().isEmpty()?bakingStep.getThumbnailURL():bakingStep.getVideoUrl());
-                savedInstanceState.putString(getString(R.string.activity_selected_recipe_desc),bakingStep.getDescription());
+        MediaPlayerFragment mediaPlayerFragment = null;
+
+        if(savedInstanceState == null){
+
+            if(getIntent().hasExtra(getString(R.string.activity_recipe_selected_step))){
+                bakingStep = getIntent().getExtras().getParcelable(getString(R.string.activity_recipe_selected_step));
             }
+            if(getIntent().hasExtra(getString(R.string.activity_recipe_all_steps))){
+                mListOfSteps = getIntent().getExtras().getParcelableArrayList(getString(R.string.activity_recipe_all_steps));
+            }
+            savedInstanceState = new Bundle();
+            videoUri = bakingStep.getVideoUrl().isEmpty()?bakingStep.getThumbnailURL():bakingStep.getVideoUrl();
+            savedInstanceState.putString(getString(R.string.activity_selected_recipe_video),videoUri);
+            savedInstanceState.putString(getString(R.string.activity_selected_recipe_desc),bakingStep.getDescription());
 
+            mediaPlayerFragment = new MediaPlayerFragment();
+            mediaPlayerFragment.setArguments(savedInstanceState);
+
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.video_player_container, mediaPlayerFragment)
+                    .commit();
+
+            StepsDetailFragment stepsDetailFragment = new StepsDetailFragment();
+            stepsDetailFragment.setArguments(savedInstanceState);
+
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.step_instruction_container, stepsDetailFragment)
+                    .commit();
+        }else{
+
+            mediaPlayerFragment = new MediaPlayerFragment();
+            mediaPlayerFragment.setArguments(savedInstanceState);
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.video_player_container, mediaPlayerFragment)
+                    .commit();
+
+            StepsDetailFragment stepsDetailFragment = new StepsDetailFragment();
+            stepsDetailFragment.setArguments(savedInstanceState);
+
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.step_instruction_container, stepsDetailFragment)
+                    .commit();
         }
 
-        MediaPlayerFragment mediaPlayerFragment = new MediaPlayerFragment();
-        mediaPlayerFragment.setArguments(savedInstanceState);
 
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.video_player_container, mediaPlayerFragment)
-                .commit();
-
-        StepsDetailFragment stepsDetailFragment = new StepsDetailFragment();
-        stepsDetailFragment.setArguments(savedInstanceState);
-
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.step_instruction_container, stepsDetailFragment)
-                .commit();
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-
-        if(getIntent().hasExtra(getString(R.string.activity_recipe_selected_step))){
-            bakingStep = getIntent().getExtras().getParcelable(getString(R.string.activity_recipe_selected_step));
-            outState.putString(getString(R.string.activity_selected_recipe_video),bakingStep.getVideoUrl().isEmpty()?bakingStep.getThumbnailURL():bakingStep.getVideoUrl());
-            outState.putString(getString(R.string.activity_selected_recipe_desc),bakingStep.getDescription());
-
-        }
-        if(getIntent().hasExtra(getString(R.string.activity_recipe_all_steps))){
-            mListOfSteps = getIntent().getExtras().getParcelableArrayList(getString(R.string.activity_recipe_all_steps));
-            outState.putParcelableArrayList(getString(R.string.activity_recipe_all_steps), (ArrayList<BakingStep>) mListOfSteps);
-        }
-        super.onSaveInstanceState(outState);
-    }
 
     /**
      * This Method handles the browsing to the preview baking step when the user's device is a phone.
@@ -158,4 +163,23 @@ public class StepsDetailActivity  extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if(outState != null){
+            outState.putParcelable("BakingStep",bakingStep);
+            outState.putParcelableArrayList(getString(R.string.activity_recipe_all_steps), (ArrayList<BakingStep>) mListOfSteps);
+            outState.putString(getString(R.string.activity_selected_recipe_video),bakingStep.getVideoUrl().isEmpty()?bakingStep.getThumbnailURL():bakingStep.getVideoUrl());
+            outState.putString(getString(R.string.activity_selected_recipe_desc),bakingStep.getDescription());
+        }
+
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        bakingStep = savedInstanceState.getParcelable("BakingStep");
+        mListOfSteps = savedInstanceState.getParcelableArrayList("AllSteps");
+        videoUri = savedInstanceState.getString(getString(R.string.activity_selected_recipe_video));
+    }
 }
