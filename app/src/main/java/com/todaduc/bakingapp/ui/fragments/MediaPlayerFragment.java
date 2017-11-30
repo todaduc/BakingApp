@@ -35,7 +35,8 @@ public class MediaPlayerFragment extends Fragment {
     @BindView(R.id.media_player_view)
     SimpleExoPlayerView mPlayerView;
     private SimpleExoPlayer mExoPlayer;
-    private Long playerPosition = null;
+    private Long playerPosition;
+    Integer mCurrentWindow;
     private String videoUrl;
 
     public MediaPlayerFragment() {
@@ -46,14 +47,18 @@ public class MediaPlayerFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_media_player, container, false);
         ButterKnife.bind(this,rootView);
 
+        if(savedInstanceState!= null){
+            playerPosition = savedInstanceState.getLong("playerPosition");
+           //mCurrentWindow = savedInstanceState.getInt("windowPosition");
+            Log.i("onCreateView", playerPosition.toString());
+        }
+        if( getArguments()!= null){
+            videoUrl = getArguments().getString(getString(R.string.activity_selected_recipe_video));
 
-                if( getArguments()!= null){
-                    videoUrl = getArguments().getString(getString(R.string.activity_selected_recipe_video));
-
-                    if(!TextUtils.isEmpty(videoUrl)){
-                        initializePlayer(Uri.parse(videoUrl));
-                    }
-                }
+            if(!TextUtils.isEmpty(videoUrl)){
+                initializePlayer(Uri.parse(videoUrl));
+            }
+        }
 
         return rootView;
     }
@@ -102,17 +107,19 @@ public class MediaPlayerFragment extends Fragment {
         super.onPause();
         if(mExoPlayer!= null){
             playerPosition = mExoPlayer.getCurrentPosition();
+           // mCurrentWindow = mExoPlayer.getCurrentWindowIndex();
             Log.i("onPause", playerPosition.toString());
         }
 
         releasePlayer();
     }
-    @Override
+
+   /* @Override
     public void onResume() {
         super.onResume();
         if (videoUrl != null)
             initializePlayer(Uri.parse(videoUrl));
-    }
+    }*/
 
     @Override
     public void onStop() {
@@ -123,13 +130,10 @@ public class MediaPlayerFragment extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        //if(mExoPlayer!= null){
-        //    outState.putLong("playerPosition", playerPosition);
-        //    Log.i("onSaveInstanceState", playerPosition.toString());
-        //}
-
+        outState.putLong("playerPosition", playerPosition);
+        //outState.putInt("windowPosition", mCurrentWindow);
+        Log.i("onSaveInstanceState", playerPosition.toString());
 
     }
-
 
 }
