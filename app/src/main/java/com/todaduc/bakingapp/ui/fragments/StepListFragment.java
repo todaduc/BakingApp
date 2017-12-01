@@ -2,6 +2,8 @@ package com.todaduc.bakingapp.ui.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -58,7 +60,21 @@ public class StepListFragment extends Fragment implements StepListAdapter.OnBaki
         return rootView;
     }
 
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
 
+        if(savedInstanceState != null){
+            Parcelable recyclerLayout = savedInstanceState.getParcelable("recyclerLayout");
+            listStepsView.getLayoutManager().onRestoreInstanceState(recyclerLayout);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable("recyclerLayout", listStepsView.getLayoutManager().onSaveInstanceState());
+    }
 
     @Override
     public void onAttach(Context context) {

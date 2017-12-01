@@ -98,9 +98,9 @@ public class RecipeTask extends AsyncTask<Void, Void, List<Recipe>>{
 
 
         backingSteps.add(new BakingStep(0," 1 Recipe Introduction" ," 1 Recipe Introduction no video",
-                "", ""));
+                "http://techslides.com/demos/samples/sample.mp4", ""));
         backingSteps.add(new BakingStep(0," 2 Recipe Introduction" ," 2 Recipe Introduction ",
-                "https://d17h27t6h515a5.cloudfront.net/topher/2017/April/58ffd974_-intro-creampie/-intro-creampie.mp4", ""));
+                "http://techslides.com/demos/samples/sample.mp4", ""));
         backingSteps.add(new BakingStep(0," 3 Recipe Introduction" ," 3 Recipe Introduction",
                 "https://d17h27t6h515a5.cloudfront.net/topher/2017/April/58ffd974_-intro-creampie/-intro-creampie.mp4", ""));
         backingSteps.add(new BakingStep(0," 4 Recipe Introduction" ," 4 Recipe Introduction adfasdfasdfasdfasdfasdfasd",

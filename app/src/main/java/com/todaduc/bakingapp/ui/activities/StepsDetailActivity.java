@@ -47,6 +47,7 @@ public class StepsDetailActivity  extends AppCompatActivity {
         }
 
         MediaPlayerFragment mediaPlayerFragment = null;
+        StepsDetailFragment stepsDetailFragment = null;
 
         if(savedInstanceState == null){
 
@@ -68,28 +69,13 @@ public class StepsDetailActivity  extends AppCompatActivity {
                     .add(R.id.video_player_container, mediaPlayerFragment)
                     .commit();
 
-            StepsDetailFragment stepsDetailFragment = new StepsDetailFragment();
+            stepsDetailFragment = new StepsDetailFragment();
             stepsDetailFragment.setArguments(savedInstanceState);
 
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.step_instruction_container, stepsDetailFragment)
                     .commit();
-        }else{
-
-            mediaPlayerFragment = new MediaPlayerFragment();
-            mediaPlayerFragment.setArguments(savedInstanceState);
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.video_player_container, mediaPlayerFragment)
-                    .commit();
-
-            StepsDetailFragment stepsDetailFragment = new StepsDetailFragment();
-            stepsDetailFragment.setArguments(savedInstanceState);
-
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.step_instruction_container, stepsDetailFragment)
-                    .commit();
         }
-
 
     }
 
