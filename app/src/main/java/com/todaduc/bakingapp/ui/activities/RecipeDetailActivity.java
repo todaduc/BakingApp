@@ -43,23 +43,22 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
                 savedInstanceState = new Bundle();
                 savedInstanceState.putParcelableArrayList(getString(R.string.activity_selected_recipe_steps), (ArrayList<BakingStep>)listOfSteps);
                 savedInstanceState.putParcelableArrayList(getString(R.string.activity_selected_recipe_ingredient), (ArrayList<Ingredient>)mCurrentRecipe.getIngredientList());
+
+                IngredientFragment ingredientFragment = new IngredientFragment();
+                ingredientFragment.setArguments(savedInstanceState);
+
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.recipe_ingredients_container, ingredientFragment)
+                        .commit();
+
+                StepListFragment stepListFragment = new StepListFragment();
+                stepListFragment.setArguments(savedInstanceState);
+
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.recipe_detail_container, stepListFragment)
+                        .commit();
             }
         }
-
-            IngredientFragment ingredientFragment = new IngredientFragment();
-            ingredientFragment.setArguments(savedInstanceState);
-
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.recipe_ingredients_container, ingredientFragment)
-                    .commit();
-
-            StepListFragment stepListFragment = new StepListFragment();
-            stepListFragment.setArguments(savedInstanceState);
-
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.recipe_detail_container, stepListFragment)
-                    .commit();
-
 
         //If the used device is a tablet.
         if(getResources().getBoolean(R.bool.isTablet)){
@@ -115,10 +114,9 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
     @Override
     protected void onSaveInstanceState(Bundle outState) {
        //shouldn't depend on the intent state, but actual list adapter state.
-        if(getIntent().hasExtra(getString(R.string.activity_selected_recipe))){
-            Recipe recipe = getIntent().getExtras().getParcelable(getString(R.string.activity_selected_recipe));
-            outState.putParcelableArrayList(getString(R.string.activity_selected_recipe_steps), (ArrayList<BakingStep>)recipe.getBackingSteps());
-            outState.putParcelableArrayList(getString(R.string.activity_selected_recipe_ingredient), (ArrayList<Ingredient>)recipe.getIngredientList());
+        if(outState != null){
+            outState.putParcelableArrayList(getString(R.string.activity_selected_recipe_steps), (ArrayList<BakingStep>)mCurrentRecipe.getBackingSteps());
+            outState.putParcelableArrayList(getString(R.string.activity_selected_recipe_ingredient), (ArrayList<Ingredient>)mCurrentRecipe.getIngredientList());
         }
         super.onSaveInstanceState(outState);
     }

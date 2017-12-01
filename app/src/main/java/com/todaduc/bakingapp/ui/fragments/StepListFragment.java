@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ public class StepListFragment extends Fragment implements StepListAdapter.OnBaki
     @BindView(R.id.listStepView)
     RecyclerView listStepsView;
 
+    private LinearLayoutManager mLayoutManager;
     private OnStepClickListener onStepClick;
 
     @Override
@@ -46,7 +48,7 @@ public class StepListFragment extends Fragment implements StepListAdapter.OnBaki
 
         final View rootView = inflater.inflate(R.layout.fragment_step_list,container, false);
         ButterKnife.bind(this,rootView);
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this.getActivity());
+        mLayoutManager = new LinearLayoutManager(this.getActivity());
         List<BakingStep> backingSteps = new ArrayList<>();
 
         if( getArguments()!= null){
@@ -58,22 +60,6 @@ public class StepListFragment extends Fragment implements StepListAdapter.OnBaki
         listStepsView.setAdapter(stepListAdapter);
 
         return rootView;
-    }
-
-    @Override
-    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
-        super.onViewStateRestored(savedInstanceState);
-
-        if(savedInstanceState != null){
-            Parcelable recyclerLayout = savedInstanceState.getParcelable("recyclerLayout");
-            listStepsView.getLayoutManager().onRestoreInstanceState(recyclerLayout);
-        }
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putParcelable("recyclerLayout", listStepsView.getLayoutManager().onSaveInstanceState());
     }
 
     @Override

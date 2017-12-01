@@ -19,7 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activities.RecipeDetailActivity" >
+        <activity android:name=".ui.activities.RecipeDetailActivity"
+                  android:configChanges="orientation|screenSize|keyboardHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.activities.MainActivity"
