@@ -13,6 +13,7 @@
     <string name="activity_selected_recipe_video">Video</string>
     <string name="activity_selected_recipe_desc">Description</string>
     <string name="activity_no_more_step_message">No more Steps</string>
+    <string name="activity_selected_baking_step">BakingStep</string>
 
     <!--  Json  Strings definition  -->
     <string name="webservice_Request_Url">https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/baking.json</string>
@@ -39,6 +40,7 @@
     <string name="button_next">Next</string>
     <string name="servings_text">Servings: %1$d</string>
     <string name="ingredient_text_format"> %1$s  %2$s of %3$s</string>
+    <string name="playerPosition">playerPosition</string>
 
 
 </resources>

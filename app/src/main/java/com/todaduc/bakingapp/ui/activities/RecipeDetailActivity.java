@@ -135,7 +135,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        listOfSteps = savedInstanceState.getParcelableArrayList("RecipeSteps");
+        listOfSteps = savedInstanceState.getParcelableArrayList(getString(R.string.activity_selected_recipe_steps));
     }
 
 }

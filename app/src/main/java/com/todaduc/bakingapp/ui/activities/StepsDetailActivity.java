@@ -128,7 +128,7 @@ public class StepsDetailActivity  extends AppCompatActivity {
         intent.putExtra(getString(R.string.activity_selected_recipe_name), recipeName);
 
         intent.putExtra(getString(R.string.activity_recipe_selected_step),bakingStep);
-        intent.putParcelableArrayListExtra("AllSteps", (ArrayList<BakingStep>) mListOfSteps);
+        intent.putParcelableArrayListExtra(getString(R.string.activity_recipe_all_steps), (ArrayList<BakingStep>) mListOfSteps);
         finish();
         overridePendingTransition(0, 0);
         startActivity(intent);
@@ -153,7 +153,7 @@ public class StepsDetailActivity  extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         if(outState != null){
-            outState.putParcelable("BakingStep",bakingStep);
+            outState.putParcelable(getString(R.string.activity_selected_baking_step),bakingStep);
             outState.putParcelableArrayList(getString(R.string.activity_recipe_all_steps), (ArrayList<BakingStep>) mListOfSteps);
             outState.putString(getString(R.string.activity_selected_recipe_video),bakingStep.getVideoUrl().isEmpty()?bakingStep.getThumbnailURL():bakingStep.getVideoUrl());
             outState.putString(getString(R.string.activity_selected_recipe_desc),bakingStep.getDescription());
@@ -164,8 +164,8 @@ public class StepsDetailActivity  extends AppCompatActivity {
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        bakingStep = savedInstanceState.getParcelable("BakingStep");
-        mListOfSteps = savedInstanceState.getParcelableArrayList("AllSteps");
+        bakingStep = savedInstanceState.getParcelable(getString(R.string.activity_selected_baking_step));
+        mListOfSteps = savedInstanceState.getParcelableArrayList(getString(R.string.activity_recipe_all_steps));
         videoUri = savedInstanceState.getString(getString(R.string.activity_selected_recipe_video));
     }
 }

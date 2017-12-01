@@ -47,7 +47,7 @@ public class MediaPlayerFragment extends Fragment {
         ButterKnife.bind(this,rootView);
 
         if(savedInstanceState!= null){
-            playerPosition = savedInstanceState.getLong("playerPosition");
+            playerPosition = savedInstanceState.getLong(getString(R.string.playerPosition));
         }
         if( getArguments()!= null){
             videoUrl = getArguments().getString(getString(R.string.activity_selected_recipe_video));
@@ -124,7 +124,7 @@ public class MediaPlayerFragment extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putLong("playerPosition", playerPosition);
+        outState.putLong(getString(R.string.playerPosition), playerPosition);
     }
 
 }
