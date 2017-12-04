@@ -30,6 +30,8 @@ public class StepListFragment extends Fragment implements StepListAdapter.OnBaki
 
     private LinearLayoutManager mLayoutManager;
     private OnStepClickListener onStepClick;
+    private Parcelable mListState;
+
 
     @Override
     public void onBakingStepClick(BakingStep bakingStep) {
@@ -54,11 +56,16 @@ public class StepListFragment extends Fragment implements StepListAdapter.OnBaki
         if( getArguments()!= null){
             backingSteps = this.getArguments().getParcelableArrayList(getString(R.string.activity_selected_recipe_steps));
         }
+        /*if(savedInstanceState!= null){
+            mListState = savedInstanceState.getParcelable("listState");
+            Log.i("onCreateView", mListState.toString() );
+            mLayoutManager.onRestoreInstanceState(mListState);
+        }*/
 
         listStepsView.setLayoutManager(mLayoutManager);
         StepListAdapter stepListAdapter = new StepListAdapter(backingSteps, this);
         listStepsView.setAdapter(stepListAdapter);
-
+        mLayoutManager.scrollToPosition(backingSteps.size() - 1);
         return rootView;
     }
 
@@ -72,4 +79,50 @@ public class StepListFragment extends Fragment implements StepListAdapter.OnBaki
         }
 
     }
+
+   /* @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        if(savedInstanceState!= null){
+            mListState  =  savedInstanceState.getParcelable("listState");
+            if(mListState!= null)
+                Log.i("onViewCreated", mListState.toString());
+
+        }
+    }*/
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mListState = listStepsView.getLayoutManager().onSaveInstanceState();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        //listStepsView.getLayoutManager().onRestoreInstanceState(mListState);
+        //listStepsView.getScrollState();
+
+    }
+
+    /* @Override
+    public void onSaveInstanceState(Bundle outState) {
+        Log.i("onSaveInstanceState", "onSaveInstanceState" );
+        mListState = mLayoutManager.onSaveInstanceState();
+        outState.putParcelable("listState", mListState);
+
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if(savedInstanceState != null){
+            mListState = savedInstanceState.getParcelable("listState");
+            Log.i("onActivityCreated", mListState.toString() );
+           // mLayoutManager.onRestoreInstanceState(mListState);
+        }
+
+    }*/
+
 }
