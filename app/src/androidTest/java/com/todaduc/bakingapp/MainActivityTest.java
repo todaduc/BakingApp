@@ -69,7 +69,7 @@ public class MainActivityTest {
                                 childAtPosition(
                                         withId(R.id.recipe_card_view),
                                         0),
-                                0),
+                                1),
                         isDisplayed()));
         textView.check(matches(withText(RECIPE_NAME)));
 
