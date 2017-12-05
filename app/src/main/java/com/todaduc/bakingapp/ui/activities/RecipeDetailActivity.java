@@ -89,7 +89,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepListF
         }else{
 
             Bundle  savedInstanceState = new Bundle();
-            savedInstanceState.putString(getString(R.string.activity_selected_recipe_video),currentStep.getVideoUrl().isEmpty()?currentStep.getThumbnailURL():currentStep.getVideoUrl());
+            savedInstanceState.putString(getString(R.string.activity_selected_recipe_video),currentStep.getVideoUrl());
             savedInstanceState.putString(getString(R.string.activity_selected_recipe_desc),currentStep.getDescription());
 
 
