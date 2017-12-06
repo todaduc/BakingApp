@@ -17,7 +17,6 @@
 
     <!--  Json  Strings definition  -->
     <string name="webservice_Request_Url">https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/baking.json</string>
-    <string name="image_base_url">https://image.tmdb.org/t/p/w500</string>
     <string name="id">id</string>
     <string name="recipe_name">name</string>
     <string name="recipe_serving">servings</string>
@@ -36,7 +35,7 @@
     <string name="Ingredients">Ingredients</string>
     <string name="bakingSteps">Baking Steps</string>
     <string name="recipeToChoose">Recipe to choose</string>
-    <string name="button_preview">Preview</string>
+    <string name="button_previous">Previous</string>
     <string name="button_next">Next</string>
     <string name="servings_text">Servings: %1$d</string>
     <string name="ingredient_text_format"> %1$s  %2$s of %3$s</string>

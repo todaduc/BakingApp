@@ -24,8 +24,8 @@ import butterknife.OnClick;
  */
 public class StepsDetailActivity  extends AppCompatActivity {
 
-    @BindView(R.id.button_preview)
-    Button mPreview;
+    @BindView(R.id.button_previous)
+    Button mPrevious;
     @BindView(R.id.button_next)
     Button mNext;
     private BakingStep bakingStep;
@@ -61,6 +61,7 @@ public class StepsDetailActivity  extends AppCompatActivity {
             videoUri = bakingStep.getVideoUrl();
             savedInstanceState.putString(getString(R.string.activity_selected_recipe_video),videoUri);
             savedInstanceState.putString(getString(R.string.activity_selected_recipe_desc),bakingStep.getDescription());
+            savedInstanceState.putString(getString(R.string.thumbnail_url),bakingStep.getThumbnailURL());
 
             mediaPlayerFragment = new MediaPlayerFragment();
             mediaPlayerFragment.setArguments(savedInstanceState);
@@ -83,15 +84,15 @@ public class StepsDetailActivity  extends AppCompatActivity {
     /**
      * This Method handles the browsing to the preview baking step when the user's device is a phone.
      */
-    @OnClick(R.id.button_preview)
-    public void previewStep(){
+    @OnClick(R.id.button_previous)
+    public void previousStep(){
         int currentStepIndex;
 
         if(mListOfSteps !=null){
             currentStepIndex = mListOfSteps.indexOf(bakingStep);
             if(currentStepIndex>0){
-                BakingStep previewStep = mListOfSteps.get(--currentStepIndex);
-                refreshActivity( previewStep);
+                BakingStep previousStep = mListOfSteps.get(--currentStepIndex);
+                refreshActivity( previousStep);
             }else {
                 Toast.makeText(this, R.string.activity_no_more_step_message, Toast.LENGTH_LONG).show();
             }
@@ -157,6 +158,7 @@ public class StepsDetailActivity  extends AppCompatActivity {
             outState.putParcelableArrayList(getString(R.string.activity_recipe_all_steps), (ArrayList<BakingStep>) mListOfSteps);
             outState.putString(getString(R.string.activity_selected_recipe_video), bakingStep.getVideoUrl());
             outState.putString(getString(R.string.activity_selected_recipe_desc),bakingStep.getDescription());
+            outState.putString(getString(R.string.thumbnail_url),bakingStep.getThumbnailURL());
         }
 
     }
