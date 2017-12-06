@@ -41,6 +41,6 @@
     <string name="servings_text">Servings: %1$d</string>
     <string name="ingredient_text_format"> %1$s  %2$s of %3$s</string>
     <string name="playerPosition">playerPosition</string>
-
+    <string name="error_no_video_available">"No video available for this step"</string>
 
 </resources>

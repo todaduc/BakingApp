@@ -76,7 +76,7 @@ public class MainActivityTest {
         DataInteraction cardView = onData(anything())
                 .inAdapterView(allOf(withId(R.id.recipe_grid_view),
                         childAtPosition(
-                                withClassName(is("android.widget.LinearLayout")),
+                                withClassName(is("android.widget.GridLayoutManager")),
                                 0)))
                 .atPosition(0);
         cardView.perform(click());
