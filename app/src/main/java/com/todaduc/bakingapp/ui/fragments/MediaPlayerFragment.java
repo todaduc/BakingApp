@@ -127,7 +127,10 @@ public class MediaPlayerFragment extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putLong(getString(R.string.playerPosition), playerPosition);
+        if(outState!=null){
+            outState.putLong(getString(R.string.playerPosition), playerPosition!=null?playerPosition:0);
+        }
+
     }
 
 }
