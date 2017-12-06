@@ -6,6 +6,8 @@ import android.support.annotation.VisibleForTesting;
 import android.support.test.espresso.IdlingResource;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -23,14 +25,17 @@ import butterknife.ButterKnife;
 /*
  *   This class represents the main activity of the application.
  */
-public class MainActivity extends AppCompatActivity implements RecipeRequestDelayer.DelayerCallBack  {
+public class MainActivity extends AppCompatActivity implements RecipeRequestDelayer.DelayerCallBack, RecipeListAdapter.OnRecipeClickListener  {
 
 
     private RecipeListAdapter recipeListAdapter;
     private SimpleIdlingResource simpleIdlingResource;
+    private GridLayoutManager gridLayoutManager;
+    private static final int NUM_LAYOUT_COLUMNS = 1;
+    private static final int NUM_LAYOUT_COLUMNS_TABLET = 3;
 
     @BindView(R.id.recipe_grid_view)
-    GridView gridView;
+    RecyclerView recipeRecyclerView;
 
 
     @VisibleForTesting
@@ -48,9 +53,10 @@ public class MainActivity extends AppCompatActivity implements RecipeRequestDela
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setTitle(R.string.activity_label);
+        gridLayoutManager = new GridLayoutManager(this, getResources().getBoolean(R.bool.isTablet)?NUM_LAYOUT_COLUMNS_TABLET:NUM_LAYOUT_COLUMNS);
 
         getIdlingResource();
-        recipeListAdapter = new RecipeListAdapter(this, new ArrayList<Recipe>());
+        recipeListAdapter = new RecipeListAdapter(this, new ArrayList<Recipe>(), this);
         RecipeRequestDelayer.processMessage(new RecipeTask(this, recipeListAdapter),this, simpleIdlingResource);
     }
 
@@ -58,19 +64,16 @@ public class MainActivity extends AppCompatActivity implements RecipeRequestDela
     @Override
     public void onDone() {
 
-
-        gridView.setAdapter(recipeListAdapter);
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Recipe recipe = recipeListAdapter.getRecipes().get(position);
-                Intent intent = new Intent(MainActivity.this, RecipeDetailActivity.class);
-                intent.putExtra(getString(R.string.activity_selected_recipe), recipe);
-                startActivity(intent);
-            }
-        });
-
+        recipeRecyclerView.setLayoutManager(gridLayoutManager);
+        recipeRecyclerView.setHasFixedSize(true);
+        recipeRecyclerView.setAdapter(recipeListAdapter);
     }
 
+
+    @Override
+    public void onRecipeClick(Recipe recipe) {
+        Intent intent = new Intent(MainActivity.this, RecipeDetailActivity.class);
+        intent.putExtra(getString(R.string.activity_selected_recipe), recipe);
+        startActivity(intent);
+    }
 }

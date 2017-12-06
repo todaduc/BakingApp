@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultLoadControl;
@@ -54,6 +55,8 @@ public class MediaPlayerFragment extends Fragment {
 
             if(!TextUtils.isEmpty(videoUrl)){
                 initializePlayer(Uri.parse(videoUrl));
+            }else{
+                Toast.makeText(getContext(),getString(R.string.error_no_video_available), Toast.LENGTH_SHORT).show();
             }
         }
 

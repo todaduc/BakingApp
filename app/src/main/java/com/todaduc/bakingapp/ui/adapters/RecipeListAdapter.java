@@ -1,6 +1,7 @@
 package com.todaduc.bakingapp.ui.adapters;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.todaduc.bakingapp.R;
+import com.todaduc.bakingapp.entities.BakingStep;
 import com.todaduc.bakingapp.entities.Recipe;
 import java.util.List;
 
@@ -20,31 +22,31 @@ import butterknife.ButterKnife;
 /**
  * This Adapter populates a list of recipe.
  */
-public class RecipeListAdapter  extends BaseAdapter{
+public class RecipeListAdapter  extends RecyclerView.Adapter<RecipeListAdapter.RecipeHolder>{
 
     private Context context;
     private List<Recipe> recipes;
 
+    private OnRecipeClickListener onRecipeClickListener;
 
-    public RecipeListAdapter(Context context, List<Recipe> recipeList) {
+
+    /*
+     * Interface that receives onRecipeClick messages.
+     */
+    public interface OnRecipeClickListener{
+        void onRecipeClick(Recipe recipe);
+    }
+
+    public RecipeListAdapter(Context context, List<Recipe> recipeList, OnRecipeClickListener onRecipeClickListener) {
         this.context = context;
         this.recipes = recipeList;
+        this.onRecipeClickListener = onRecipeClickListener;
 
     }
 
     @Override
-    public int getCount() {
+    public int getItemCount() {
         return recipes.size();
-    }
-
-    @Override
-    public Object getItem(int i) {
-        return null;
-    }
-
-    @Override
-    public long getItemId(int i) {
-        return 0;
     }
 
     public List<Recipe> getRecipes() {
@@ -55,33 +57,24 @@ public class RecipeListAdapter  extends BaseAdapter{
         this.recipes = recipes;
     }
 
-    public View getView (final  int position, View convertView, ViewGroup parent){
-        ViewHolder holder;
 
-        if (convertView == null) {
-            LayoutInflater inflater = LayoutInflater.from(context);
-            convertView = inflater.inflate(R.layout.recipe_card_item, parent, false);
-            holder = new ViewHolder(convertView);
-            convertView.setTag(holder);
-        }
+    @Override
+    public RecipeHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        Context context = parent.getContext();
+        LayoutInflater inflater = LayoutInflater.from(context);
 
-         holder = (ViewHolder)convertView.getTag();
+        View view = inflater.inflate(R.layout.recipe_card_item, parent, false);
+        return new RecipeHolder(view);
 
-        Recipe recipe = recipes.get(position);
-        if(recipe.getImage()!= null && !recipe.getImage().isEmpty()){
-            Picasso.with(context).load(context.getString(R.string.image_base_url).concat(recipe.getImage())).into(holder.recipeImage);
-        }
-
-        holder.recipeName.setText(recipe.getName());
-        holder.servings.setText(String.format(context.getString(R.string.servings_text), recipe.getServing()));
-
-        return convertView;
     }
 
-    /**
-     * View holder definition.
-     */
-    static class ViewHolder{
+    @Override
+    public void onBindViewHolder(RecipeHolder holder, int position) {
+        holder.populate(recipes.get(position));
+    }
+
+
+    class RecipeHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         @BindView(R.id.tv_recipe_name)
         TextView recipeName;
@@ -92,8 +85,31 @@ public class RecipeListAdapter  extends BaseAdapter{
         @BindView(R.id.recipe_image)
         ImageView recipeImage;
 
-        public ViewHolder(View view){
-            ButterKnife.bind(this, view);
+        public RecipeHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(this);
+        }
+
+        public void populate(Recipe recipe){
+            itemView.setTag(recipe);
+
+            if(recipe.getImage()!= null && !recipe.getImage().isEmpty()){
+                Picasso.with(context).load(context.getString(R.string.image_base_url).concat(recipe.getImage())).into(recipeImage);
+            }
+
+            recipeName.setText(recipe.getName());
+            servings.setText(String.format(context.getString(R.string.servings_text), recipe.getServing()));
+
+        }
+
+        @Override
+        public void onClick(View view) {
+            if(view.getTag() instanceof  Recipe){
+                Recipe recipe = (Recipe)view.getTag();
+                onRecipeClickListener.onRecipeClick(recipe);
+            }
+
         }
     }
 }

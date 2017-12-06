@@ -7,6 +7,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -28,16 +31,16 @@ import butterknife.ButterKnife;
  * This activity helps users to pick the favorite recipe ingredients,
  * that should be displayed by the widget.
  */
-public class WidgetConfigurationActivity extends Activity  {
+public class WidgetConfigurationActivity extends Activity implements RecipeListAdapter.OnRecipeClickListener {
 
     private int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
     private static final String PREFS_NAME = "AppWidget";
     private static final String PREF_PREFIX_KEY = "appwidget";
     private RecipeListAdapter recipeListAdapter;
-
+    private LinearLayoutManager mLayoutManager;
 
     @BindView(R.id.recipe_grid_view)
-    GridView gridView;
+    RecyclerView gridView;
 
     public WidgetConfigurationActivity() {
         super();
@@ -56,19 +59,21 @@ public class WidgetConfigurationActivity extends Activity  {
 
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
-
-        recipeListAdapter = new RecipeListAdapter(this, new ArrayList<Recipe>());
+        mLayoutManager = new LinearLayoutManager(this);
+        recipeListAdapter = new RecipeListAdapter(this, new ArrayList<Recipe>(), this);
         new RecipeTask(this, recipeListAdapter).execute();
 
+        gridView.setLayoutManager(mLayoutManager);
+        gridView.setHasFixedSize(true);
         gridView.setAdapter(recipeListAdapter);
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+       /* gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Recipe recipe = recipeListAdapter.getRecipes().get(position);
                 createWidget(getApplicationContext(), recipe);
             }
         });
-
+*/
 
         // Find the widget id from the intent.
         Intent intent = getIntent();
@@ -190,5 +195,9 @@ public class WidgetConfigurationActivity extends Activity  {
     }
 
 
+    @Override
+    public void onRecipeClick(Recipe recipe) {
+        createWidget(getApplicationContext(), recipe);
+    }
 }
 
