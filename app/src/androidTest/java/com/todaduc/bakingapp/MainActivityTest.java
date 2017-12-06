@@ -73,15 +73,14 @@ public class MainActivityTest {
                         isDisplayed()));
         textView.check(matches(withText(RECIPE_NAME)));
 
-        DataInteraction cardView = onData(anything())
-                .inAdapterView(allOf(withId(R.id.recipe_grid_view),
-                        childAtPosition(
-                                withClassName(is("android.widget.GridLayoutManager")),
-                                0)))
-                .atPosition(0);
-        cardView.perform(click());
-
         ViewInteraction recyclerView = onView(
+                allOf(withId(R.id.recipe_grid_view),
+                        childAtPosition(
+                                withClassName(is("android.widget.FrameLayout")),
+                                0)));
+        recyclerView.perform(actionOnItemAtPosition(0, click()));
+
+        ViewInteraction recyclerView1 = onView(
                 allOf(withId(R.id.listStepView),
                         childAtPosition(
                                 allOf(withId(R.id.recipe_steps_list),
@@ -90,7 +89,7 @@ public class MainActivityTest {
                                                 0)),
                                 2),
                         isDisplayed()));
-        recyclerView.check(matches(isDisplayed()));
+        recyclerView1.check(matches(isDisplayed()));
 
         ViewInteraction textView2 = onView(
                 allOf(withText(RECIPE_NAME),
