@@ -2,6 +2,7 @@ package com.todaduc.bakingapp.ui.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -94,8 +95,8 @@ public class RecipeListAdapter  extends RecyclerView.Adapter<RecipeListAdapter.R
         public void populate(Recipe recipe){
             itemView.setTag(recipe);
 
-            if(recipe.getImage()!= null && !recipe.getImage().isEmpty()){
-                Picasso.with(context).load(context.getString(R.string.image_base_url).concat(recipe.getImage())).into(recipeImage);
+            if(!TextUtils.isEmpty(recipe.getImage())){
+                Picasso.with(context).load(recipe.getImage()).into(recipeImage);
             }
 
             recipeName.setText(recipe.getName());
